@@ -1,0 +1,6 @@
+{
+  "name": "Aqua Uno Fresh Water",
+  "description": "Aqua Uno by Ephrone Industries Limited — 100% pure, safe, and refreshing natural spring drinking water. Fast & reliable doorstep delivery of 20L dispenser bottles, 10L, 5L, 1.5L, 1L, and 500ml packs for homes and offices.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
