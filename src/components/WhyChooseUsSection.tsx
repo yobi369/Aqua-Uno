@@ -49,7 +49,7 @@ export const WhyChooseUsSection: React.FC = () => {
             Why Choose Aqua Uno
           </h2>
           <p className="text-base text-slate-600 mt-2 font-medium">
-            Trust in Every Drop • Bottled at Source by Ephrone Industries Limited
+            Trust in Every Drop • Bottled at Source by Ephron Industries Limited
           </p>
         </div>
 

@@ -64,7 +64,7 @@ export const Footer: React.FC = () => {
               <li>
                 <a href="#facility-tour" className="text-sky-400 hover:text-white transition-colors flex items-center gap-1.5 font-semibold">
                   <span className="w-2 h-2 rounded-full bg-blue-500" />
-                  Ephrone Factory Video Tour
+                  Ephron Factory Video Tour
                 </a>
               </li>
               <li>

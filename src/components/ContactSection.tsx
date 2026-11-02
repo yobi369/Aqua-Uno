@@ -23,7 +23,7 @@ export const ContactSection: React.FC = () => {
   };
 
   const handleWhatsAppDirect = () => {
-    const text = encodeURIComponent(`Hello Aqua Uno! I'd like to get in touch with your team at Ephrone Industries.`);
+    const text = encodeURIComponent(`Hello Aqua Uno! I'd like to get in touch with your team at Ephron Industries.`);
     window.open(`https://wa.me/${COMPANY_INFO.whatsappNumber}?text=${text}`, '_blank');
   };
 
@@ -184,7 +184,7 @@ export const ContactSection: React.FC = () => {
                   <CheckCircle2 className="w-10 h-10 text-blue-600 mx-auto" />
                   <h4 className="text-lg font-bold text-blue-950">Message Received!</h4>
                   <p className="text-xs text-blue-800 max-w-sm mx-auto">
-                    Thank you, {formData.name}. Our dispatch coordinator at Ephrone Industries is reviewing your request and will contact you shortly.
+                    Thank you, {formData.name}. Our dispatch coordinator at Ephron Industries is reviewing your request and will contact you shortly.
                   </p>
                 </div>
               ) : (

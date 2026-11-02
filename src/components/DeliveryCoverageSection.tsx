@@ -107,13 +107,13 @@ export const DeliveryCoverageSection: React.FC = () => {
         <div className="mt-10 bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 rounded-3xl p-6 sm:p-8 text-white flex flex-col md:flex-row items-center justify-between gap-6 border border-blue-500/30 shadow-xl">
           <div className="space-y-2 text-center md:text-left">
             <span className="text-xs font-bold uppercase tracking-wider text-sky-400">
-              Corporate & Institution Accounts • Ephrone Industries
+              Corporate & Institution Accounts • Ephron Industries
             </span>
             <h3 className="text-xl sm:text-2xl font-black">
               Looking for regular bulk office or school deliveries?
             </h3>
             <p className="text-xs sm:text-sm text-slate-300 max-w-xl">
-              Enjoy tailored volume pricing, water dispenser sanitization maintenance, and 30-day corporate payment terms directly with Ephrone Industries Limited.
+              Enjoy tailored volume pricing, water dispenser sanitization maintenance, and 30-day corporate payment terms directly with Ephron Industries Limited.
             </p>
           </div>
 

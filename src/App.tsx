@@ -110,7 +110,7 @@ export default function App() {
         {/* 4 Trust Pillars Strip (100% Pure, Safe & Hygienic, On-Time Delivery, Customer Focused) */}
         <TrustStrip />
 
-        {/* Ephrone Industries Bottling Plant Cinema Tour & TaurusArts Pixieset Gallery */}
+        {/* Ephron Industries Bottling Plant Cinema Tour & TaurusArts Pixieset Gallery */}
         <EphroneMediaGallerySection />
 
         {/* Products Catalog with interactive quantities & instant WhatsApp action */}

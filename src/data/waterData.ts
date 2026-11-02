@@ -8,20 +8,20 @@ import aquaUnoReal1_5L from '../assets/images/aqua_uno_real_1_5l.jpg';
 
 export const COMPANY_INFO = {
   name: 'Aqua Uno',
-  legalName: 'Aqua Uno — Ephrone Industries Limited',
-  parentCompany: 'Ephrone Industries Limited',
+  legalName: 'Aqua Uno — Ephron Industries Limited',
+  parentCompany: 'Ephron Industries Limited',
   slogan: 'Trust in Every Drop',
-  subSlogan: 'Premium Natural Spring Water • Bottled at Source by Ephrone Industries Limited',
-  phone: '+254715037601',
-  phoneDisplay: '0715037601',
-  whatsappNumber: '254715037601',
+  subSlogan: 'Premium Natural Spring Water • Bottled at Source by Ephron Industries Limited',
+  phone: '+254718618437',
+  phoneDisplay: '0718618437',
+  whatsappNumber: '254718618437',
   email: 'orders@aquaunowater.com',
   corporateEmail: 'info@ephroneindustries.com',
   website: 'https://aqua-uno-fresh-water.vercel.app',
   webDomain: 'aqua-uno-fresh-water.vercel.app',
   pixiesetGalleryUrl: 'https://taurusarts7.pixieset.com/ephroneindustrieslimited',
   videoUrl: '/assets/aistudio/AQUA_UNO_9befbc19.mp4',
-  address: 'Ephrone Industries Bottling Plant & Aqua Uno Distribution Hubs',
+  address: 'Ephron Industries Bottling Plant & Aqua Uno Distribution Hubs',
   serviceHours: 'Monday – Saturday: 7:00 AM – 7:00 PM | Sunday: 9:00 AM – 4:00 PM',
   currency: 'KSh',
 };
@@ -47,7 +47,7 @@ export const EPHRONE_FACILITY_ASSETS: FacilityAsset[] = [
     title: 'Highland Estate Aerial View',
     category: 'facility',
     image: '/src/assets/images/ephrone_plant_aerial.jpg',
-    description: 'Aerial drone capture of the Ephrone Industries compound, paved driveway, and mountain aquifer backdrop.'
+    description: 'Aerial drone capture of the Ephron Industries compound, paved driveway, and mountain aquifer backdrop.'
   },
   {
     id: 'fac-3',
@@ -85,8 +85,7 @@ export const PRODUCTS: Product[] = [
     name: '20 Litre Dispenser Bottle',
     size: '20 Litres',
     category: 'dispenser',
-    price: 250,
-    originalPrice: 300,
+    price: 1300,
     description: 'Our flagship Aqua Uno 20L reusable polycarbonate bottle. Ideal for homes, executive offices, schools, and clinics. Compatible with all standard hot & cold dispensers and pumps.',
     bestFor: 'Homes, Corporate Offices, Dispensers & Water Coolers',
     features: [
@@ -104,8 +103,7 @@ export const PRODUCTS: Product[] = [
     name: '10 Litre Family Container',
     size: '10 Litres',
     category: 'dispenser',
-    price: 220,
-    originalPrice: 260,
+    price: 400,
     description: 'The versatile Aqua Uno 10-Litre bottle with an ergonomic heavy-duty carry handle. Compact enough for kitchen countertops and pantry storage while providing ample hydration.',
     bestFor: 'Apartments, Small Families, Dining Rooms & Travel',
     features: [
@@ -123,8 +121,7 @@ export const PRODUCTS: Product[] = [
     name: '5 Litre Family Bottle',
     size: '5 Litres',
     category: 'bottles',
-    price: 180,
-    originalPrice: 220,
+    price: 440,
     description: 'Convenient 5-litre Aqua Uno container with sturdy blue carry handle. Perfect for family kitchens, dining tables, camping trips, and boiling crystal-clear tea and coffee.',
     bestFor: 'Family Kitchens, Camping, Cottages & Cooking',
     features: [
@@ -141,8 +138,7 @@ export const PRODUCTS: Product[] = [
     name: '1.5 Litre Bottle (Pack of 12)',
     size: '12 × 1.5 Litres',
     category: 'packs',
-    price: 720,
-    originalPrice: 840,
+    price: 400,
     description: 'High-capacity 1.5L Aqua Uno bottles delivering maximum daily hydration. Recommended for athletes, long-distance road trips, and all-day workstations.',
     bestFor: 'Athletes, Fitness, Long Drives & Dining',
     features: [
@@ -158,8 +154,7 @@ export const PRODUCTS: Product[] = [
     name: '1 Litre Bottle (Pack of 12)',
     size: '12 × 1.0 Litre',
     category: 'packs',
-    price: 600,
-    originalPrice: 700,
+    price: 380,
     description: 'Pack of 12 full one-litre Aqua Uno bottles. The gold standard for personal hydration, gym bags, university students, and active lifestyles.',
     bestFor: 'Gym, Field Trips, Road Trips & Daily Workstations',
     features: [
@@ -177,7 +172,6 @@ export const PRODUCTS: Product[] = [
     size: '24 × 500ml',
     category: 'packs',
     price: 380,
-    originalPrice: 650,
     description: 'A shrink-wrapped case of 24 compact 500ml Aqua Uno spring water bottles. Perfect for boardrooms, hospitality, corporate conferences, weddings, and grab-and-go refreshment.',
     bestFor: 'Events, Boardrooms, Conferences & Daily Commutes',
     features: [
@@ -242,7 +236,7 @@ export const TESTIMONIALS = [
 export const FAQS = [
   {
     question: 'How do I place an order for refills or new bottles?',
-    answer: 'You can order directly using the WhatsApp button on this site, which creates an instant formatted message with your requested products and address, or use our online quick-checkout. You can also call our dispatch hotline at 0715037601.'
+    answer: 'You can order directly using the WhatsApp button on this site, which creates an instant formatted message with your requested products and address, or use our online quick-checkout. You can also call our dispatch hotline at 0718618437.'
   },
   {
     question: 'How does the 20-Litre bottle refill exchange work?',

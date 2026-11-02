@@ -113,14 +113,14 @@ export const Logo: React.FC<LogoProps> = ({
           </span>
         )}
 
-        {/* Ephrone Industries Corporate Identity */}
+        {/* Ephron Industries Corporate Identity */}
         {showCorporate && variant !== 'compact' && (
           <span
             className={`text-[9px] font-bold tracking-wider uppercase mt-0.5 ${
               isLight ? 'text-slate-300' : 'text-slate-500'
             }`}
           >
-            By Ephrone Industries Limited
+            By Ephron Industries Limited
           </span>
         )}
       </div>

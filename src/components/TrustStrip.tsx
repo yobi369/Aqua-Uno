@@ -12,7 +12,7 @@ export const TrustStrip: React.FC = () => {
     {
       icon: ShieldCheck,
       title: 'Safe & Hygienic Bottling',
-      description: 'Packaged at Ephrone Industries facility with multi-stage micro-filtration and touchless bottling.',
+      description: 'Packaged at Ephron Industries facility with multi-stage micro-filtration and touchless bottling.',
       accent: 'text-sky-600 bg-sky-50 border-sky-200',
     },
     {

@@ -60,7 +60,7 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({ onAddToCart })
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-10">
           <span className="text-xs font-bold text-blue-700 tracking-wider uppercase bg-blue-50 px-3 py-1 rounded-md border border-blue-200">
-            Bottled at Source • Ephrone Industries
+            Bottled at Source • Ephron Industries
           </span>
           <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mt-3 tracking-tight">
             Our Products

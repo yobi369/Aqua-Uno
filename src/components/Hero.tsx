@@ -7,7 +7,7 @@ interface HeroProps {
 }
 
 export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
-  const [selectedView, setSelectedView] = useState<'lineup' | 'dispenser' | 'factory' | 'warehouse'>('lineup');
+  const [selectedView, setSelectedView] = useState<'factory' | 'warehouse'>('factory');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleWhatsAppOrder = () => {
@@ -17,16 +17,12 @@ export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
 
   const getImageSrc = () => {
     switch (selectedView) {
-      case 'lineup':
-        return '/src/assets/images/hero_aqua_uno_lineup_1793557685051.jpg';
-      case 'dispenser':
-        return '/src/assets/images/aqua_uno_20l_dispenser_1793557686530.jpg';
       case 'factory':
         return '/src/assets/images/aqua_uno_sign_gardens.jpg';
       case 'warehouse':
         return '/src/assets/images/aqua_uno_warehouse_pallets.jpg';
       default:
-        return '/src/assets/images/hero_aqua_uno_lineup_1793557685051.jpg';
+        return '/src/assets/images/aqua_uno_sign_gardens.jpg';
     }
   };
 
@@ -44,7 +40,7 @@ export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
             {/* Editorial Kicker */}
             <div className="inline-flex items-center gap-2 text-xs font-bold tracking-widest text-blue-900 uppercase bg-blue-50 px-3.5 py-1.5 rounded-md border border-blue-200">
               <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-              <span>BY EPHRONE INDUSTRIES LIMITED</span>
+              <span>BY EPHRON INDUSTRIES LIMITED</span>
             </div>
 
             {/* Main Headline */}
@@ -132,26 +128,6 @@ export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
               <div className="absolute top-3 left-3 right-3 z-20 flex items-center justify-between">
                 <div className="inline-flex bg-slate-900/90 backdrop-blur-md p-1 rounded-xl border border-white/20 text-xs font-medium text-white shadow-lg overflow-x-auto max-w-full">
                   <button
-                    onClick={() => setSelectedView('lineup')}
-                    className={`px-2.5 py-1 rounded-lg transition-colors whitespace-nowrap ${
-                      selectedView === 'lineup'
-                        ? 'bg-blue-600 text-white font-semibold'
-                        : 'text-slate-300 hover:text-white'
-                    }`}
-                  >
-                    All Sizes (500ml–20L)
-                  </button>
-                  <button
-                    onClick={() => setSelectedView('dispenser')}
-                    className={`px-2.5 py-1 rounded-lg transition-colors whitespace-nowrap ${
-                      selectedView === 'dispenser'
-                        ? 'bg-blue-600 text-white font-semibold'
-                        : 'text-slate-300 hover:text-white'
-                    }`}
-                  >
-                    20L Dispenser
-                  </button>
-                  <button
                     onClick={() => setSelectedView('factory')}
                     className={`px-2.5 py-1 rounded-lg transition-colors whitespace-nowrap ${
                       selectedView === 'factory'
@@ -216,7 +192,7 @@ export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
                 <Droplet className="w-5 h-5 fill-blue-600" />
               </div>
               <div>
-                <p className="text-xs font-bold text-slate-900">Ephrone Industries Bottling</p>
+                <p className="text-xs font-bold text-slate-900">Ephron Industries Bottling</p>
                 <p className="text-[11px] text-slate-500">Touchless hygiene • Pure Highland Source</p>
               </div>
             </div>

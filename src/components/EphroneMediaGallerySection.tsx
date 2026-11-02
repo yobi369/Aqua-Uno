@@ -66,7 +66,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
         <div className="text-center max-w-3xl mx-auto mb-14">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/30 text-blue-400 text-xs font-bold uppercase tracking-wider mb-4">
             <Building2 className="w-3.5 h-3.5" />
-            <span>Ephrone Industries Limited • Bottling Plant</span>
+            <span>Ephron Industries Limited • Bottling Plant</span>
           </div>
 
           <h2 className="text-3xl sm:text-5xl font-black text-white tracking-tight leading-tight">
@@ -135,7 +135,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
                 </button>
 
                 <div className="hidden sm:block text-xs font-semibold text-slate-200">
-                  <span className="text-sky-400">Drone & Plant Reel</span> • Ephrone Industries Compound
+                  <span className="text-sky-400">Drone & Plant Reel</span> • Ephron Industries Compound
                 </div>
               </div>
 
@@ -288,7 +288,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
                 </span>
                 <span>•</span>
                 <span className="flex items-center gap-1.5">
-                  <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Authenticated Ephrone Assets
+                  <CheckCircle2 className="w-4 h-4 text-emerald-400" /> Authenticated Ephron Assets
                 </span>
               </div>
             </div>
@@ -338,7 +338,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
             <div className="p-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
               <div>
                 <span className="text-xs font-bold text-sky-400 uppercase tracking-wider block mb-1">
-                  Ephrone Industries Bottling Plant
+                  Ephron Industries Bottling Plant
                 </span>
                 <h3 className="text-lg sm:text-xl font-bold text-white">
                   {selectedAsset.title}
@@ -388,7 +388,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="font-bold text-white text-base">TaurusArts Media Gallery</h4>
-                  <span className="text-xs text-slate-400">Client: Ephrone Industries Limited</span>
+                  <span className="text-xs text-slate-400">Client: Ephron Industries Limited</span>
                 </div>
               </div>
 
@@ -403,7 +403,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
             <div className="space-y-4 text-xs sm:text-sm text-slate-300">
               <p>
                 The complete photography and videography portfolio for{' '}
-                <strong className="text-white">Ephrone Industries Limited</strong> and{' '}
+                <strong className="text-white">Ephron Industries Limited</strong> and{' '}
                 <strong className="text-sky-400">Aqua Uno</strong> was directed and produced by{' '}
                 <strong className="text-white">TaurusArts</strong>.
               </p>

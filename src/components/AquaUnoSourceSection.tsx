@@ -55,7 +55,7 @@ export const AquaUnoSourceSection: React.FC = () => {
               <div className="relative w-full h-48 sm:h-56 bg-slate-900 overflow-hidden">
                 <img
                   src="/src/assets/images/ephrone_plant_aerial.jpg"
-                  alt="Aqua Uno Highland Spring Source & Ephrone Industries Estate"
+                  alt="Aqua Uno Highland Spring Source & Ephron Industries Estate"
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
                 />
@@ -65,7 +65,7 @@ export const AquaUnoSourceSection: React.FC = () => {
                       Highland Aquifers & Modern Bottling
                     </span>
                     <h4 className="text-base sm:text-lg font-bold text-white mt-1">
-                      Ephrone Industries Bottling Estate
+                      Ephron Industries Bottling Estate
                     </h4>
                   </div>
                 </div>
@@ -101,7 +101,7 @@ export const AquaUnoSourceSection: React.FC = () => {
                   </div>
                   <div>
                     <h4 className="text-xs font-bold text-slate-900">KEBS Standard Certified</h4>
-                    <p className="text-[11px] text-slate-600">Bottled by Ephrone Industries Limited meeting national drinking standards</p>
+                    <p className="text-[11px] text-slate-600">Bottled by Ephron Industries Limited meeting national drinking standards</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-1.5 text-xs font-bold text-blue-800">
