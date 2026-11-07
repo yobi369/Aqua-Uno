@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react';
-import { COMPANY_INFO, EPHRONE_FACILITY_ASSETS, FacilityAsset } from '../data/waterData';
+import { COMPANY_INFO, EPHRONE_FACILITY_ASSETS, FACILITY_IMAGES, FacilityAsset } from '../data/waterData';
 import {
   Play,
   Pause,
@@ -85,7 +85,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
             <video
               ref={videoRef}
               src={COMPANY_INFO.videoUrl}
-              poster="/src/assets/images/aqua_uno_factory_facade.jpg"
+              poster={FACILITY_IMAGES.factoryFacade}
               loop
               playsInline
               muted={isMuted}
@@ -192,7 +192,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
             </div>
 
             {/* Filter Tabs */}
-            <div className="flex items-center gap-1.5 p-1 bg-slate-950 rounded-xl border border-slate-800 self-start sm:self-auto text-xs font-semibold">
+            <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-950 rounded-xl border border-slate-800 self-start sm:self-auto text-xs font-semibold">
               <button
                 onClick={() => setActiveTab('all')}
                 className={`px-3 py-1.5 rounded-lg transition-colors ${
@@ -324,7 +324,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
           onClick={() => setSelectedAsset(null)}
         >
           <div
-            className="bg-slate-900 border border-slate-700 rounded-3xl max-w-4xl w-full overflow-hidden shadow-2xl relative"
+            className="bg-slate-900 border border-slate-700 rounded-3xl max-w-4xl w-full max-h-[calc(100dvh-2rem)] overflow-y-auto shadow-2xl relative"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative aspect-video bg-black">
@@ -378,7 +378,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
           onClick={() => setShowPixiesetModal(false)}
         >
           <div
-            className="bg-slate-900 border border-slate-700 rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl relative"
+            className="bg-slate-900 border border-slate-700 rounded-3xl max-w-xl w-full max-h-[calc(100dvh-2rem)] overflow-y-auto p-6 sm:p-8 shadow-2xl relative"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">

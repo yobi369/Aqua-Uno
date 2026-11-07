@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ArrowRight, MessageCircle, ShieldCheck, Droplet, Sparkles, Truck, CheckCircle2, Eye } from 'lucide-react';
-import { COMPANY_INFO } from '../data/waterData';
+import { COMPANY_INFO, FACILITY_IMAGES } from '../data/waterData';
 
 interface HeroProps {
   onOrderNowClick: () => void;
@@ -18,11 +18,11 @@ export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
   const getImageSrc = () => {
     switch (selectedView) {
       case 'factory':
-        return '/src/assets/images/aqua_uno_sign_gardens.jpg';
+        return FACILITY_IMAGES.signGardens;
       case 'warehouse':
-        return '/src/assets/images/aqua_uno_warehouse_pallets.jpg';
+        return FACILITY_IMAGES.warehousePallets;
       default:
-        return '/src/assets/images/aqua_uno_sign_gardens.jpg';
+        return FACILITY_IMAGES.signGardens;
     }
   };
 
@@ -90,7 +90,7 @@ export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
               </button>
 
               <a
-                href="#facility-tour"
+                href="/about#facility-tour"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-6 py-3.5 text-sm font-bold text-blue-800 bg-blue-50 border border-blue-200 rounded-xl hover:bg-blue-100 transition-all whitespace-nowrap"
               >
                 <span>Watch Factory Drone Reel</span>

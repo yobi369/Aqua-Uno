@@ -62,7 +62,7 @@ export const Logo: React.FC<LogoProps> = ({
           {/* Glossy Teardrop Highlight Reflection */}
           <path
             d="M44 32C44 32 37 46 37 56C37 60 39 63 41 65C39 63 38 60 38 56C38 48 44 34 44 32Z"
-            fill={isLight ? 'rgba(14,165,233,0.35)' : '#FFFFFF'}
+            fill={isLight ? 'rgba(14,165,233,0.35)' : '#BAE6FD'}
             opacity="0.85"
           />
 

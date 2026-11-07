@@ -18,3 +18,11 @@ View your app in AI Studio: https://ai.studio/apps/c284c282-c340-4a1b-8258-1fb60
 2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
 3. Run the app:
    `npm run dev`
+
+## Site Pages
+
+- `/` — Home
+- `/products` — Products and hydration guide
+- `/about` — Our story, facility, quality, and team
+- `/delivery` — Delivery areas and frequently asked questions
+- `/contact` — Contact details and inquiry form

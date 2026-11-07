@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Product, CartItem } from './types';
 import { PRODUCTS, COMPANY_INFO } from './data/waterData';
 import { Navbar } from './components/Navbar';
@@ -17,11 +17,17 @@ import { WhyChooseUsSection } from './components/WhyChooseUsSection';
 import { DeliveryCoverageSection } from './components/DeliveryCoverageSection';
 import { FaqSection } from './components/FaqSection';
 import { ContactSection } from './components/ContactSection';
+import { TeamSection } from './components/TeamSection';
+import { TaurusGalleryPhotosSection } from './components/TaurusGalleryPhotosSection';
 import { Footer } from './components/Footer';
 import { CartDrawerAndOrderModal } from './components/CartDrawerAndOrderModal';
 import { MessageCircle, ShoppingBag, Truck, ChevronRight } from 'lucide-react';
 
 export default function App() {
+  const [currentPath, setCurrentPath] = useState(() => {
+    const path = window.location.pathname;
+    return ['/', '/products', '/about', '/delivery', '/contact'].includes(path) ? path : '/';
+  });
   const [cartItems, setCartItems] = useState<CartItem[]>([
     // Pre-populate with 1x 20L bottle so the cart has an intuitive starting item
     {
@@ -33,6 +39,39 @@ export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const cartTotalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
+
+  useEffect(() => {
+    const handlePopState = () => {
+      const path = window.location.pathname;
+      setCurrentPath(['/', '/products', '/about', '/delivery', '/contact'].includes(path) ? path : '/');
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      requestAnimationFrame(() => {
+        document.getElementById(decodeURIComponent(hash.slice(1)))?.scrollIntoView();
+      });
+    } else {
+      window.scrollTo({ top: 0 });
+    }
+  }, [currentPath]);
+
+  const handleInternalNavigation = (event: React.MouseEvent<HTMLDivElement>) => {
+    const anchor = (event.target as HTMLElement).closest('a');
+    if (!anchor || anchor.target || anchor.origin !== window.location.origin) return;
+
+    const destination = new URL(anchor.href);
+    if (!['/', '/products', '/about', '/delivery', '/contact'].includes(destination.pathname)) return;
+    if (destination.pathname === currentPath && destination.hash) return;
+
+    event.preventDefault();
+    window.history.pushState(null, '', `${destination.pathname}${destination.search}${destination.hash}`);
+    setCurrentPath(destination.pathname);
+  };
 
   const handleAddToCart = (product: Product, quantity: number) => {
     setCartItems((prev) => {
@@ -65,10 +104,8 @@ export default function App() {
   };
 
   const handleOrderNowClick = () => {
-    const productsEl = document.getElementById('products');
-    if (productsEl) {
-      productsEl.scrollIntoView({ behavior: 'smooth' });
-    }
+    window.history.pushState(null, '', '/products');
+    setCurrentPath('/products');
   };
 
   const handleFloatingWhatsApp = () => {
@@ -79,7 +116,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-white text-slate-800">
+    <div className="min-h-screen flex flex-col bg-white text-slate-800" onClick={handleInternalNavigation}>
       
       {/* Top Banner Notice */}
       <aside aria-label="Special Offers" className="bg-blue-950 text-white text-[11px] sm:text-xs py-2 px-4 text-center font-medium border-b border-blue-900 flex items-center justify-center gap-2">
@@ -98,41 +135,111 @@ export default function App() {
       {/* Top Navigation */}
       <Navbar
         cartCount={cartTotalItems}
+        currentPath={currentPath}
         onOpenCart={() => setIsCartOpen(true)}
         onOpenOrderModal={() => setIsCartOpen(true)}
       />
 
-      {/* Main Page Flow */}
       <main className="flex-1">
-        {/* Hero Section */}
-        <Hero onOrderNowClick={handleOrderNowClick} />
+        {(currentPath === '/' || currentPath === '/home') && (
+          <>
+            <Hero onOrderNowClick={handleOrderNowClick} />
+            <TrustStrip />
+            <TaurusGalleryPhotosSection compact />
+            <section className="py-16 bg-slate-50 border-b border-slate-200/80">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
+                  <div>
+                    <span className="text-xs font-bold text-blue-700 tracking-wider uppercase">Find your favourite</span>
+                    <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mt-2 tracking-tight">
+                      Aqua Uno for Every Day
+                    </h2>
+                    <p className="text-sm sm:text-base text-slate-600 mt-2">
+                      From family-sized bottles to convenient packs for life on the go.
+                    </p>
+                  </div>
+                  <a
+                    href="/products"
+                    className="inline-flex items-center gap-2 text-sm font-bold text-blue-700 hover:text-blue-800"
+                  >
+                    See all products <ChevronRight className="w-4 h-4" />
+                  </a>
+                </div>
 
-        {/* 4 Trust Pillars Strip (100% Pure, Safe & Hygienic, On-Time Delivery, Customer Focused) */}
-        <TrustStrip />
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
+                  {PRODUCTS.slice(0, 4).map((product) => (
+                    <a
+                      key={product.id}
+                      href="/products"
+                      className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg transition-all"
+                    >
+                      <div className="relative aspect-[4/3] overflow-hidden bg-blue-50">
+                        <img
+                          src={product.image}
+                          alt={product.name}
+                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          loading="lazy"
+                        />
+                        <span className="absolute left-3 top-3 rounded-full bg-white/95 px-2.5 py-1 text-[10px] sm:text-xs font-bold text-blue-800 shadow-sm">
+                          {product.size}
+                        </span>
+                      </div>
+                      <div className="p-3 sm:p-4">
+                        <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-blue-700">
+                          {product.name}
+                        </h3>
+                        <p className="mt-1 text-xs sm:text-sm font-semibold text-slate-600">
+                          {COMPANY_INFO.currency} {product.price.toLocaleString()}
+                        </p>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </section>
+            <section className="py-16 bg-white">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-6 md:grid-cols-3">
+                {[
+                  { title: 'Explore our water', description: 'Find the right bottle size for your home, office, or event.', href: '/products', label: 'Browse products' },
+                  { title: 'Meet Aqua Uno', description: 'Learn how we source, prepare, and deliver every bottle.', href: '/about', label: 'Our story & team' },
+                  { title: 'Delivery to your door', description: 'Check service areas and delivery schedules near you.', href: '/delivery', label: 'View delivery areas' },
+                ].map((item) => (
+                  <a key={item.href} href={item.href} className="group rounded-2xl border border-slate-200 bg-slate-50 p-6 hover:border-blue-400 hover:bg-white hover:shadow-md transition-all">
+                    <h2 className="text-xl font-bold text-slate-900">{item.title}</h2>
+                    <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.description}</p>
+                    <span className="mt-5 inline-block text-sm font-bold text-blue-700 group-hover:text-blue-800">{item.label} →</span>
+                  </a>
+                ))}
+              </div>
+            </section>
+          </>
+        )}
 
-        {/* Ephron Industries Bottling Plant Cinema Tour & TaurusArts Pixieset Gallery */}
-        <EphroneMediaGallerySection />
+        {currentPath === '/products' && (
+          <>
+            <ProductsSection onAddToCart={handleAddToCart} />
+            <HydrationBanner onAddRecommended={handleAddToCart} />
+          </>
+        )}
 
-        {/* Products Catalog with interactive quantities & instant WhatsApp action */}
-        <ProductsSection onAddToCart={handleAddToCart} />
+        {currentPath === '/about' && (
+          <>
+            <EphroneMediaGallerySection />
+            <AquaUnoSourceSection />
+            <WhyChooseUsSection />
+            <TeamSection />
+            <TaurusGalleryPhotosSection />
+          </>
+        )}
 
-        {/* Hydration Banner & Interactive Calculator */}
-        <HydrationBanner onAddRecommended={handleAddToCart} />
+        {currentPath === '/delivery' && (
+          <>
+            <DeliveryCoverageSection />
+            <FaqSection />
+          </>
+        )}
 
-        {/* Aqua Uno Origin, Purification & Mineral Spec Table */}
-        <AquaUnoSourceSection />
-
-        {/* Why Choose Us & Customer Testimonials */}
-        <WhyChooseUsSection />
-
-        {/* Delivery Coverage Map & Corporate Solutions */}
-        <DeliveryCoverageSection />
-
-        {/* Frequently Asked Questions */}
-        <FaqSection />
-
-        {/* Contact Us, Hotline & Depot Address */}
-        <ContactSection />
+        {currentPath === '/contact' && <ContactSection />}
       </main>
 
       {/* Footer */}

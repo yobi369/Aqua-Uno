@@ -5,6 +5,12 @@ import aquaUnoReal5L from '../assets/images/aqua_uno_real_5l.jpg';
 import aquaUnoReal500ml from '../assets/images/aqua_uno_real_500ml.jpg';
 import aquaUnoReal1L from '../assets/images/aqua_uno_real_1l.jpg';
 import aquaUnoReal1_5L from '../assets/images/aqua_uno_real_1_5l.jpg';
+import aquaUnoFactoryFacade from '../assets/images/aqua_uno_factory_facade.jpg';
+import aquaUnoSignGardens from '../assets/images/aqua_uno_sign_gardens.jpg';
+import aquaUnoWarehouseInventory from '../assets/images/aqua_uno_warehouse_inventory.jpg';
+import aquaUnoWarehousePallets from '../assets/images/aqua_uno_warehouse_pallets.jpg';
+import ephronGateEntrance from '../assets/images/ephrone_gate_entrance.jpg';
+import ephronPlantAerial from '../assets/images/ephrone_plant_aerial.jpg';
 
 export const COMPANY_INFO = {
   name: 'Aqua Uno',
@@ -34,47 +40,56 @@ export interface FacilityAsset {
   description: string;
 }
 
+export const FACILITY_IMAGES = {
+  factoryFacade: aquaUnoFactoryFacade,
+  signGardens: aquaUnoSignGardens,
+  warehouseInventory: aquaUnoWarehouseInventory,
+  warehousePallets: aquaUnoWarehousePallets,
+  gateEntrance: ephronGateEntrance,
+  plantAerial: ephronPlantAerial,
+};
+
 export const EPHRONE_FACILITY_ASSETS: FacilityAsset[] = [
   {
     id: 'fac-1',
     title: 'Aqua Uno 3D Signage & Factory Facade',
     category: 'facility',
-    image: '/src/assets/images/aqua_uno_sign_gardens.jpg',
+    image: FACILITY_IMAGES.signGardens,
     description: 'The iconic Aqua Uno royal cobalt blue bottling facility with 3D water teardrop emblem and manicured grounds.'
   },
   {
     id: 'fac-2',
     title: 'Highland Estate Aerial View',
     category: 'facility',
-    image: '/src/assets/images/ephrone_plant_aerial.jpg',
+    image: FACILITY_IMAGES.plantAerial,
     description: 'Aerial drone capture of the Ephron Industries compound, paved driveway, and mountain aquifer backdrop.'
   },
   {
     id: 'fac-3',
     title: 'Main Security Gate & Reception',
     category: 'facility',
-    image: '/src/assets/images/ephrone_gate_entrance.jpg',
+    image: FACILITY_IMAGES.gateEntrance,
     description: 'Gated facility entry with "Trust in Every Drop" security checkpoint and logistics staging.'
   },
   {
     id: 'fac-4',
     title: 'Automated Bottling Line & Pallets',
     category: 'warehouse',
-    image: '/src/assets/images/aqua_uno_warehouse_pallets.jpg',
+    image: FACILITY_IMAGES.warehousePallets,
     description: 'High-capacity sanitized bottling storage ready for nationwide distribution.'
   },
   {
     id: 'fac-5',
     title: 'Distribution Logistics Inventory',
     category: 'warehouse',
-    image: '/src/assets/images/aqua_uno_warehouse_inventory.jpg',
+    image: FACILITY_IMAGES.warehouseInventory,
     description: 'Thousands of sealed 500ml, 1L, and dispenser packs on wooden distribution pallets.'
   },
   {
     id: 'fac-6',
     title: 'Modern Industrial Architecture',
     category: 'production',
-    image: '/src/assets/images/aqua_uno_factory_facade.jpg',
+    image: FACILITY_IMAGES.factoryFacade,
     description: 'State-of-the-art climate-controlled clean room facility certified to global food hygiene standards.'
   }
 ];

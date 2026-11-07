@@ -34,25 +34,25 @@ export const Footer: React.FC = () => {
             <h4 className="text-white font-bold text-sm tracking-tight">Our Products</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#products" className="hover:text-sky-400 transition-colors">20L Dispenser Bottle</a>
+                <a href="/products#products" className="hover:text-sky-400 transition-colors">20L Dispenser Bottle</a>
               </li>
               <li>
-                <a href="#products" className="hover:text-sky-400 transition-colors">10L Family Container</a>
+                <a href="/products#products" className="hover:text-sky-400 transition-colors">10L Family Container</a>
               </li>
               <li>
-                <a href="#products" className="hover:text-sky-400 transition-colors">5L Family Container</a>
+                <a href="/products#products" className="hover:text-sky-400 transition-colors">5L Family Container</a>
               </li>
               <li>
-                <a href="#products" className="hover:text-sky-400 transition-colors">1.5L Hydration Pack (12-Pack)</a>
+                <a href="/products#products" className="hover:text-sky-400 transition-colors">1.5L Hydration Pack (12-Pack)</a>
               </li>
               <li>
-                <a href="#products" className="hover:text-sky-400 transition-colors">1 Litre Bottle (12-Pack)</a>
+                <a href="/products#products" className="hover:text-sky-400 transition-colors">1 Litre Bottle (12-Pack)</a>
               </li>
               <li>
-                <a href="#products" className="hover:text-sky-400 transition-colors">500ml Pack of 24</a>
+                <a href="/products#products" className="hover:text-sky-400 transition-colors">500ml Pack of 24</a>
               </li>
               <li>
-                <a href="#products" className="hover:text-sky-400 transition-colors">Rechargeable Auto Pump</a>
+                <a href="/products#products" className="hover:text-sky-400 transition-colors">Rechargeable Auto Pump</a>
               </li>
             </ul>
           </div>
@@ -62,7 +62,7 @@ export const Footer: React.FC = () => {
             <h4 className="text-white font-bold text-sm tracking-tight">Plant & Media</h4>
             <ul className="space-y-2">
               <li>
-                <a href="#facility-tour" className="text-sky-400 hover:text-white transition-colors flex items-center gap-1.5 font-semibold">
+                <a href="/about#facility-tour" className="text-sky-400 hover:text-white transition-colors flex items-center gap-1.5 font-semibold">
                   <span className="w-2 h-2 rounded-full bg-blue-500" />
                   Ephron Factory Video Tour
                 </a>
@@ -80,19 +80,19 @@ export const Footer: React.FC = () => {
                 </a>
               </li>
               <li>
-                <a href="#source" className="hover:text-sky-400 transition-colors">Highland Aquifers</a>
+                <a href="/about#source" className="hover:text-sky-400 transition-colors">Highland Aquifers</a>
               </li>
               <li>
-                <a href="#why-us" className="hover:text-sky-400 transition-colors">Why Choose Us</a>
+                <a href="/about#why-us" className="hover:text-sky-400 transition-colors">Why Choose Us</a>
               </li>
               <li>
-                <a href="#calculator" className="hover:text-sky-400 transition-colors">Hydration Calculator</a>
+                <a href="/products#calculator" className="hover:text-sky-400 transition-colors">Hydration Calculator</a>
               </li>
               <li>
-                <a href="#delivery" className="hover:text-sky-400 transition-colors">Delivery Routes</a>
+                <a href="/delivery#delivery" className="hover:text-sky-400 transition-colors">Delivery Routes</a>
               </li>
               <li>
-                <a href="#delivery" className="hover:text-sky-400 transition-colors">Corporate Supply Plans</a>
+                <a href="/delivery#delivery" className="hover:text-sky-400 transition-colors">Corporate Supply Plans</a>
               </li>
             </ul>
           </div>

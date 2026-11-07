@@ -5,11 +5,12 @@ import { COMPANY_INFO } from '../data/waterData';
 
 interface NavbarProps {
   cartCount: number;
+  currentPath: string;
   onOpenCart: () => void;
   onOpenOrderModal: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ cartCount, onOpenCart }) => {
+export const Navbar: React.FC<NavbarProps> = ({ cartCount, currentPath, onOpenCart }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -35,61 +36,41 @@ export const Navbar: React.FC<NavbarProps> = ({ cartCount, onOpenCart }) => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between gap-8">
+        <div className="flex items-center justify-between gap-3 xl:gap-6">
           {/* Zone 1: Brand Wordmark */}
-          <a href="#" className="flex items-center shrink-0 group">
-            <Logo />
+          <a href="/" className="flex items-center shrink-0 group" aria-label="Aqua Uno home">
+            <span className="sm:hidden">
+              <Logo variant="compact" showTagline={false} showCorporate={false} />
+            </span>
+            <span className="hidden sm:block">
+              <Logo />
+            </span>
           </a>
 
-          {/* Zone 2: 4-5 Concise Single-line Nav Links */}
-          <nav className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-700">
-            <a
-              href="#products"
-              className="hover:text-blue-600 transition-colors whitespace-nowrap shrink-0"
-            >
-              Our Products
-            </a>
-            <a
-              href="#facility-tour"
-              className="text-blue-600 font-semibold hover:text-blue-700 transition-colors whitespace-nowrap shrink-0 flex items-center gap-1"
-            >
-              <span className="w-2 h-2 rounded-full bg-blue-600 animate-pulse" />
-              Factory & Media Tour
-            </a>
-            <a
-              href="#source"
-              className="hover:text-blue-600 transition-colors whitespace-nowrap shrink-0"
-            >
-              Aqua Uno Source
-            </a>
-            <a
-              href="#why-us"
-              className="hover:text-blue-600 transition-colors whitespace-nowrap shrink-0"
-            >
-              Why Choose Us
-            </a>
-            <a
-              href="#calculator"
-              className="hover:text-blue-600 transition-colors whitespace-nowrap shrink-0"
-            >
-              Hydration Guide
-            </a>
-            <a
-              href="#delivery"
-              className="hover:text-blue-600 transition-colors whitespace-nowrap shrink-0"
-            >
-              Delivery Zones
-            </a>
-            <a
-              href="#contact"
-              className="hover:text-blue-600 transition-colors whitespace-nowrap shrink-0"
-            >
-              Contact Us
-            </a>
+          {/* Primary page navigation */}
+          <nav className="hidden xl:flex items-center gap-3 text-xs font-medium text-slate-700">
+            {[
+              { href: '/', label: 'Home' },
+              { href: '/products', label: 'Products' },
+              { href: '/about', label: 'About Us' },
+              { href: '/delivery', label: 'Delivery' },
+              { href: '/contact', label: 'Contact' },
+            ].map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                aria-current={currentPath === item.href ? 'page' : undefined}
+                className={`hover:text-blue-600 transition-colors whitespace-nowrap shrink-0 ${
+                  currentPath === item.href ? 'text-blue-600 font-bold' : ''
+                }`}
+              >
+                {item.label}
+              </a>
+            ))}
           </nav>
 
           {/* Zone 3: 1 Primary Action + Cart Drawer Trigger */}
-          <div className="flex items-center gap-3 shrink-0">
+          <div className="flex items-center gap-2 xl:gap-3 shrink-0">
             {/* Cart Trigger */}
             <button
               onClick={onOpenCart}
@@ -108,7 +89,8 @@ export const Navbar: React.FC<NavbarProps> = ({ cartCount, onOpenCart }) => {
             {/* Primary Action Button: Order on WhatsApp */}
             <button
               onClick={handleWhatsAppClick}
-              className="inline-flex items-center gap-2 px-4 py-2 text-xs md:text-sm font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 active:bg-blue-800 transition-colors whitespace-nowrap shrink-0 shadow-xs"
+              className="hidden sm:inline-flex items-center gap-2 px-3 xl:px-4 py-2 text-xs font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 active:bg-blue-800 transition-colors whitespace-nowrap shrink-0 shadow-xs"
+              aria-label="Order on WhatsApp"
             >
               <MessageCircle className="w-4 h-4" />
               <span>Order on WhatsApp</span>
@@ -117,7 +99,7 @@ export const Navbar: React.FC<NavbarProps> = ({ cartCount, onOpenCart }) => {
             {/* Mobile menu toggle */}
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100"
+              className="xl:hidden p-2 rounded-lg text-slate-700 hover:bg-slate-100"
               aria-label="Toggle navigation menu"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -128,60 +110,37 @@ export const Navbar: React.FC<NavbarProps> = ({ cartCount, onOpenCart }) => {
 
       {/* Mobile Nav Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-3 animate-fadeIn">
+        <div className="xl:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-3 animate-fadeIn">
           <div className="flex flex-col space-y-2 text-sm font-medium text-slate-800">
-            <a
-              href="#products"
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-600"
-            >
-              Our Products
-            </a>
-            <a
-              href="#facility-tour"
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-md bg-blue-50 text-blue-700 font-bold"
-            >
-              Factory Tour & TaurusArts Gallery
-            </a>
-            <a
-              href="#source"
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-600"
-            >
-              Aqua Uno Spring Source
-            </a>
-            <a
-              href="#why-us"
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-600"
-            >
-              Why Choose Us
-            </a>
-            <a
-              href="#calculator"
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-600"
-            >
-              Hydration Calculator
-            </a>
-            <a
-              href="#delivery"
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-600"
-            >
-              Delivery Coverage & Rates
-            </a>
-            <a
-              href="#contact"
-              onClick={() => setMobileMenuOpen(false)}
-              className="px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-600"
-            >
-              Contact & Depot Locations
-            </a>
+            {[
+              { href: '/', label: 'Home' },
+              { href: '/products', label: 'Products' },
+              { href: '/about', label: 'About & Our Team' },
+              { href: '/delivery', label: 'Delivery Areas' },
+              { href: '/contact', label: 'Contact Us' },
+            ].map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => setMobileMenuOpen(false)}
+                aria-current={currentPath === item.href ? 'page' : undefined}
+                className={`px-3 py-2 rounded-md hover:bg-blue-50 hover:text-blue-600 ${
+                  currentPath === item.href ? 'bg-blue-50 text-blue-700 font-bold' : ''
+                }`}
+              >
+                {item.label}
+              </a>
+            ))}
           </div>
 
           <div className="pt-2 border-t border-slate-100 flex flex-col gap-2">
+            <button
+              onClick={handleWhatsAppClick}
+              className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-blue-600 text-white text-xs font-semibold hover:bg-blue-700"
+            >
+              <MessageCircle className="w-4 h-4" />
+              Order on WhatsApp
+            </button>
             <a
               href={`tel:${COMPANY_INFO.phone}`}
               className="flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg border border-slate-200 text-slate-800 text-xs font-semibold hover:bg-slate-50"

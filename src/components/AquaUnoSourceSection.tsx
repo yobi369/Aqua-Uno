@@ -1,5 +1,5 @@
 import React from 'react';
-import { MINERAL_SPECS } from '../data/waterData';
+import { FACILITY_IMAGES, MINERAL_SPECS } from '../data/waterData';
 import { Mountain, Droplet, ShieldCheck, Award, CheckCircle } from 'lucide-react';
 
 export const AquaUnoSourceSection: React.FC = () => {
@@ -54,7 +54,7 @@ export const AquaUnoSourceSection: React.FC = () => {
               {/* Natural River & Mountain Source Visual */}
               <div className="relative w-full h-48 sm:h-56 bg-slate-900 overflow-hidden">
                 <img
-                  src="/src/assets/images/ephrone_plant_aerial.jpg"
+                  src={FACILITY_IMAGES.plantAerial}
                   alt="Aqua Uno Highland Spring Source & Ephron Industries Estate"
                   className="w-full h-full object-cover"
                   referrerPolicy="no-referrer"
