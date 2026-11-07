@@ -1,29 +1,18 @@
 import React, { useState } from 'react';
 import { ArrowRight, MessageCircle, ShieldCheck, Droplet, Sparkles, Truck, CheckCircle2, Eye } from 'lucide-react';
-import { COMPANY_INFO, FACILITY_IMAGES } from '../data/waterData';
+import { COMPANY_INFO } from '../data/waterData';
+import heroImage from '../assets/images/hero_aqua_uno_lineup_1793557685051.jpg';
 
 interface HeroProps {
   onOrderNowClick: () => void;
 }
 
 export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
-  const [selectedView, setSelectedView] = useState<'factory' | 'warehouse'>('factory');
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleWhatsAppOrder = () => {
     const text = encodeURIComponent(`Hi Aqua Uno! I saw your website and would like to order fresh spring water for delivery.`);
     window.open(`https://wa.me/${COMPANY_INFO.whatsappNumber}?text=${text}`, '_blank');
-  };
-
-  const getImageSrc = () => {
-    switch (selectedView) {
-      case 'factory':
-        return FACILITY_IMAGES.signGardens;
-      case 'warehouse':
-        return FACILITY_IMAGES.warehousePallets;
-      default:
-        return FACILITY_IMAGES.signGardens;
-    }
   };
 
   return (
@@ -55,11 +44,6 @@ export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
                 Trust in Every Drop
               </p>
             </div>
-
-            {/* Sub-headline & Description */}
-            <p className="text-base sm:text-lg md:text-xl text-slate-600 font-medium max-w-xl mx-auto lg:mx-0 leading-relaxed text-balance">
-              Premium natural spring water bottled at our modern manufacturing plant by <strong className="text-slate-800 font-bold">{COMPANY_INFO.parentCompany}</strong>. Delivered pure and fresh in 500ml, 1L, 1.5L, 5L, 10L, and 20L sizes.
-            </p>
 
             {/* Key Quality Pillars (Inline metadata) */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-y-2 gap-x-4 text-xs font-semibold text-slate-600 pt-1">
@@ -121,67 +105,32 @@ export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
             </div>
           </div>
 
-          {/* Right Column: Hero Visual Asset Display (From User's Provided Screenshots & Real Plant) */}
+          {/* Right Column: Aqua Uno product lineup */}
           <div className="lg:col-span-6 relative">
-            <div className="relative rounded-2xl overflow-hidden bg-slate-900 border border-slate-200/80 shadow-xl group">
-              {/* Asset View Selector Switcher */}
-              <div className="absolute top-3 left-3 right-3 z-20 flex items-center justify-between">
-                <div className="inline-flex bg-slate-900/90 backdrop-blur-md p-1 rounded-xl border border-white/20 text-xs font-medium text-white shadow-lg overflow-x-auto max-w-full">
-                  <button
-                    onClick={() => setSelectedView('factory')}
-                    className={`px-2.5 py-1 rounded-lg transition-colors whitespace-nowrap ${
-                      selectedView === 'factory'
-                        ? 'bg-blue-600 text-white font-semibold'
-                        : 'text-slate-300 hover:text-white'
-                    }`}
-                  >
-                    Bottling Plant
-                  </button>
-                  <button
-                    onClick={() => setSelectedView('warehouse')}
-                    className={`px-2.5 py-1 rounded-lg transition-colors whitespace-nowrap ${
-                      selectedView === 'warehouse'
-                        ? 'bg-blue-600 text-white font-semibold'
-                        : 'text-slate-300 hover:text-white'
-                    }`}
-                  >
-                    Warehouse Stock
-                  </button>
-                </div>
+            <div className="relative rounded-3xl overflow-hidden bg-slate-900 border border-white/70 shadow-2xl shadow-blue-900/20 group">
+              <div className="relative w-full aspect-[16/10] overflow-hidden">
+                <img
+                  src={heroImage}
+                  alt="Aqua Uno water bottles in a range of sizes against a fresh mountain spring backdrop"
+                  className="w-full h-full object-cover object-center transition-transform duration-700 group-hover:scale-[1.03]"
+                />
 
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-slate-950/10" />
+                <div className="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full border border-white/30 bg-slate-950/35 px-3 py-1.5 text-xs font-bold tracking-wide text-white backdrop-blur-md">
+                  <Droplet className="h-4 w-4 fill-sky-400 text-sky-300" />
+                  PURE REFRESHMENT
+                </div>
                 <button
                   onClick={() => setIsModalOpen(true)}
-                  className="bg-slate-900/90 backdrop-blur-md p-1.5 rounded-lg border border-white/20 text-white/90 hover:text-white hover:bg-slate-800 transition-colors shadow-lg ml-2 shrink-0"
-                  title="Expand image preview"
+                  aria-label="Expand Aqua Uno product image"
+                  className="absolute top-4 right-4 rounded-lg border border-white/30 bg-slate-950/35 p-2 text-white backdrop-blur-md transition-colors hover:bg-slate-950/60"
                 >
                   <Eye className="w-4 h-4" />
                 </button>
-              </div>
-
-              {/* Main Visual Display */}
-              <div className="relative w-full aspect-4/3 sm:aspect-16/10 max-h-[460px] overflow-hidden bg-slate-950 flex items-center justify-center">
-                <img
-                  src={getImageSrc()}
-                  alt="Aqua Uno Fresh Spring Water Bottles and Highland Source"
-                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-[1.02]"
-                  referrerPolicy="no-referrer"
-                />
-
-                {/* Subtle Gradient Scrim at Bottom */}
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-transparent p-4 sm:p-5 text-white flex flex-col justify-end">
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <p className="text-xs uppercase tracking-wider text-sky-400 font-bold">
-                        Aqua Uno Pure Spring Water
-                      </p>
-                      <p className="text-sm sm:text-base font-semibold text-white">
-                        20L • 10L • 5L • 1.5L • 1L • 500ml Pack
-                      </p>
-                    </div>
-                    <span className="hidden sm:inline-block px-2.5 py-1 text-xs font-semibold bg-blue-500/20 text-sky-300 border border-blue-400/30 rounded-md">
-                      KEBS Certified
-                    </span>
-                  </div>
+                <div className="absolute inset-x-0 bottom-0 p-4 sm:p-6 text-white">
+                  <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.18em] text-sky-200">Aqua Uno</p>
+                  <p className="mt-1 text-lg sm:text-2xl font-extrabold tracking-tight">A refreshing fit for every day</p>
+                  <p className="mt-1 text-xs sm:text-sm font-medium text-white/85">500ml · 1L · 1.5L · 5L · 10L · 20L</p>
                 </div>
               </div>
             </div>
@@ -193,7 +142,7 @@ export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
               </div>
               <div>
                 <p className="text-xs font-bold text-slate-900">Ephron Industries Bottling</p>
-                <p className="text-[11px] text-slate-500">Touchless hygiene • Pure Highland Source</p>
+                <p className="text-[11px] text-slate-500">Pure refreshment • Delivered to you</p>
               </div>
             </div>
           </div>
@@ -205,18 +154,18 @@ export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-xs">
           <div className="relative max-w-4xl max-h-[90vh] bg-slate-900 rounded-2xl overflow-hidden shadow-2xl flex flex-col">
             <div className="p-3 bg-slate-800 text-white flex items-center justify-between text-sm font-semibold">
-              <span>Aqua Uno Brand Visual Asset</span>
+              <span>Aqua Uno Product Range</span>
               <button
                 onClick={() => setIsModalOpen(false)}
                 className="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-md text-xs font-bold"
               >
-                Close (ESC)
+                Close
               </button>
             </div>
             <div className="overflow-auto p-2 flex items-center justify-center">
               <img
-                src={getImageSrc()}
-                alt="Full Brand Asset"
+                src={heroImage}
+                alt="Aqua Uno water bottles in a range of sizes against a fresh mountain spring backdrop"
                 className="max-h-[75vh] w-auto object-contain"
               />
             </div>
