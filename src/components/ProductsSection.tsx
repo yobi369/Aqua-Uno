@@ -5,9 +5,10 @@ import { Plus, Minus, ShoppingBag, MessageCircle, Check, Sparkles } from 'lucide
 
 interface ProductsSectionProps {
   onAddToCart: (product: Product, quantity: number) => void;
+  onViewDetails: (product: Product) => void;
 }
 
-export const ProductsSection: React.FC<ProductsSectionProps> = ({ onAddToCart }) => {
+export const ProductsSection: React.FC<ProductsSectionProps> = ({ onAddToCart, onViewDetails }) => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [quantities, setQuantities] = useState<Record<string, number>>(
     PRODUCTS.reduce((acc, p) => ({ ...acc, [p.id]: 1 }), {})
@@ -217,14 +218,22 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({ onAddToCart })
                       </button>
 
                       <button
-                        onClick={() => handleInstantWhatsApp(product)}
-                        className="flex items-center justify-center gap-1.5 py-2.5 px-3 rounded-xl text-xs font-bold bg-[#25D366] hover:bg-[#20ba59] text-white transition-colors shadow-xs"
-                        title="Order this product directly on WhatsApp"
+                        type="button"
+                        onClick={() => onViewDetails(product)}
+                        className="flex items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-xs font-bold text-slate-700 transition hover:border-blue-300 hover:text-blue-700"
                       >
-                        <MessageCircle className="w-3.5 h-3.5 fill-white" />
-                        <span>WhatsApp</span>
+                        Details
                       </button>
                     </div>
+
+                    <button
+                      onClick={() => handleInstantWhatsApp(product)}
+                      className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-xl bg-[#25D366] px-3 py-2.5 text-xs font-bold text-white transition hover:bg-[#20ba59]"
+                      title="Order this product directly on WhatsApp"
+                    >
+                      <MessageCircle className="h-3.5 w-3.5 fill-white" />
+                      <span>Order on WhatsApp</span>
+                    </button>
                   </div>
                 </div>
               </div>

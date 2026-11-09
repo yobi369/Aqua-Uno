@@ -21,22 +21,36 @@ import { TeamSection } from './components/TeamSection';
 import { TaurusGalleryPhotosSection } from './components/TaurusGalleryPhotosSection';
 import { Footer } from './components/Footer';
 import { CartDrawerAndOrderModal } from './components/CartDrawerAndOrderModal';
+import { ProductDetailModal } from './components/ProductDetailModal';
 import { MessageCircle, ShoppingBag, Truck, ChevronRight } from 'lucide-react';
+
+const CART_STORAGE_KEY = 'aqua-uno-cart-v1';
 
 export default function App() {
   const [currentPath, setCurrentPath] = useState(() => {
     const path = window.location.pathname;
     return ['/', '/products', '/about', '/delivery', '/contact'].includes(path) ? path : '/';
   });
-  const [cartItems, setCartItems] = useState<CartItem[]>([
-    // Pre-populate with 1x 20L bottle so the cart has an intuitive starting item
-    {
-      product: PRODUCTS[0],
-      quantity: 2,
-      isRefill: true,
-    },
-  ]);
+  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
+    try {
+      const raw = window.localStorage.getItem(CART_STORAGE_KEY);
+      if (!raw) {
+        return [
+          {
+            product: PRODUCTS[0],
+            quantity: 2,
+            isRefill: true,
+          },
+        ];
+      }
+      const parsed = JSON.parse(raw) as CartItem[];
+      return Array.isArray(parsed) && parsed.length > 0 ? parsed : [{ product: PRODUCTS[0], quantity: 2, isRefill: true }];
+    } catch {
+      return [{ product: PRODUCTS[0], quantity: 2, isRefill: true }];
+    }
+  });
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
 
   const cartTotalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
@@ -59,6 +73,10 @@ export default function App() {
       window.scrollTo({ top: 0 });
     }
   }, [currentPath]);
+
+  useEffect(() => {
+    window.localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
+  }, [cartItems]);
 
   const handleInternalNavigation = (event: React.MouseEvent<HTMLDivElement>) => {
     const anchor = (event.target as HTMLElement).closest('a');
@@ -83,6 +101,7 @@ export default function App() {
       }
       return [...prev, { product, quantity, isRefill: true }];
     });
+    setIsCartOpen(true);
   };
 
   const handleUpdateQuantity = (productId: string, quantity: number) => {
@@ -217,7 +236,7 @@ export default function App() {
 
         {currentPath === '/products' && (
           <>
-            <ProductsSection onAddToCart={handleAddToCart} />
+            <ProductsSection onAddToCart={handleAddToCart} onViewDetails={setSelectedProduct} />
             <HydrationBanner onAddRecommended={handleAddToCart} />
           </>
         )}
@@ -244,6 +263,13 @@ export default function App() {
 
       {/* Footer */}
       <Footer />
+
+      <ProductDetailModal
+        product={selectedProduct}
+        isOpen={Boolean(selectedProduct)}
+        onClose={() => setSelectedProduct(null)}
+        onAddToCart={handleAddToCart}
+      />
 
       {/* Slide-over Cart & Order Drawer */}
       <CartDrawerAndOrderModal

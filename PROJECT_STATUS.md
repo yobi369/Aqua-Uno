@@ -73,3 +73,34 @@ Planned priorities:
 5. Build admin dashboards, inventory, reporting and delivery workflows behind authenticated access.
 
 This Stage 1 audit intentionally avoids destructive changes and preserves the working frontend while documenting the missing production backend requirements.
+
+## Stage 2: Frontend Upgrade
+
+### What was implemented
+- Added persistent cart state using `localStorage` to preserve shopping selections between visits.
+- Added a premium product detail modal for quick product review and quantity selection.
+- Improved product cards with dedicated detail actions and clearer WhatsApp order flow.
+- Kept the existing storefront branding intact while tightening the ecommerce UX.
+
+### Files created
+- `src/components/ProductDetailModal.tsx`
+
+### Files modified
+- `src/App.tsx`
+- `src/components/ProductsSection.tsx`
+
+### Tests performed
+- TypeScript validation via `npx tsc --noEmit`
+- Production build via `npx vite build`
+
+### Tests passed
+- TypeScript validation passed.
+- Vite production build passed.
+
+### Outstanding issues
+- No backend API or database integration exists yet.
+- Payment and admin modules remain pending implementation.
+
+### Deployment status
+- Frontend quality improvements are complete and deployable as a static preview build.
+- Production commerce features remain staged for the next backend implementation steps.
