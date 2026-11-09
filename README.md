@@ -1,28 +1,59 @@
-<div align="center">
-<img width="1200" height="475" alt="GHBanner" src="https://ai.google.dev/static/site-assets/images/share-ais-513315318.png" />
-</div>
+# Aqua Uno Premium Water Platform
 
-# Run and deploy your AI Studio app
+This repository contains a Vite + React storefront for Aqua Uno, designed for a premium Kenya-focused bottled-water business. The project currently serves as a front-end foundation with product browsing, cart interactions, delivery logic, and WhatsApp-driven ordering.
 
-This contains everything you need to run your app locally.
+## Project status
+The project is in Stage 1 technical audit and documentation. The frontend is functional, but the full production commerce stack described in the broader brief has not yet been implemented. See [PROJECT_STATUS.md](./PROJECT_STATUS.md) and [TECHNICAL_DOCUMENTATION.md](./TECHNICAL_DOCUMENTATION.md) for the roadmap and current architecture assessment.
 
-View your app in AI Studio: https://ai.studio/apps/c284c282-c340-4a1b-8258-1fb601046f0c
+## Local development
 
-## Run Locally
+### Prerequisites
+- Node.js 18+
+- npm
 
-**Prerequisites:**  Node.js
+### Install dependencies
+```bash
+npm install
+```
 
+### Environment variables
+Copy the sample file and set required values:
+```bash
+cp .env.example .env.local
+```
 
-1. Install dependencies:
-   `npm install`
-2. Set the `GEMINI_API_KEY` in [.env.local](.env.local) to your Gemini API key
-3. Run the app:
-   `npm run dev`
+The project currently expects:
+- `GEMINI_API_KEY`
+- `APP_URL`
 
-## Site Pages
+See [ENVIRONMENT_VARIABLES.md](./ENVIRONMENT_VARIABLES.md) for the complete variable list and future production requirements.
 
-- `/` — Home
-- `/products` — Products and hydration guide
-- `/about` — Our story, facility, quality, and team
-- `/delivery` — Delivery areas and frequently asked questions
-- `/contact` — Contact details and inquiry form
+### Run locally
+```bash
+npm run dev
+```
+
+The app runs on the default Vite development server, typically at:
+- http://localhost:3000
+
+### Production build
+```bash
+npm run build
+```
+
+### Preview production build
+```bash
+npm run preview
+```
+
+## Site structure
+- `/` — Home page and marketing sections
+- `/products` — Product catalogue
+- `/about` — Company story and quality messaging
+- `/delivery` — Delivery coverage and order support
+- `/contact` — Contact details and inquiry handling
+
+## Notes
+- The current shopping flow is front-end driven and uses WhatsApp order capture rather than a secure backend checkout.
+- Payment processing, customer accounts, admin dashboards, inventory controls, and database-backed order management are still pending implementation.
+- Do not activate live payments or production deployment without sandbox verification and business approval.
