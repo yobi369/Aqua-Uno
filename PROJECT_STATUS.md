@@ -104,3 +104,39 @@ This Stage 1 audit intentionally avoids destructive changes and preserves the wo
 ### Deployment status
 - Frontend quality improvements are complete and deployable as a static preview build.
 - Production commerce features remain staged for the next backend implementation steps.
+
+## Stage 3: E-Commerce Backend
+
+### What was implemented
+- Added a SQLite-backed Express commerce API for catalog retrieval and order creation.
+- Seeded supported Aqua Uno products into a local data store.
+- Added inventory validation and stock deduction when orders are created.
+- Added health and overview endpoints for commerce readiness checks.
+- Added API tests covering health checks, product listing, order creation, and invalid order rejection.
+
+### Files created
+- `server.js`
+- `tests/ecommerce-api.test.js`
+
+### Files modified
+- `package.json`
+- `README.md`
+
+### Database changes
+- Created a local SQLite database at `data/aqua-uno.db`.
+- Added product, customer, order, order item, payment, inventory movement, and audit log tables.
+
+### Tests performed
+- `node --test tests/ecommerce-api.test.js`
+
+### Tests passed
+- 4/4 API tests passed.
+
+### Outstanding issues
+- Payment integrations (M-Pesa, card gateways) are not yet implemented.
+- Authentication, RBAC, and admin dashboards remain pending.
+- Full delivery and inventory management workflows are still to be added.
+
+### Deployment status
+- Backend API is running locally and validated for product catalogue and order creation.
+- Ready to proceed to Stage 4 payment integrations and secure checkout workflows.

@@ -29,12 +29,26 @@ The project currently expects:
 See [ENVIRONMENT_VARIABLES.md](./ENVIRONMENT_VARIABLES.md) for the complete variable list and future production requirements.
 
 ### Run locally
+Frontend:
 ```bash
 npm run dev
 ```
 
 The app runs on the default Vite development server, typically at:
 - http://localhost:3000
+
+Commerce API:
+```bash
+node server.js
+```
+
+The backend runs on:
+- http://localhost:3001
+
+### Run backend API tests
+```bash
+node --test tests/ecommerce-api.test.js
+```
 
 ### Production build
 ```bash
