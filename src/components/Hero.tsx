@@ -1,7 +1,29 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ArrowRight, MessageCircle, ShieldCheck, Droplet, Sparkles, Truck, Eye } from 'lucide-react';
 import { COMPANY_INFO } from '../data/waterData';
 import heroImage from '../assets/images/hero_aqua_uno_lineup_1793557685051.jpg';
+import factoryImage from '../assets/images/aqua_uno_factory_facade.jpg';
+import gardensImage from '../assets/images/aqua_uno_sign_gardens.jpg';
+import plantImage from '../assets/images/ephrone_plant_aerial.jpg';
+
+const backgroundImages = [
+  {
+    src: heroImage,
+    alt: 'Aqua Uno water bottles in a range of sizes against a fresh mountain spring backdrop',
+  },
+  {
+    src: factoryImage,
+    alt: 'Aqua Uno factory facade with the company logo',
+  },
+  {
+    src: gardensImage,
+    alt: 'Aqua Uno water bottle displayed in a green garden',
+  },
+  {
+    src: plantImage,
+    alt: 'Aerial view of the Aqua Uno plant and landscaped grounds',
+  },
+];
 
 interface HeroProps {
   onOrderNowClick: () => void;
@@ -9,6 +31,15 @@ interface HeroProps {
 
 export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeBackground, setActiveBackground] = useState(0);
+
+  useEffect(() => {
+    const intervalId = window.setInterval(() => {
+      setActiveBackground((current) => (current + 1) % backgroundImages.length);
+    }, 4000);
+
+    return () => window.clearInterval(intervalId);
+  }, []);
 
   const handleWhatsAppOrder = () => {
     const text = encodeURIComponent(`Hi Aqua Uno! I saw your website and would like to order fresh spring water for delivery.`);
@@ -17,11 +48,17 @@ export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
 
   return (
     <section className="relative isolate min-h-[620px] overflow-hidden border-b border-blue-950 bg-blue-950 sm:min-h-[680px]">
-      <img
-        src={heroImage}
-        alt="Aqua Uno water bottles in a range of sizes against a fresh mountain spring backdrop"
-        className="absolute inset-0 h-full w-full object-cover object-[58%_center]"
-      />
+      {backgroundImages.map((image, index) => (
+        <img
+          key={image.src}
+          src={image.src}
+          alt=""
+          aria-hidden="true"
+          className={`absolute inset-0 h-full w-full object-cover object-[58%_center] transition-opacity duration-1000 motion-reduce:transition-none ${
+            index === activeBackground ? 'opacity-100' : 'opacity-0'
+          }`}
+        />
+      ))}
       <div className="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-950/65 to-blue-950/10" />
       <div className="absolute inset-0 bg-gradient-to-t from-blue-950/70 via-transparent to-blue-950/15" />
 
@@ -117,8 +154,8 @@ export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
             </div>
             <div className="overflow-auto p-2 flex items-center justify-center">
               <img
-                src={heroImage}
-                alt="Aqua Uno water bottles in a range of sizes against a fresh mountain spring backdrop"
+                src={backgroundImages[activeBackground].src}
+                alt={backgroundImages[activeBackground].alt}
                 className="max-h-[75vh] w-auto object-contain"
               />
             </div>
