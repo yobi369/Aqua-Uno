@@ -23,8 +23,8 @@ const heroSlides = [
     label: 'Freshness in every drop',
   },
   {
-    src: 'https://images.unsplash.com/photo-1437482078695-7b7a?auto=format&fit=crop&w=2200&q=85',
-    alt: 'Fresh water inspired natural scenery',
+    src: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2200&q=85',
+    alt: 'A clear alpine lake surrounded by green mountains',
     label: 'Refresh your everyday',
   },
 ];
