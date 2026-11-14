@@ -1,14 +1,48 @@
-import React, { useState } from 'react';
-import { ArrowRight, MessageCircle, ShieldCheck, Droplet, Sparkles, Truck, Eye } from 'lucide-react';
+import React, { useEffect, useState } from 'react';
+import { ArrowRight, MessageCircle, ShieldCheck, Droplet, Sparkles, Truck } from 'lucide-react';
 import { COMPANY_INFO } from '../data/waterData';
-import heroImage from '../assets/images/hero_aqua_uno_lineup_1793557685051.jpg';
+import heroLineup from '../assets/images/hero_aqua_uno_lineup_1793557685051.jpg';
+import bottle20L from '../assets/images/aqua_uno_real_20l.jpg';
+import bottle1_5L from '../assets/images/aqua_uno_real_1_5l.jpg';
+import bottle500ml from '../assets/images/aqua_uno_real_500ml.jpg';
 
 interface HeroProps {
   onOrderNowClick: () => void;
 }
 
+const heroSlides = [
+  {
+    src: heroLineup,
+    alt: 'Aqua Uno branded bottled water product range',
+    label: 'The Aqua Uno range',
+  },
+  {
+    src: bottle20L,
+    alt: 'Aqua Uno 20 litre water bottle for home and office hydration',
+    label: 'Home and office hydration',
+  },
+  {
+    src: bottle1_5L,
+    alt: 'Aqua Uno 1.5 litre bottled drinking water',
+    label: 'Everyday refreshment',
+  },
+  {
+    src: bottle500ml,
+    alt: 'Aqua Uno 500 millilitre bottled water multipack',
+    label: 'Refresh on the go',
+  },
+];
+
 export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [activeSlide, setActiveSlide] = useState(0);
+
+  useEffect(() => {
+    const interval = window.setInterval(() => {
+      setActiveSlide((current) => (current + 1) % heroSlides.length);
+    }, 3000);
+
+    return () => window.clearInterval(interval);
+  }, []);
 
   const handleWhatsAppOrder = () => {
     const text = encodeURIComponent(`Hi Aqua Uno! I saw your website and would like to order fresh spring water for delivery.`);
@@ -17,21 +51,20 @@ export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
 
   return (
     <section className="relative isolate min-h-[620px] overflow-hidden border-b border-blue-950 bg-blue-950 sm:min-h-[680px]">
-      <img
-        src={heroImage}
-        alt="Aqua Uno water bottles in a range of sizes against a fresh mountain spring backdrop"
-        className="absolute inset-0 h-full w-full object-cover object-[58%_center]"
-      />
+      <div className="absolute inset-0" aria-hidden="true">
+        {heroSlides.map((slide, index) => (
+          <img
+            key={slide.src}
+            src={slide.src}
+            alt=""
+            aria-hidden="true"
+            fetchPriority={index === 0 ? 'high' : 'auto'}
+            className={`absolute inset-0 h-full w-full object-cover object-center transition-opacity duration-1000 ease-in-out ${activeSlide === index ? 'opacity-100' : 'opacity-0'}`}
+          />
+        ))}
+      </div>
       <div className="absolute inset-0 bg-gradient-to-r from-blue-950/90 via-blue-950/65 to-blue-950/10" />
       <div className="absolute inset-0 bg-gradient-to-t from-blue-950/70 via-transparent to-blue-950/15" />
-
-      <button
-        onClick={() => setIsModalOpen(true)}
-        aria-label="Expand Aqua Uno product image"
-        className="absolute right-4 top-4 z-20 rounded-lg border border-white/30 bg-slate-950/35 p-2 text-white backdrop-blur-md transition-colors hover:bg-slate-950/60 sm:right-6 sm:top-6"
-      >
-        <Eye className="w-4 h-4" />
-      </button>
 
       <div className="relative mx-auto flex min-h-[620px] max-w-7xl flex-col items-center justify-center gap-8 px-4 py-10 sm:min-h-[680px] sm:px-6 sm:py-16 lg:block lg:px-8">
         <div className="max-w-2xl text-center text-white lg:absolute lg:left-8 lg:top-1/2 lg:max-w-xl lg:-translate-y-1/2 lg:text-left">
@@ -100,31 +133,20 @@ export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
             ))}
           </div>
         </div>
-      </div>
 
-      {/* Lightbox Modal for Full Screenshot Viewing */}
-      {isModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/80 p-4 backdrop-blur-xs">
-          <div className="relative max-w-4xl max-h-[90vh] bg-slate-900 rounded-2xl overflow-hidden shadow-2xl flex flex-col">
-            <div className="p-3 bg-slate-800 text-white flex items-center justify-between text-sm font-semibold">
-              <span>Aqua Uno Product Range</span>
-              <button
-                onClick={() => setIsModalOpen(false)}
-                className="px-3 py-1 bg-slate-700 hover:bg-slate-600 rounded-md text-xs font-bold"
-              >
-                Close
-              </button>
-            </div>
-            <div className="overflow-auto p-2 flex items-center justify-center">
-              <img
-                src={heroImage}
-                alt="Aqua Uno water bottles in a range of sizes against a fresh mountain spring backdrop"
-                className="max-h-[75vh] w-auto object-contain"
-              />
-            </div>
-          </div>
+        <div className="absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/20 bg-slate-950/35 px-3 py-2 backdrop-blur-md lg:bottom-8">
+          {heroSlides.map((slide, index) => (
+            <button
+              key={slide.label}
+              type="button"
+              onClick={() => setActiveSlide(index)}
+              aria-label={`Show hero image ${index + 1}: ${slide.label}`}
+              aria-current={activeSlide === index ? 'true' : undefined}
+              className={`h-2 rounded-full transition-all duration-300 ${activeSlide === index ? 'w-7 bg-white' : 'w-2 bg-white/55 hover:bg-white/85'}`}
+            />
+          ))}
         </div>
-      )}
+      </div>
     </section>
   );
 };
