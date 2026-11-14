@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { ArrowRight, MessageCircle, ShieldCheck, Droplet, Sparkles, Truck } from 'lucide-react';
 import { COMPANY_INFO } from '../data/waterData';
+import heroLineup from '../assets/images/hero_aqua_uno_lineup_1793557685051.jpg';
+import bottle20L from '../assets/images/aqua_uno_real_20l.jpg';
+import bottle1_5L from '../assets/images/aqua_uno_real_1_5l.jpg';
+import bottle500ml from '../assets/images/aqua_uno_real_500ml.jpg';
 
 interface HeroProps {
   onOrderNowClick: () => void;
@@ -8,24 +12,24 @@ interface HeroProps {
 
 const heroSlides = [
   {
-    src: 'https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=2200&q=85',
-    alt: 'A pristine natural landscape with fresh mountain air',
-    label: 'Naturally refreshing',
+    src: heroLineup,
+    alt: 'Aqua Uno branded bottled water product range',
+    label: 'The Aqua Uno range',
   },
   {
-    src: 'https://images.unsplash.com/photo-1548839140-29a749e1cf4d?auto=format&fit=crop&w=2200&q=85',
-    alt: 'Clear drinking water in a bottle',
-    label: 'Pure hydration',
+    src: bottle20L,
+    alt: 'Aqua Uno 20 litre water bottle for home and office hydration',
+    label: 'Home and office hydration',
   },
   {
-    src: 'https://images.unsplash.com/photo-1518837695005-2083093ee35b?auto=format&fit=crop&w=2200&q=85',
-    alt: 'Clean blue ocean water moving in gentle waves',
-    label: 'Freshness in every drop',
+    src: bottle1_5L,
+    alt: 'Aqua Uno 1.5 litre bottled drinking water',
+    label: 'Everyday refreshment',
   },
   {
-    src: 'https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=2200&q=85',
-    alt: 'A clear alpine lake surrounded by green mountains',
-    label: 'Refresh your everyday',
+    src: bottle500ml,
+    alt: 'Aqua Uno 500 millilitre bottled water multipack',
+    label: 'Refresh on the go',
   },
 ];
 
@@ -133,7 +137,7 @@ export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
         <div className="absolute bottom-5 left-1/2 z-20 flex -translate-x-1/2 items-center gap-2 rounded-full border border-white/20 bg-slate-950/35 px-3 py-2 backdrop-blur-md lg:bottom-8">
           {heroSlides.map((slide, index) => (
             <button
-              key={slide.src}
+              key={slide.label}
               type="button"
               onClick={() => setActiveSlide(index)}
               aria-label={`Show hero image ${index + 1}: ${slide.label}`}
