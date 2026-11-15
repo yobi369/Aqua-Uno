@@ -1,17 +1,48 @@
-import React, { useState } from 'react';
-import { ArrowDown, ArrowUpRight, MoveUpRight } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { ArrowDownRight, ArrowUpRight, Minus, Plus, ShoppingBag } from 'lucide-react';
 import { Product } from '../types';
 import { COMPANY_INFO, FACILITY_IMAGES, PRODUCTS } from '../data/waterData';
-import heroLineup from '../assets/images/hero_aqua_uno_lineup_1793557685051.jpg';
 
 interface AquaUnoHomeProps {
   onOrderNowClick: () => void;
   onAddToCart: (product: Product, quantity: number) => void;
 }
 
+type ProductCategory = 'all' | Product['category'];
+
+const categoryLabels: Record<ProductCategory, string> = {
+  all: 'All formats',
+  dispenser: 'Large format',
+  bottles: 'Family bottles',
+  packs: 'Multipacks',
+};
+
+const categoryOrder: ProductCategory[] = ['all', 'dispenser', 'bottles', 'packs'];
+
 export const AquaUnoHome: React.FC<AquaUnoHomeProps> = ({ onOrderNowClick, onAddToCart }) => {
+  const [category, setCategory] = useState<ProductCategory>('all');
   const [activeProductId, setActiveProductId] = useState(PRODUCTS[0]?.id ?? '');
-  const activeProduct = PRODUCTS.find((product) => product.id === activeProductId) ?? PRODUCTS[0];
+  const [quantity, setQuantity] = useState(1);
+
+  const visibleProducts = useMemo(
+    () => category === 'all' ? PRODUCTS : PRODUCTS.filter((product) => product.category === category),
+    [category],
+  );
+  const activeProduct = PRODUCTS.find((product) => product.id === activeProductId) ?? visibleProducts[0] ?? PRODUCTS[0];
+
+  const selectCategory = (nextCategory: ProductCategory) => {
+    setCategory(nextCategory);
+    const firstProduct = nextCategory === 'all'
+      ? PRODUCTS[0]
+      : PRODUCTS.find((product) => product.category === nextCategory);
+    if (firstProduct) setActiveProductId(firstProduct.id);
+    setQuantity(1);
+  };
+
+  const selectProduct = (product: Product) => {
+    setActiveProductId(product.id);
+    setQuantity(1);
+  };
 
   const orderOnWhatsApp = () => {
     const message = encodeURIComponent('Hello Aqua Uno, I would like to arrange a water order and delivery.');
@@ -20,168 +51,206 @@ export const AquaUnoHome: React.FC<AquaUnoHomeProps> = ({ onOrderNowClick, onAdd
 
   if (!activeProduct) return null;
 
+  const activeIndex = PRODUCTS.findIndex((product) => product.id === activeProduct.id) + 1;
+
   return (
-    <div className="aqua-editorial text-[#132b35]">
-      <section className="relative isolate overflow-hidden bg-[#f3f1e9]">
-        <div className="pointer-events-none absolute inset-y-0 left-[5.5%] hidden w-px bg-[#132b35]/15 lg:block" />
-        <div className="mx-auto grid min-h-[690px] max-w-[1600px] grid-cols-1 lg:min-h-[760px] lg:grid-cols-[0.92fr_1.08fr]">
-          <div className="relative z-10 flex flex-col justify-between px-6 pb-12 pt-10 sm:px-10 lg:px-[9vw] lg:pb-16 lg:pt-14">
-            <div className="flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.25em] text-[#31515b]">
-              <span className="h-2 w-2 rounded-full bg-[#164cbd]" />
-              Ephron Industries Limited
+    <div className="bg-[#f5f3ec] text-[#142c36]">
+      <section className="relative overflow-hidden border-b border-[#142c36]/15">
+        <div className="absolute inset-0 pointer-events-none" aria-hidden="true">
+          <div className="absolute -right-24 -top-28 h-[34rem] w-[34rem] rounded-full border border-[#164cbd]/10" />
+          <div className="absolute -right-8 -top-12 h-[25rem] w-[25rem] rounded-full border border-[#164cbd]/10" />
+          <div className="absolute right-[8%] top-0 h-full w-px bg-[#142c36]/[0.06]" />
+        </div>
+        <div className="relative mx-auto grid min-h-[620px] max-w-[1600px] lg:min-h-[720px] lg:grid-cols-[0.86fr_1.14fr]">
+          <div className="flex flex-col justify-between px-6 pb-10 pt-9 sm:px-10 lg:px-[7.5vw] lg:pb-14 lg:pt-12">
+            <div className="flex items-center justify-between gap-4">
+              <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#52666c]">Ephron Industries Limited</p>
+              <p className="text-[10px] tabular-nums text-[#87918e]">EST. / AQUA UNO</p>
             </div>
-
             <div className="py-16 lg:py-20">
-              <p className="mb-7 text-[11px] font-bold uppercase tracking-[0.28em] text-[#164cbd]">
-                Water for the way life moves
+              <p className="mb-6 flex items-center gap-3 text-[10px] font-bold uppercase tracking-[0.24em] text-[#164cbd]">
+                <span className="h-px w-8 bg-[#164cbd]" /> The water catalogue
               </p>
-              <h1 className="max-w-[760px] font-[Outfit] text-[clamp(4.4rem,10vw,9.8rem)] font-semibold leading-[0.78] tracking-[-0.085em] text-[#132b35]">
-                Aqua
-                <span className="block pl-[0.72em] text-[#164cbd]">Uno.</span>
+              <h1 className="max-w-[720px] font-[Outfit] text-[clamp(4.5rem,9vw,9rem)] font-medium leading-[0.78] tracking-[-0.09em]">
+                Water,<br /><span className="pl-[0.52em] text-[#164cbd]">indexed.</span>
               </h1>
-              <div className="mt-10 flex max-w-lg items-start gap-5">
-                <span className="mt-2 h-px w-12 shrink-0 bg-[#164cbd]" />
-                <p className="max-w-sm text-base leading-7 text-[#45606a] sm:text-lg">
-                  {COMPANY_INFO.slogan}. Natural spring water, thoughtfully bottled for everyday life.
-                </p>
-              </div>
-              <div className="mt-10 flex flex-wrap items-center gap-x-8 gap-y-4">
-                <button onClick={onOrderNowClick} className="group inline-flex items-center gap-3 border-b border-[#164cbd] pb-2 text-sm font-bold text-[#164cbd] transition-colors hover:text-[#102f78]">
-                  Explore the range <MoveUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-                </button>
-                <button onClick={orderOnWhatsApp} className="inline-flex items-center gap-2 text-sm font-semibold text-[#45606a] transition-colors hover:text-[#164cbd]">
-                  Order directly <ArrowUpRight className="h-4 w-4" />
-                </button>
-              </div>
-            </div>
-
-            <div className="flex items-end justify-between border-t border-[#132b35]/20 pt-5">
-              <div>
-                <p className="text-[9px] font-bold uppercase tracking-[0.24em] text-[#6b7c7e]">Aqua Uno / 001</p>
-                <p className="mt-1 text-xs text-[#45606a]">Bottled by Ephron Industries</p>
-              </div>
-              <a href="#the-range" className="inline-flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.2em] text-[#164cbd]">
-                Scroll to discover <ArrowDown className="h-3.5 w-3.5" />
+              <p className="mt-9 max-w-sm text-base leading-7 text-[#52666c] sm:text-lg">
+                Six formats. Different ways to keep homes, teams and days supplied. Find the one that fits.
+              </p>
+              <a href="#bottle-index" className="mt-10 inline-flex items-center gap-3 border-b border-[#164cbd] pb-2 text-xs font-bold uppercase tracking-[0.16em] text-[#164cbd]">
+                Enter the index <ArrowDownRight className="h-4 w-4" />
               </a>
             </div>
-          </div>
-
-          <div className="relative min-h-[430px] overflow-hidden bg-[#dfe7e4] lg:min-h-full">
-            <img src={heroLineup} alt="The Aqua Uno bottled water range" fetchPriority="high" className="absolute inset-0 h-full w-full object-cover object-center" />
-            <div className="absolute inset-0 bg-[#132b35]/[0.06]" />
-            <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between text-white sm:bottom-9 sm:left-9 sm:right-9">
-              <div className="max-w-xs">
-                <p className="text-[9px] font-bold uppercase tracking-[0.28em]">The collection</p>
-                <p className="mt-2 font-[Outfit] text-3xl font-medium leading-none tracking-tight sm:text-4xl">One name.<br />Everyday refreshment.</p>
+            <div className="grid grid-cols-2 gap-6 border-t border-[#142c36]/20 pt-5">
+              <div>
+                <p className="text-[9px] uppercase tracking-[0.2em] text-[#89928e]">The collection</p>
+                <p className="mt-1 font-[Outfit] text-2xl font-medium">06 formats</p>
               </div>
-              <span className="border border-white/70 px-3 py-2 text-[10px] font-bold tracking-[0.18em]">01 / 03</span>
+              <div>
+                <p className="text-[9px] uppercase tracking-[0.2em] text-[#89928e]">Ordering</p>
+                <p className="mt-1 font-[Outfit] text-2xl font-medium">Direct to you</p>
+              </div>
+            </div>
+          </div>
+          <div className="relative flex min-h-[430px] items-center justify-center overflow-hidden bg-[#e4e9e4] px-5 py-12 sm:px-10 lg:min-h-full">
+            <div className="absolute inset-x-8 top-8 flex justify-between text-[9px] font-bold uppercase tracking-[0.2em] text-[#87918e]">
+              <span>Product family / 01—06</span><span>Natural spring water</span>
+            </div>
+            <div className="absolute bottom-[17%] left-[9%] right-[9%] h-px bg-[#142c36]/20" />
+            <div className="absolute bottom-[17%] left-[9%] h-3 w-px bg-[#142c36]/30" />
+            <div className="absolute bottom-[17%] right-[9%] h-3 w-px bg-[#142c36]/30" />
+            <img
+              src={PRODUCTS[0].image}
+              alt="Aqua Uno 20 litre dispenser bottle"
+              fetchPriority="high"
+              className="relative z-10 max-h-[440px] w-full object-contain mix-blend-multiply"
+            />
+            <div className="absolute bottom-7 left-8 right-8 flex items-end justify-between">
+              <div>
+                <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-[#164cbd]">Reference specimen</p>
+                <p className="mt-1 font-[Outfit] text-2xl font-medium">20 L / Dispenser</p>
+              </div>
+              <span className="font-[Outfit] text-5xl font-medium leading-none tracking-[-0.08em] text-[#164cbd]/25">01</span>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="the-range" className="scroll-mt-20 bg-[#faf9f5] px-6 py-20 sm:px-10 lg:px-[9vw] lg:py-28">
-        <div className="mx-auto max-w-[1320px]">
-          <div className="mb-14 flex flex-col justify-between gap-6 border-b border-[#132b35]/20 pb-7 md:flex-row md:items-end">
+      <section id="bottle-index" className="scroll-mt-20 bg-[#faf9f5] px-5 py-16 sm:px-10 lg:px-[7.5vw] lg:py-24">
+        <div className="mx-auto max-w-[1450px]">
+          <div className="flex flex-col justify-between gap-8 border-b border-[#142c36]/20 pb-8 md:flex-row md:items-end">
             <div>
-              <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#164cbd]">02 / Find your format</p>
-              <h2 className="mt-4 max-w-2xl font-[Outfit] text-5xl font-medium leading-[0.94] tracking-[-0.06em] text-[#132b35] sm:text-7xl">
-                Made to fit<br /><span className="text-[#164cbd]">your day.</span>
-              </h2>
+              <p className="text-[10px] font-bold uppercase tracking-[0.24em] text-[#164cbd]">01 / Choose your format</p>
+              <h2 className="mt-4 font-[Outfit] text-5xl font-medium leading-[0.9] tracking-[-0.07em] sm:text-7xl">The bottle<br />index<span className="text-[#164cbd]">.</span></h2>
             </div>
-            <p className="max-w-xs text-sm leading-6 text-[#62747a]">
-              From a quick refresh to keeping the whole room supplied. Choose a bottle to see its details.
+            <p className="max-w-sm text-sm leading-6 text-[#66777a]">
+              Browse by format, then select a product to inspect its details and add it to your order.
             </p>
           </div>
 
-          <div className="grid gap-10 lg:grid-cols-[0.72fr_1.3fr_0.78fr] lg:gap-8">
-            <div className="flex flex-col">
-              <p className="mb-4 text-[9px] font-bold uppercase tracking-[0.24em] text-[#849092]">Select a size</p>
-              <div className="border-t border-[#132b35]/20">
-                {PRODUCTS.map((product, index) => (
+          <div className="mt-7 flex flex-wrap items-center gap-2" aria-label="Filter products">
+            {categoryOrder.map((item) => (
+              <button
+                key={item}
+                type="button"
+                onClick={() => selectCategory(item)}
+                aria-pressed={category === item}
+                className={`border px-4 py-2.5 text-[10px] font-bold uppercase tracking-[0.14em] transition-colors ${category === item ? 'border-[#164cbd] bg-[#164cbd] text-white' : 'border-[#142c36]/20 text-[#52666c] hover:border-[#164cbd] hover:text-[#164cbd]'}`}
+              >
+                {categoryLabels[item]}
+              </button>
+            ))}
+            <span className="ml-auto text-[10px] tabular-nums text-[#8b9692]">{String(visibleProducts.length).padStart(2, '0')} / 06 products</span>
+          </div>
+
+          <div className="mt-8 grid gap-8 xl:grid-cols-[0.8fr_1.2fr]">
+            <div className="border-t border-[#142c36]/20">
+              {visibleProducts.map((product) => {
+                const index = PRODUCTS.findIndex((item) => item.id === product.id) + 1;
+                const selected = product.id === activeProduct.id;
+                return (
                   <button
                     key={product.id}
                     type="button"
-                    onClick={() => setActiveProductId(product.id)}
-                    aria-pressed={activeProduct.id === product.id}
-                    className={`group flex w-full items-center justify-between border-b border-[#132b35]/20 py-4 text-left transition-colors ${activeProduct.id === product.id ? 'text-[#164cbd]' : 'text-[#52666c] hover:text-[#132b35]'}`}
+                    onClick={() => selectProduct(product)}
+                    aria-pressed={selected}
+                    className={`group grid w-full grid-cols-[44px_1fr_auto] items-center gap-3 border-b border-[#142c36]/20 px-2 py-5 text-left transition-colors sm:grid-cols-[54px_1fr_auto] sm:gap-5 sm:py-6 ${selected ? 'bg-[#e9eee9]' : 'hover:bg-[#f1f2ed]'}`}
                   >
-                    <span className="flex items-center gap-4">
-                      <span className="w-6 text-[10px] tabular-nums text-[#9aa5a3]">0{index + 1}</span>
-                      <span className={`font-[Outfit] text-2xl font-medium tracking-tight sm:text-3xl ${activeProduct.id === product.id ? 'translate-x-1' : ''} transition-transform`}>{product.size}</span>
+                    <span className={`font-[Outfit] text-xl tabular-nums tracking-tight ${selected ? 'text-[#164cbd]' : 'text-[#a3aaa4]'}`}>{String(index).padStart(2, '0')}</span>
+                    <span>
+                      <span className={`block font-[Outfit] text-xl font-medium tracking-tight sm:text-2xl ${selected ? 'text-[#164cbd]' : 'text-[#243b43]'}`}>{product.size}</span>
+                      <span className="mt-1 block text-[11px] text-[#7c8987]">{product.name}</span>
                     </span>
-                    {activeProduct.id === product.id ? <span className="h-2 w-2 rounded-full bg-[#164cbd]" /> : <ArrowUpRight className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />}
+                    <span className="text-right">
+                      <span className="block text-xs font-semibold tabular-nums text-[#243b43]">{COMPANY_INFO.currency} {product.price.toLocaleString()}</span>
+                      <span className={`mt-1 block text-[9px] uppercase tracking-[0.15em] ${selected ? 'text-[#164cbd]' : 'text-[#9ba39e]'}`}>{selected ? 'Selected' : 'Inspect'} ↗</span>
+                    </span>
                   </button>
-                ))}
-              </div>
-              <p className="mt-5 text-[10px] uppercase tracking-[0.18em] text-[#8b9898]">{String(PRODUCTS.length).padStart(2, '0')} formats in the range</p>
+                );
+              })}
             </div>
 
-            <div className="relative flex min-h-[390px] items-center justify-center overflow-hidden bg-[#e9eeeb] px-6 py-10 sm:min-h-[520px]">
-              <span className="pointer-events-none absolute left-5 top-5 text-[9px] font-bold uppercase tracking-[0.24em] text-[#83918e]">Aqua Uno / Product study</span>
-              <span className="pointer-events-none absolute bottom-5 right-5 font-[Outfit] text-[clamp(5rem,13vw,11rem)] font-semibold leading-none tracking-[-0.09em] text-[#164cbd]/[0.07]">{String(PRODUCTS.indexOf(activeProduct) + 1).padStart(2, '0')}</span>
-              <img key={activeProduct.id} src={activeProduct.image} alt={activeProduct.name} className="relative z-10 max-h-[390px] w-full object-contain mix-blend-multiply transition-all duration-500 sm:max-h-[460px]" loading="lazy" />
-            </div>
-
-            <div className="flex flex-col justify-between border-t border-[#132b35]/20 pt-6 lg:border-l lg:border-t-0 lg:pl-8 lg:pt-0">
-              <div>
-                <p className="text-[9px] font-bold uppercase tracking-[0.24em] text-[#164cbd]">Selected / {activeProduct.size}</p>
-                <h3 className="mt-5 font-[Outfit] text-4xl font-medium leading-[0.95] tracking-[-0.055em] text-[#132b35]">{activeProduct.name}</h3>
-                <p className="mt-5 text-sm leading-7 text-[#62747a]">{activeProduct.description}</p>
-                {activeProduct.bestFor && <p className="mt-5 border-l-2 border-[#164cbd] pl-4 text-xs leading-5 text-[#52666c]"><span className="mb-1 block text-[9px] font-bold uppercase tracking-[0.2em] text-[#164cbd]">Works well for</span>{activeProduct.bestFor}</p>}
+            <div className="grid min-h-[500px] bg-[#e7ece7] lg:grid-cols-[1fr_0.82fr]">
+              <div className="relative flex min-h-[360px] items-center justify-center overflow-hidden px-7 py-12 sm:min-h-[500px]">
+                <div className="absolute left-6 top-6 text-[9px] font-bold uppercase tracking-[0.2em] text-[#87938d]">Specimen / {String(activeIndex).padStart(2, '0')}</div>
+                <div className="absolute bottom-12 left-8 right-8 h-px bg-[#142c36]/20" />
+                <img key={activeProduct.id} src={activeProduct.image} alt={activeProduct.name} className="relative z-10 max-h-[410px] w-full object-contain mix-blend-multiply transition-opacity duration-300" loading="lazy" />
+                <span className="absolute bottom-5 right-6 font-[Outfit] text-7xl font-medium leading-none tracking-[-0.08em] text-[#164cbd]/20">{String(activeIndex).padStart(2, '0')}</span>
               </div>
-              <div className="mt-10 border-t border-[#132b35]/20 pt-5">
-                <div className="flex items-end justify-between gap-3">
-                  <div>
-                    <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#849092]">Listed price</p>
-                    <p className="mt-1 font-[Outfit] text-3xl font-semibold tracking-tight text-[#132b35]">{COMPANY_INFO.currency} {activeProduct.price.toLocaleString()}</p>
+
+              <div className="flex flex-col justify-between border-t border-[#142c36]/15 bg-[#f1f1e9] p-6 sm:p-8 lg:border-l lg:border-t-0 lg:p-9">
+                <div>
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="text-[9px] font-bold uppercase tracking-[0.2em] text-[#164cbd]">Product specification</p>
+                    {activeProduct.tag && <span className="border border-[#164cbd]/30 px-2 py-1 text-[9px] font-semibold uppercase tracking-[0.12em] text-[#164cbd]">{activeProduct.tag}</span>}
                   </div>
-                  <button onClick={() => onAddToCart(activeProduct, 1)} className="group inline-flex items-center gap-2 border-b border-[#164cbd] pb-2 text-xs font-bold text-[#164cbd] hover:text-[#102f78]">
-                    Add to order <MoveUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  <h3 className="mt-6 font-[Outfit] text-4xl font-medium leading-[0.92] tracking-[-0.06em] text-[#142c36] sm:text-5xl">{activeProduct.name}</h3>
+                  <p className="mt-5 text-sm leading-7 text-[#657579]">{activeProduct.description}</p>
+                  <div className="mt-7 border-y border-[#142c36]/15 py-4">
+                    <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#89938f]">Designed for</p>
+                    <p className="mt-2 text-xs leading-5 text-[#344c54]">{activeProduct.bestFor}</p>
+                  </div>
+                  {activeProduct.features?.length > 0 && (
+                    <ul className="mt-5 space-y-2">
+                      {activeProduct.features.slice(0, 3).map((feature) => (
+                        <li key={feature} className="flex gap-2 text-[11px] leading-5 text-[#68787a]">
+                          <span className="mt-[7px] h-1 w-1 shrink-0 rounded-full bg-[#164cbd]" />{feature}
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
+                <div className="mt-8 border-t border-[#142c36]/20 pt-5">
+                  <div className="flex items-end justify-between gap-4">
+                    <div>
+                      <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#89938f]">Listed price</p>
+                      <p className="mt-1 font-[Outfit] text-3xl font-semibold tracking-tight text-[#142c36]">{COMPANY_INFO.currency} {activeProduct.price.toLocaleString()}</p>
+                    </div>
+                    <div className="flex items-center border border-[#142c36]/20">
+                      <button type="button" onClick={() => setQuantity((value) => Math.max(1, value - 1))} aria-label="Decrease quantity" className="p-2.5 text-[#52666c] hover:text-[#164cbd]"><Minus className="h-3.5 w-3.5" /></button>
+                      <span className="min-w-8 text-center text-xs font-semibold tabular-nums">{quantity}</span>
+                      <button type="button" onClick={() => setQuantity((value) => Math.min(99, value + 1))} aria-label="Increase quantity" className="p-2.5 text-[#52666c] hover:text-[#164cbd]"><Plus className="h-3.5 w-3.5" /></button>
+                    </div>
+                  </div>
+                  <p className="mt-2 text-right text-[10px] tabular-nums text-[#7d8986]">Subtotal: {COMPANY_INFO.currency} {(activeProduct.price * quantity).toLocaleString()}</p>
+                  <button onClick={() => onAddToCart(activeProduct, quantity)} className="mt-4 flex w-full items-center justify-between bg-[#164cbd] px-5 py-4 text-[10px] font-bold uppercase tracking-[0.16em] text-white transition-colors hover:bg-[#103b9b]">
+                    Add {quantity} to order <ShoppingBag className="h-4 w-4" />
+                  </button>
+                  <button onClick={onOrderNowClick} className="mt-3 w-full border border-[#142c36]/25 px-5 py-3 text-[10px] font-bold uppercase tracking-[0.16em] text-[#344c54] hover:border-[#164cbd] hover:text-[#164cbd]">
+                    Full order & delivery details <ArrowUpRight className="ml-2 inline h-3.5 w-3.5" />
                   </button>
                 </div>
-                <button onClick={onOrderNowClick} className="mt-5 w-full border border-[#132b35]/25 px-4 py-3 text-xs font-bold uppercase tracking-[0.17em] text-[#132b35] transition-colors hover:border-[#164cbd] hover:bg-[#164cbd] hover:text-white">
-                  View ordering details
-                </button>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section className="grid bg-[#132b35] text-[#f3f1e9] lg:grid-cols-[1.05fr_0.95fr]">
-        <div className="relative min-h-[360px] overflow-hidden lg:min-h-[590px]">
+      <section className="grid border-y border-[#142c36]/15 bg-[#e7ebe5] lg:grid-cols-[1.08fr_0.92fr]">
+        <div className="relative min-h-[350px] overflow-hidden lg:min-h-[520px]">
           <img src={FACILITY_IMAGES.factoryFacade} alt="Ephron Industries facility" loading="lazy" className="absolute inset-0 h-full w-full object-cover" />
-          <div className="absolute inset-0 bg-[#10232a]/15" />
-          <span className="absolute bottom-6 left-6 text-[9px] font-bold uppercase tracking-[0.25em] text-white">Ephron Industries / Facility</span>
+          <span className="absolute bottom-5 left-6 bg-[#142c36] px-3 py-2 text-[9px] font-bold uppercase tracking-[0.18em] text-white">Ephron Industries / Facility</span>
         </div>
-        <div className="flex flex-col justify-center px-7 py-16 sm:px-12 lg:px-[7vw] lg:py-24">
-          <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#a8c4dc]">03 / Behind the bottle</p>
-          <h2 className="mt-7 font-[Outfit] text-5xl font-medium leading-[0.91] tracking-[-0.065em] sm:text-7xl">
-            Trust is<br />built <span className="text-[#a8c4dc]">at source.</span>
-          </h2>
-          <p className="mt-8 max-w-md text-sm leading-7 text-white/70">
-            Aqua Uno is bottled by Ephron Industries Limited. Get to know the people, place and work behind the water you bring home.
+        <div className="flex flex-col justify-center px-7 py-16 sm:px-12 lg:px-[7vw] lg:py-20">
+          <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#164cbd]">02 / Behind the product</p>
+          <h2 className="mt-6 font-[Outfit] text-5xl font-medium leading-[0.9] tracking-[-0.07em] sm:text-7xl">The name<br />behind the<br /><span className="text-[#164cbd]">bottle.</span></h2>
+          <p className="mt-7 max-w-md text-sm leading-7 text-[#617276]">
+            Aqua Uno is bottled by Ephron Industries Limited. Explore the facility and learn more about the company behind the range.
           </p>
-          <a href="/about" className="group mt-10 inline-flex w-fit items-center gap-3 border-b border-[#a8c4dc]/70 pb-2 text-sm font-semibold text-[#dbe9f1]">
-            Explore our story <MoveUpRight className="h-4 w-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-          </a>
+          <a href="/about" className="mt-9 inline-flex w-fit items-center gap-3 border-b border-[#164cbd] pb-2 text-xs font-bold uppercase tracking-[0.15em] text-[#164cbd]">Explore the company <ArrowUpRight className="h-4 w-4" /></a>
         </div>
       </section>
 
-      <section className="bg-[#e3e9e5] px-6 py-16 sm:px-10 lg:px-[9vw] lg:py-20">
-        <div className="mx-auto flex max-w-[1320px] flex-col justify-between gap-8 md:flex-row md:items-end">
+      <section className="bg-[#142c36] px-6 py-16 text-[#f5f3ec] sm:px-10 lg:px-[7.5vw] lg:py-20">
+        <div className="mx-auto flex max-w-[1450px] flex-col justify-between gap-8 md:flex-row md:items-end">
           <div>
-            <p className="text-[10px] font-bold uppercase tracking-[0.28em] text-[#164cbd]">04 / Make it a regular</p>
-            <h2 className="mt-4 max-w-3xl font-[Outfit] text-5xl font-medium leading-[0.92] tracking-[-0.06em] text-[#132b35] sm:text-7xl">
-              Your next bottle<br />is closer than you think.
-            </h2>
+            <p className="text-[10px] font-bold uppercase tracking-[0.22em] text-[#a8c4dc]">03 / Place an order</p>
+            <h2 className="mt-5 font-[Outfit] text-5xl font-medium leading-[0.9] tracking-[-0.07em] sm:text-7xl">Choose your<br />water. We’ll<br /><span className="text-[#a8c4dc]">take it from here.</span></h2>
+            <p className="mt-6 text-sm text-white/65">Call {COMPANY_INFO.phoneDisplay} or contact dispatch directly on WhatsApp.</p>
           </div>
           <div className="flex flex-col items-start gap-4 md:items-end">
-            <button onClick={orderOnWhatsApp} className="inline-flex items-center gap-3 bg-[#164cbd] px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-white transition-colors hover:bg-[#103b9b]">
-              Arrange delivery <ArrowUpRight className="h-4 w-4" />
-            </button>
-            <a href={`tel:${COMPANY_INFO.phone}`} className="text-xs font-semibold text-[#52666c] hover:text-[#164cbd]">{COMPANY_INFO.phoneDisplay}</a>
+            <button onClick={orderOnWhatsApp} className="inline-flex items-center gap-4 bg-[#f5f3ec] px-6 py-4 text-xs font-bold uppercase tracking-[0.16em] text-[#142c36] transition-colors hover:bg-[#dce6e1]">Order on WhatsApp <ArrowUpRight className="h-4 w-4" /></button>
+            <button onClick={onOrderNowClick} className="text-xs font-semibold text-white/65 underline underline-offset-4 hover:text-white">Browse delivery and checkout information</button>
           </div>
         </div>
       </section>
