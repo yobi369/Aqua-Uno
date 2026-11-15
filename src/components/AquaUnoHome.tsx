@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ArrowDown, ArrowUpRight, Check, Droplets, MoveUpRight } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, MoveUpRight } from 'lucide-react';
 import { Product } from '../types';
 import { COMPANY_INFO, FACILITY_IMAGES, PRODUCTS } from '../data/waterData';
 import heroLineup from '../assets/images/hero_aqua_uno_lineup_1793557685051.jpg';
