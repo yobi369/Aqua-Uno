@@ -34,7 +34,7 @@ export const Footer: React.FC = () => {
             <h4 className="text-white font-bold text-sm tracking-tight">Our Products</h4>
             <ul className="space-y-2">
               <li>
-                <a href="/products#products" className="hover:text-sky-400 transition-colors">20L Dispenser Bottle</a>
+                <a href="/products#products" className="hover:text-sky-400 transition-colors">18.9L Refill Bottle</a>
               </li>
               <li>
                 <a href="/products#products" className="hover:text-sky-400 transition-colors">10L Family Container</a>

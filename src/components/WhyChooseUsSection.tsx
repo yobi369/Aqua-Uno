@@ -12,7 +12,7 @@ export const WhyChooseUsSection: React.FC = () => {
     {
       icon: ShieldCheck,
       title: 'BPA-Free, Sanitized Bottles',
-      desc: 'All 20L dispenser jugs undergo rigorous 7-stage automated thermal and ozone wash sterilization before every refill.',
+      desc: 'All 18.9L dispenser bottles undergo rigorous 7-stage automated thermal and ozone wash sterilization before every refill.',
     },
     {
       icon: Truck,

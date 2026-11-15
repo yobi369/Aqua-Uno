@@ -17,7 +17,7 @@ export const HydrationBanner: React.FC<HydrationBannerProps> = ({ onAddRecommend
   const totalDailyLiters = (householdSize * dailyIntakePerPerson).toFixed(1);
   const monthlyLiters = Math.round(Number(totalDailyLiters) * 30);
   // Number of 20L bottles needed per month
-  const monthly20LBottles = Math.max(1, Math.ceil(monthlyLiters / 20));
+  const monthly20LBottles = Math.max(1, Math.ceil(monthlyLiters / 18.9));
 
   const handleApplyOrder = () => {
     const prod20L = PRODUCTS.find((p) => p.id === 'prod-20l') || PRODUCTS[0];
@@ -138,7 +138,7 @@ export const HydrationBanner: React.FC<HydrationBannerProps> = ({ onAddRecommend
                       Recommended Plan:
                     </span>
                     <span className="text-lg font-extrabold text-white">
-                      ~{monthly20LBottles} × 20L Bottles / Month
+                      ~{monthly20LBottles} × 18.9L Bottles / Month
                     </span>
                     <p className="text-[11px] text-slate-300 mt-0.5">
                       ({totalDailyLiters} Litres daily total consumption)

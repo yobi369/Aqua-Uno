@@ -1,10 +1,10 @@
 import { Product, MineralSpec, DeliveryZone } from '../types';
-import aquaUnoReal20L from '../assets/images/aqua_uno_real_20l.jpg';
-import aquaUnoReal10L from '../assets/images/aqua_uno_real_10l.jpg';
-import aquaUnoReal5L from '../assets/images/aqua_uno_real_5l.jpg';
-import aquaUnoReal500ml from '../assets/images/aqua_uno_real_500ml.jpg';
-import aquaUnoReal1L from '../assets/images/aqua_uno_real_1l.jpg';
-import aquaUnoReal1_5L from '../assets/images/aqua_uno_real_1_5l.jpg';
+import imgRefill from '../assets/gallery/refill.jpg';
+import imgDisposable from '../assets/gallery/disposable.jpg';
+import img10L from '../assets/gallery/l10.jpg';
+import img5L from '../assets/gallery/l5.jpg';
+import img1LPack from '../assets/gallery/pack-1l.jpg';
+import img500Pack from '../assets/gallery/pack-500ml.jpg';
 import aquaUnoFactoryFacade from '../assets/images/aqua_uno_factory_facade.jpg';
 import aquaUnoSignGardens from '../assets/images/aqua_uno_sign_gardens.jpg';
 import aquaUnoWarehouseInventory from '../assets/images/aqua_uno_warehouse_inventory.jpg';
@@ -97,11 +97,11 @@ export const EPHRONE_FACILITY_ASSETS: FacilityAsset[] = [
 export const PRODUCTS: Product[] = [
   {
     id: 'prod-20l',
-    name: '20 Litre Dispenser Bottle',
-    size: '20 Litres',
+    name: 'Returnable 18.9 Litre Bottle',
+    size: '18.9 Litres',
     category: 'dispenser',
     price: 1300,
-    description: 'Our flagship Aqua Uno 20L reusable polycarbonate bottle. Ideal for homes, executive offices, schools, and clinics. Compatible with all standard hot & cold dispensers and pumps.',
+    description: 'Our flagship Aqua Uno 18.9L returnable polycarbonate bottle. Ideal for homes, executive offices, schools, and clinics. Compatible with all standard hot & cold dispensers and pumps.',
     bestFor: 'Homes, Corporate Offices, Dispensers & Water Coolers',
     features: [
       'Eco-friendly sanitized refill exchange',
@@ -109,9 +109,26 @@ export const PRODUCTS: Product[] = [
       'Tamper-evident Aqua Uno hygiene seal',
       'Compatible with top & bottom load dispensers'
     ],
-    image: aquaUnoReal20L,
+    image: imgRefill,
     tag: 'Best Seller',
     popular: true,
+  },
+  {
+    id: 'prod-18l-disposable',
+    name: 'One-Way 18.9 Litre Bottle',
+    size: '18.9 Litres',
+    category: 'dispenser',
+    price: 1300,
+    description: 'The Aqua Uno 18.9L one-way PET bottle in a swirl-ribbed design. No deposit and no returns, ideal for events, sites and occasional dispenser use.',
+    bestFor: 'Events, Sites, Occasional Dispenser Use',
+    features: [
+      'No deposit or bottle return',
+      'Tamper-evident branded seal',
+      'Food-grade recyclable PET',
+      'Fits standard 18.9L dispensers'
+    ],
+    image: imgDisposable,
+    tag: 'No Return',
   },
   {
     id: 'prod-10l',
@@ -127,7 +144,7 @@ export const PRODUCTS: Product[] = [
       'Direct dispensing tap compatible',
       '100% pure mountain spring water'
     ],
-    image: aquaUnoReal10L,
+    image: img10L,
     tag: 'New Size',
     popular: true,
   },
@@ -145,24 +162,8 @@ export const PRODUCTS: Product[] = [
       'Ideal for cooking & baby formula',
       'Space-saving refrigerator door fit'
     ],
-    image: aquaUnoReal5L,
+    image: img5L,
     popular: true,
-  },
-  {
-    id: 'prod-1-5l-pack',
-    name: '1.5 Litre Bottle (Pack of 12)',
-    size: '12 × 1.5 Litres',
-    category: 'packs',
-    price: 400,
-    description: 'High-capacity 1.5L Aqua Uno bottles delivering maximum daily hydration. Recommended for athletes, long-distance road trips, and all-day workstations.',
-    bestFor: 'Athletes, Fitness, Long Drives & Dining',
-    features: [
-      '1.5L generous volume per bottle',
-      'pH 7.09',
-      'Ergonomic contour grip',
-      'Long-lasting shelf freshness'
-    ],
-    image: aquaUnoReal1_5L,
   },
   {
     id: 'prod-1l-pack',
@@ -178,7 +179,7 @@ export const PRODUCTS: Product[] = [
       'Fresh mountain spring water',
       'High-impact recyclable bottle'
     ],
-    image: aquaUnoReal1L,
+    image: img1LPack,
     tag: 'Active Hydration',
   },
   {
@@ -195,7 +196,7 @@ export const PRODUCTS: Product[] = [
       'Crystal clear mountain spring taste',
       '100% recyclable bottles'
     ],
-    image: aquaUnoReal500ml,
+    image: img500Pack,
     tag: 'Event Favorite',
     popular: true,
   }
@@ -232,7 +233,7 @@ export const TESTIMONIALS = [
   },
   {
     id: 2,
-    quote: 'With three young kids at home, water safety is my top priority. The 20L refills arrive clean and sealed, the delivery team carries them right to our kitchen dispenser, and WhatsApp ordering takes literally 30 seconds.',
+    quote: 'With three young kids at home, water safety is my top priority. The 18.9L refills arrive clean and sealed, the delivery team carries them right to our kitchen dispenser, and WhatsApp ordering takes literally 30 seconds.',
     author: 'David Ochieng',
     role: 'Homeowner & Father',
     company: 'Kilimani Resident',
@@ -255,7 +256,7 @@ export const FAQS = [
   },
   {
     question: 'How does the 20-Litre bottle refill exchange work?',
-    answer: 'On your first order, if you do not own a clean standard 20L poly-carbonate bottle, a one-time refundable bottle deposit of KSh 600 applies. On subsequent orders, our delivery driver collects your empty sanitized bottle and swaps it with a fresh sealed 20L bottle for only KSh 250.'
+    answer: 'On your first order, if you do not own a clean standard 18.9L poly-carbonate bottle, a one-time refundable bottle deposit of KSh 600 applies. On subsequent orders, our delivery driver collects your empty sanitized bottle and swaps it with a fresh sealed 18.9L bottle for only KSh 250.'
   },
   {
     question: 'Where is Aqua Uno sourced from?',
@@ -267,6 +268,6 @@ export const FAQS = [
   },
   {
     question: 'What is the delivery turnaround time and fee?',
-    answer: 'Within Nairobi and major Central Kenya urban hubs, orders placed before 11:00 AM are delivered same-day. Orders placed later arrive within 2–4 hours or the next morning. Delivery is completely FREE for 2 or more 20L bottles or orders above KSh 500.'
+    answer: 'Within Nairobi and major Central Kenya urban hubs, orders placed before 11:00 AM are delivered same-day. Orders placed later arrive within 2–4 hours or the next morning. Delivery is completely FREE for 2 or more 18.9L bottles or orders above KSh 500.'
   }
 ];

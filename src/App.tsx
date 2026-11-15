@@ -123,7 +123,7 @@ export default function App() {
         <span className="flex items-center gap-1.5 font-semibold text-sky-300">
           <Truck className="w-3.5 h-3.5" /> FREE DELIVERY:
         </span>
-        <span>Order 2 or more 20L bottles today for same-day free delivery in Nairobi & Central Region!</span>
+        <span>Order 2 or more 18.9L bottles today for same-day free delivery in Nairobi & Central Region!</span>
         <button
           onClick={handleFloatingWhatsApp}
           className="hidden sm:inline-flex items-center gap-1 text-sky-300 hover:text-white underline font-semibold ml-1"
@@ -167,13 +167,13 @@ export default function App() {
                 </div>
 
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                  {PRODUCTS.slice(0, 4).map((product) => (
+                  {PRODUCTS.filter((p) => ['prod-20l','prod-10l','prod-5l','prod-500ml-pack'].includes(p.id)).map((product) => (
                     <a
                       key={product.id}
                       href="/products"
                       className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg transition-all"
                     >
-                      <div className="relative aspect-[4/3] overflow-hidden bg-blue-50">
+                      <div className="relative aspect-[3/4] overflow-hidden bg-slate-900">
                         <img
                           src={product.image}
                           alt={product.name}

@@ -242,7 +242,7 @@ export const ContactSection: React.FC = () => {
                         onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                         className="w-full px-3 py-2.5 border border-slate-300 rounded-lg bg-white"
                       >
-                        <option value="general">Home Water Delivery (20L / 10L / 5L)</option>
+                        <option value="general">Home Water Delivery (18.9L / 10L / 5L)</option>
                         <option value="corporate">Corporate / Office Account</option>
                         <option value="event">Event Bulk Water Order (500ml / 1L Packs)</option>
                         <option value="distributor">Distributor / Wholesale Inquiry</option>

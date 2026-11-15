@@ -34,3 +34,33 @@ html {
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
+
+@theme {
+  --font-serif-lux: 'Cormorant Garamond', Georgia, serif;
+  --font-sans-lux: 'Jost', system-ui, sans-serif;
+  --color-lux-bg: #07142f;
+  --color-lux-bg2: #0b1d42;
+  --color-lux-gold: #d8c79b;
+  --color-lux-gold-d: #b9a574;
+  --color-lux-mute: #9fb2c9;
+}
+
+@layer utilities {
+  .lux-arch {
+    border-radius: 999px 999px 6px 6px;
+    overflow: hidden;
+    box-shadow: 0 40px 80px rgba(0, 0, 0, 0.55);
+  }
+  .lux-arch::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    box-shadow: inset 0 0 90px rgba(7, 20, 47, 0.5);
+    pointer-events: none;
+  }
+  .lux-numeral {
+    color: transparent;
+    -webkit-text-stroke: 1px rgba(216, 199, 155, 0.42);
+  }
+}

@@ -103,7 +103,7 @@ export const CartDrawerAndOrderModal: React.FC<CartDrawerAndOrderModalProps> = (
       .join('\n');
 
     if (!hasEmptyBottles && cartItems.some((i) => i.product.id === 'prod-20l')) {
-      itemsText += `\n  (+ New 20L Bottle Deposit included)`;
+      itemsText += `\n  (+ New 18.9L Bottle Deposit included)`;
     }
 
     const message = encodeURIComponent(
@@ -292,7 +292,7 @@ export const CartDrawerAndOrderModal: React.FC<CartDrawerAndOrderModalProps> = (
               {cartItems.some((i) => i.product.id === 'prod-20l') && (
                 <div className="p-3.5 rounded-xl border border-blue-200 bg-blue-50/70 space-y-2">
                   <div className="flex items-center justify-between">
-                    <span className="text-xs font-bold text-blue-950">20L Empty Bottle Exchange</span>
+                    <span className="text-xs font-bold text-blue-950">18.9L Empty Bottle Exchange</span>
                     <label className="relative inline-flex items-center cursor-pointer">
                       <input
                         type="checkbox"
@@ -305,7 +305,7 @@ export const CartDrawerAndOrderModal: React.FC<CartDrawerAndOrderModalProps> = (
                   </div>
                   <p className="text-[11px] text-blue-800 leading-tight">
                     {hasEmptyBottles
-                      ? '✓ Yes, I will exchange empty 20L bottles upon delivery (Refill price: KSh 250).'
+                      ? '✓ Yes, I will exchange empty 18.9L bottles upon delivery (Refill price: KSh 250).'
                       : '✗ No empty bottle to swap. A refundable bottle deposit of KSh 600 per bottle will be added.'}
                   </p>
                 </div>
