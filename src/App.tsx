@@ -8,6 +8,7 @@ import { Product, CartItem } from './types';
 import { PRODUCTS, COMPANY_INFO } from './data/waterData';
 import { Navbar } from './components/Navbar';
 import { AquaUnoHome } from './components/AquaUnoHome';
+import { TaurusGalleryPhotosSection } from './components/TaurusGalleryPhotosSection';
 import { EphroneMediaGallerySection } from './components/EphroneMediaGallerySection';
 import { ProductsSection } from './components/ProductsSection';
 import { HydrationBanner } from './components/HydrationBanner';
