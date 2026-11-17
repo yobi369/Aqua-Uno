@@ -8,7 +8,7 @@ import { Product, CartItem } from './types';
 import { PRODUCTS, COMPANY_INFO } from './data/waterData';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
-import { TrustStrip } from './components/TrustStrip';
+import { HomeShowcase } from './components/HomeShowcase';
 import { EphroneMediaGallerySection } from './components/EphroneMediaGallerySection';
 import { ProductsSection } from './components/ProductsSection';
 import { HydrationBanner } from './components/HydrationBanner';
@@ -144,74 +144,7 @@ export default function App() {
         {(currentPath === '/' || currentPath === '/home') && (
           <>
             <Hero onOrderNowClick={handleOrderNowClick} />
-            <TrustStrip />
-            <TaurusGalleryPhotosSection compact />
-            <section className="py-16 bg-slate-50 border-b border-slate-200/80">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4 mb-8">
-                  <div>
-                    <span className="text-xs font-bold text-blue-700 tracking-wider uppercase">Find your favourite</span>
-                    <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mt-2 tracking-tight">
-                      Aqua Uno for Every Day
-                    </h2>
-                    <p className="text-sm sm:text-base text-slate-600 mt-2">
-                      From family-sized bottles to convenient packs for life on the go.
-                    </p>
-                  </div>
-                  <a
-                    href="/products"
-                    className="inline-flex items-center gap-2 text-sm font-bold text-blue-700 hover:text-blue-800"
-                  >
-                    See all products <ChevronRight className="w-4 h-4" />
-                  </a>
-                </div>
-
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-                  {PRODUCTS.filter((p) => ['prod-20l','prod-10l','prod-5l','prod-500ml-pack'].includes(p.id)).map((product) => (
-                    <a
-                      key={product.id}
-                      href="/products"
-                      className="group overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm hover:-translate-y-1 hover:border-blue-300 hover:shadow-lg transition-all"
-                    >
-                      <div className="relative aspect-[3/4] overflow-hidden bg-slate-900">
-                        <img
-                          src={product.image}
-                          alt={product.name}
-                          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                          loading="lazy"
-                        />
-                        <span className="absolute left-3 top-3 rounded-full bg-white/95 px-2.5 py-1 text-[10px] sm:text-xs font-bold text-blue-800 shadow-sm">
-                          {product.size}
-                        </span>
-                      </div>
-                      <div className="p-3 sm:p-4">
-                        <h3 className="text-sm sm:text-base font-bold text-slate-900 group-hover:text-blue-700">
-                          {product.name}
-                        </h3>
-                        <p className="mt-1 text-xs sm:text-sm font-semibold text-slate-600">
-                          {COMPANY_INFO.currency} {product.price.toLocaleString()}
-                        </p>
-                      </div>
-                    </a>
-                  ))}
-                </div>
-              </div>
-            </section>
-            <section className="py-16 bg-white">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid gap-6 md:grid-cols-3">
-                {[
-                  { title: 'Explore our water', description: 'Find the right bottle size for your home, office, or event.', href: '/products', label: 'Browse products' },
-                  { title: 'Meet Aqua Uno', description: 'Learn how we source, prepare, and deliver every bottle.', href: '/about', label: 'Our story & team' },
-                  { title: 'Delivery to your door', description: 'Check service areas and delivery schedules near you.', href: '/delivery', label: 'View delivery areas' },
-                ].map((item) => (
-                  <a key={item.href} href={item.href} className="group rounded-2xl border border-slate-200 bg-slate-50 p-6 hover:border-blue-400 hover:bg-white hover:shadow-md transition-all">
-                    <h2 className="text-xl font-bold text-slate-900">{item.title}</h2>
-                    <p className="mt-2 text-sm leading-relaxed text-slate-600">{item.description}</p>
-                    <span className="mt-5 inline-block text-sm font-bold text-blue-700 group-hover:text-blue-800">{item.label} →</span>
-                  </a>
-                ))}
-              </div>
-            </section>
+            <HomeShowcase />
           </>
         )}
 

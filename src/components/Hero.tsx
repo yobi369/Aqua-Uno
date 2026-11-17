@@ -1,68 +1,113 @@
-import React from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { COMPANY_INFO } from '../data/waterData';
-import facade from '../assets/images/aqua_uno_factory_facade.jpg';
-import lineup from '../assets/gallery/lineup.jpg';
+import './home.css';
+import imgRange from '../assets/slides/range.jpg';
+import imgRefill from '../assets/slides/refill.jpg';
+import imgOneWay from '../assets/slides/oneway.jpg';
+import img10L from '../assets/slides/l10.jpg';
+import img5L from '../assets/slides/l5.jpg';
+import img5LPack from '../assets/slides/l5pack.jpg';
+import img1LPack from '../assets/slides/pack1l.jpg';
+import img500Pack from '../assets/slides/pack500.jpg';
+import img500ml from '../assets/slides/ml500.jpg';
 
 interface HeroProps {
   onOrderNowClick: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
-  const handleWhatsAppOrder = () => {
-    const text = encodeURIComponent(`Hi Aqua Uno! I saw your website and would like to order premium purified water.`);
+const SLIDE_INTERVAL_MS = 3000;
+
+export const heroSlides = [
+  { key: 'range', src: imgRange, tag: 'The Range', size: '5 – 18.9 L', title: 'Every size, one source', text: 'From the 500 ml bottle to the 18.9 litre dispenser, all filled and sealed at our plant in Yatta.' },
+  { key: 'refill', src: imgRefill, tag: 'Returnable', size: '18.9 L', title: 'The returnable bottle', text: 'Heavy-duty polycarbonate for homes, offices, schools and clinics. Fits every standard dispenser.' },
+  { key: 'oneway', src: imgOneWay, tag: 'One-Way', size: '18.9 L', title: 'The one-way bottle', text: 'The same generous volume with no deposit and no return. Made for events and sites.' },
+  { key: 'l10', src: img10L, tag: 'Family', size: '10 L', title: 'The 10 litre container', text: 'Compact enough for the kitchen counter, with a sealed, branded cap.' },
+  { key: 'l5', src: img5L, tag: 'Everyday', size: '5 L', title: 'The 5 litre bottle', text: 'A carry handle for the dining table, the kitchen and the road.' },
+  { key: 'l5pack', src: img5LPack, tag: 'Multipack', size: '5 L × 2', title: 'The 5 litre twin pack', text: 'Two 5 litre bottles shrink-wrapped together for bigger households.' },
+  { key: 'pack1l', src: img1LPack, tag: 'Active', size: '1 L × 12', title: 'The 1 litre pack', text: 'Twelve bottles for the gym bag, the field trip and the desk.' },
+  { key: 'pack500', src: img500Pack, tag: 'Events', size: '500 ml × 24', title: 'The 500 ml case', text: 'Twenty-four compact bottles for boardrooms, weddings and conferences.' },
+  { key: 'ml500', src: img500ml, tag: 'Grab & go', size: '500 ml', title: 'The 500 ml bottle', text: 'The one you carry. Premium purified water in a bottle that fits any bag.' },
+];
+
+export const Hero: React.FC<HeroProps> = () => {
+  const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
+
+  useEffect(() => {
+    if (paused) return;
+    const id = window.setInterval(() => {
+      setActive((current) => (current + 1) % heroSlides.length);
+    }, SLIDE_INTERVAL_MS);
+    return () => window.clearInterval(id);
+  }, [paused, active]);
+
+  const scrollToRange = useCallback(() => {
+    document.getElementById('range')?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
+  const handleWhatsApp = useCallback(() => {
+    const text = encodeURIComponent('Hi Aqua Uno! I saw your website and would like to order premium purified water.');
     window.open(`https://wa.me/${COMPANY_INFO.whatsappNumber}?text=${text}`, '_blank');
-  };
+  }, []);
 
   return (
-    <section className="relative isolate overflow-hidden bg-lux-bg font-sans-lux font-light text-white">
-      <img
-        src={facade}
-        alt="The Aqua Uno bottling facility of Ephron Industries Limited"
-        fetchPriority="high"
-        className="absolute inset-0 -z-20 h-full w-full object-cover object-[40%_40%] saturate-90"
-      />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-lux-bg/95 via-lux-bg/80 to-lux-bg/55" />
-      <div className="absolute inset-0 -z-10 bg-gradient-to-t from-lux-bg via-transparent to-transparent" />
-
-      <div className="mx-auto grid max-w-7xl items-center gap-12 px-5 py-20 sm:px-8 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14 lg:py-28">
-        <div className="text-center lg:text-left">
-          <p className="text-xs uppercase tracking-[0.38em] text-lux-gold">Ephron Industries Limited &middot; Yatta, Machakos</p>
-          <h1 className="mt-5 font-serif-lux text-6xl font-medium leading-[0.95] tracking-tight text-balance sm:text-7xl lg:text-8xl">
-            Trust in <em className="text-lux-gold">Every</em> Drop
-          </h1>
-          <p className="mx-auto mt-7 max-w-md text-base leading-relaxed text-slate-300 sm:text-lg lg:mx-0">
-            Premium purified drinking water, bottled at source and delivered from 500&nbsp;ml to 18.9&nbsp;litres.
-          </p>
-          <div className="mt-9 flex flex-col justify-center gap-3 sm:flex-row lg:justify-start">
-            <button
-              onClick={onOrderNowClick}
-              className="border border-lux-gold bg-lux-gold px-8 py-4 text-xs font-medium uppercase tracking-[0.2em] text-lux-bg transition-colors hover:bg-[#efe4c8]"
-            >
-              View the collection
-            </button>
-            <button
-              onClick={handleWhatsAppOrder}
-              className="border border-lux-gold px-8 py-4 text-xs font-medium uppercase tracking-[0.2em] text-lux-gold transition-colors hover:bg-[#efe4c8] hover:text-lux-bg"
-            >
-              Order on WhatsApp
-            </button>
-          </div>
-        </div>
-
-        <div>
-          <div className="relative mx-auto w-full max-w-[400px]">
-            <div className="pointer-events-none absolute -inset-4 rounded-[999px_999px_14px_14px] border border-lux-gold/30" />
-            <div className="lux-arch relative aspect-[3/4] bg-lux-bg2">
-              <img
-                src={lineup}
-                alt="The Aqua Uno range: 5 litre, 10 litre and two 18.9 litre bottles"
-                className="h-full w-full object-cover contrast-105 saturate-105"
-              />
+    <div className="aq-home">
+      <section
+        className={`hero${paused ? ' paused' : ''}`}
+        aria-roledescription="carousel"
+        aria-label="Aqua Uno products"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onFocus={() => setPaused(true)}
+        onBlur={() => setPaused(false)}
+      >
+        {heroSlides.map((slide, index) => (
+          <div
+            key={slide.key}
+            className={`slide${index === active ? ' on' : ''}`}
+            aria-hidden={index !== active}
+          >
+            <div className="blur" style={{ backgroundImage: `url(${slide.src})` }} />
+            <div className="shade" />
+            <div className="wrap sc">
+              <div className="txt">
+                <p className="eyebrow">{slide.tag}</p>
+                <div className="size">{slide.size}</div>
+                <h1>{slide.title}</h1>
+                <p className="sub">{slide.text}</p>
+                <div className="cta">
+                  <button type="button" className="btn fill" onClick={scrollToRange}>See every size</button>
+                  <button type="button" className="btn" onClick={handleWhatsApp}>Order on WhatsApp</button>
+                </div>
+              </div>
+              <div className="frame">
+                <div className="arch">
+                  <img src={slide.src} alt={slide.title} fetchPriority={index === 0 ? 'high' : 'auto'} />
+                </div>
+              </div>
             </div>
           </div>
-          <p className="mt-8 text-center text-[11px] uppercase tracking-[0.3em] text-lux-mute">The range &middot; 5L &middot; 10L &middot; 18.9L</p>
+        ))}
+
+        <div className="rail">
+          <div className="wrap">
+            {heroSlides.map((slide, index) => (
+              <button
+                key={slide.key}
+                type="button"
+                className={`dot${index === active ? ' on' : index < active ? ' done' : ''}`}
+                aria-label={`Show ${slide.title}`}
+                aria-current={index === active ? 'true' : undefined}
+                onClick={() => setActive(index)}
+              >
+                <span>{String(index + 1).padStart(2, '0')}</span>
+                <em>{slide.tag}</em>
+                <i />
+              </button>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
