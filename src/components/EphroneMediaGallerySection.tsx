@@ -55,9 +55,9 @@ export const EphroneMediaGallerySection: React.FC = () => {
   };
 
   return (
-    <section id="facility-tour" className="py-20 bg-slate-900 text-white relative overflow-hidden">
+    <section id="facility-tour" className="py-20 bg-[#023e8a] text-white relative overflow-hidden">
       {/* Background Ambient Glows */}
-      <div className="absolute top-0 left-1/4 w-96 h-96 bg-blue-600/15 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#023e8a]/15 rounded-full blur-3xl pointer-events-none" />
       <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-sky-500/10 rounded-full blur-3xl pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -80,7 +80,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
         </div>
 
         {/* Highlight 1: The Official Video Cinema Player */}
-        <div className="mb-16 bg-slate-950/80 rounded-3xl border border-slate-800 p-3 sm:p-5 shadow-2xl relative">
+        <div className="mb-16 bg-[#022b61]/80 rounded-3xl border border-slate-800 p-3 sm:p-5 shadow-2xl relative">
           <div className="relative rounded-2xl overflow-hidden aspect-video bg-black group">
             <video
               ref={videoRef}
@@ -107,7 +107,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
               <div className="absolute inset-0 flex items-center justify-center">
                 <button
                   onClick={toggleVideoPlay}
-                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-blue-600/90 hover:bg-blue-600 text-white flex items-center justify-center shadow-2xl transition-all transform hover:scale-110 active:scale-95 group/btn"
+                  className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-[#023e8a]/90 hover:bg-[#023e8a] text-white flex items-center justify-center shadow-2xl transition-all transform hover:scale-110 active:scale-95 group/btn"
                   aria-label="Play Facility Video"
                 >
                   <Play className="w-10 h-10 sm:w-12 sm:h-12 fill-white translate-x-1" />
@@ -159,19 +159,19 @@ export const EphroneMediaGallerySection: React.FC = () => {
 
           {/* Plant Stats Strip Under Video */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-4 pt-2 text-center text-xs sm:text-sm">
-            <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+            <div className="p-3 rounded-xl bg-[#023e8a]/60 border border-slate-800">
               <span className="block text-slate-400 text-[11px] uppercase tracking-wider">Facility Type</span>
               <span className="font-bold text-white">Modern Bottling Complex</span>
             </div>
-            <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+            <div className="p-3 rounded-xl bg-[#023e8a]/60 border border-slate-800">
               <span className="block text-slate-400 text-[11px] uppercase tracking-wider">Operator</span>
               <span className="font-bold text-sky-300">{COMPANY_INFO.parentCompany}</span>
             </div>
-            <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+            <div className="p-3 rounded-xl bg-[#023e8a]/60 border border-slate-800">
               <span className="block text-slate-400 text-[11px] uppercase tracking-wider">Quality Assurance</span>
               <span className="font-bold text-emerald-400">KEBS & Micro-Purified</span>
             </div>
-            <div className="p-3 rounded-xl bg-slate-900/60 border border-slate-800">
+            <div className="p-3 rounded-xl bg-[#023e8a]/60 border border-slate-800">
               <span className="block text-slate-400 text-[11px] uppercase tracking-wider">Brand Motto</span>
               <span className="font-bold text-white font-script text-base">Trust in Every Drop</span>
             </div>
@@ -192,11 +192,11 @@ export const EphroneMediaGallerySection: React.FC = () => {
             </div>
 
             {/* Filter Tabs */}
-            <div className="flex flex-wrap items-center gap-1.5 p-1 bg-slate-950 rounded-xl border border-slate-800 self-start sm:self-auto text-xs font-semibold">
+            <div className="flex flex-wrap items-center gap-1.5 p-1 bg-[#022b61] rounded-xl border border-slate-800 self-start sm:self-auto text-xs font-semibold">
               <button
                 onClick={() => setActiveTab('all')}
                 className={`px-3 py-1.5 rounded-lg transition-colors ${
-                  activeTab === 'all' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-400 hover:text-white'
+                  activeTab === 'all' ? 'bg-[#023e8a] text-white shadow-xs' : 'text-slate-400 hover:text-white'
                 }`}
               >
                 All Views
@@ -204,7 +204,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
               <button
                 onClick={() => setActiveTab('facility')}
                 className={`px-3 py-1.5 rounded-lg transition-colors ${
-                  activeTab === 'facility' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-400 hover:text-white'
+                  activeTab === 'facility' ? 'bg-[#023e8a] text-white shadow-xs' : 'text-slate-400 hover:text-white'
                 }`}
               >
                 Exterior & Plant
@@ -212,7 +212,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
               <button
                 onClick={() => setActiveTab('warehouse')}
                 className={`px-3 py-1.5 rounded-lg transition-colors ${
-                  activeTab === 'warehouse' ? 'bg-blue-600 text-white shadow-xs' : 'text-slate-400 hover:text-white'
+                  activeTab === 'warehouse' ? 'bg-[#023e8a] text-white shadow-xs' : 'text-slate-400 hover:text-white'
                 }`}
               >
                 Warehouse & Stock
@@ -226,16 +226,16 @@ export const EphroneMediaGallerySection: React.FC = () => {
               <div
                 key={asset.id}
                 onClick={() => setSelectedAsset(asset)}
-                className="group relative rounded-2xl overflow-hidden bg-slate-950 border border-slate-800 hover:border-blue-500/50 shadow-lg cursor-pointer transition-all duration-300 hover:-translate-y-1"
+                className="group relative rounded-2xl overflow-hidden bg-[#022b61] border border-slate-800 hover:border-blue-500/50 shadow-lg cursor-pointer transition-all duration-300 hover:-translate-y-1"
               >
-                <div className="aspect-[16/10] overflow-hidden bg-slate-800 relative">
+                <div className="aspect-[16/10] overflow-hidden bg-[#0a4f9e] relative">
                   <img
                     src={asset.image}
                     alt={asset.title}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#022b61] via-[#022b61]/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity" />
 
                   <div className="absolute top-3 right-3 p-2 rounded-lg bg-black/60 backdrop-blur-md text-white opacity-0 group-hover:opacity-100 transition-opacity">
                     <Eye className="w-4 h-4 text-sky-400" />
@@ -259,7 +259,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
         </div>
 
         {/* Highlight 3: The Official TaurusArts Pixieset Client Gallery Integration Card */}
-        <div className="mt-16 bg-gradient-to-br from-blue-900/40 via-slate-900 to-slate-950 rounded-3xl border border-blue-500/30 p-6 sm:p-10 shadow-2xl relative overflow-hidden">
+        <div className="mt-16 bg-gradient-to-br from-[#023e8a]/40 via-[#023e8a] to-[#022b61] rounded-3xl border border-blue-500/30 p-6 sm:p-10 shadow-2xl relative overflow-hidden">
           <div className="absolute top-0 right-0 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
@@ -298,7 +298,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
                 href={COMPANY_INFO.pixiesetGalleryUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-2xl bg-blue-600 hover:bg-blue-500 text-white font-bold text-sm shadow-xl transition-all hover:scale-105 active:scale-95 group text-center"
+                className="inline-flex items-center justify-center gap-2.5 px-6 py-4 rounded-2xl bg-[#023e8a] hover:bg-blue-500 text-white font-bold text-sm shadow-xl transition-all hover:scale-105 active:scale-95 group text-center"
               >
                 <span>Open TaurusArts Gallery</span>
                 <ExternalLink className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
@@ -306,7 +306,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
 
               <button
                 onClick={() => setShowPixiesetModal(true)}
-                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs transition-colors border border-slate-700 text-center"
+                className="inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-2xl bg-[#0a4f9e] hover:bg-slate-700 text-slate-200 font-semibold text-xs transition-colors border border-slate-700 text-center"
               >
                 <span>View Gallery Information</span>
                 <ChevronRight className="w-4 h-4" />
@@ -324,7 +324,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
           onClick={() => setSelectedAsset(null)}
         >
           <div
-            className="bg-slate-900 border border-slate-700 rounded-3xl max-w-4xl w-full max-h-[calc(100dvh-2rem)] overflow-y-auto shadow-2xl relative"
+            className="bg-[#023e8a] border border-slate-700 rounded-3xl max-w-4xl w-full max-h-[calc(100dvh-2rem)] overflow-y-auto shadow-2xl relative"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="relative aspect-video bg-black">
@@ -353,7 +353,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
                   href={COMPANY_INFO.pixiesetGalleryUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold flex items-center gap-1.5"
+                  className="px-4 py-2 rounded-xl bg-[#023e8a] hover:bg-blue-500 text-white text-xs font-bold flex items-center gap-1.5"
                 >
                   <span>View in Pixieset</span>
                   <ExternalLink className="w-3.5 h-3.5" />
@@ -361,7 +361,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
 
                 <button
                   onClick={() => setSelectedAsset(null)}
-                  className="px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-bold"
+                  className="px-4 py-2 rounded-xl bg-[#0a4f9e] hover:bg-slate-700 text-slate-300 text-xs font-bold"
                 >
                   Close
                 </button>
@@ -378,12 +378,12 @@ export const EphroneMediaGallerySection: React.FC = () => {
           onClick={() => setShowPixiesetModal(false)}
         >
           <div
-            className="bg-slate-900 border border-slate-700 rounded-3xl max-w-xl w-full max-h-[calc(100dvh-2rem)] overflow-y-auto p-6 sm:p-8 shadow-2xl relative"
+            className="bg-[#023e8a] border border-slate-700 rounded-3xl max-w-xl w-full max-h-[calc(100dvh-2rem)] overflow-y-auto p-6 sm:p-8 shadow-2xl relative"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-center justify-between border-b border-slate-800 pb-4 mb-4">
               <div className="flex items-center gap-2.5">
-                <div className="p-2 rounded-xl bg-blue-600/20 text-sky-400">
+                <div className="p-2 rounded-xl bg-[#023e8a]/20 text-sky-400">
                   <Camera className="w-5 h-5" />
                 </div>
                 <div>
@@ -408,7 +408,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
                 <strong className="text-white">TaurusArts</strong>.
               </p>
 
-              <div className="p-4 rounded-2xl bg-slate-950 border border-slate-800 space-y-2">
+              <div className="p-4 rounded-2xl bg-[#022b61] border border-slate-800 space-y-2">
                 <div className="flex justify-between items-center text-xs">
                   <span className="text-slate-400">Gallery Link:</span>
                   <span className="text-sky-300 font-mono text-[11px] truncate max-w-[240px]">
@@ -433,7 +433,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
             <div className="mt-6 flex items-center justify-end gap-3">
               <button
                 onClick={() => setShowPixiesetModal(false)}
-                className="px-4 py-2.5 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 text-xs font-semibold"
+                className="px-4 py-2.5 rounded-xl bg-[#0a4f9e] hover:bg-slate-700 text-slate-300 text-xs font-semibold"
               >
                 Dismiss
               </button>
@@ -441,7 +441,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
                 href={COMPANY_INFO.pixiesetGalleryUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="px-5 py-2.5 rounded-xl bg-blue-600 hover:bg-blue-500 text-white text-xs font-bold flex items-center gap-2 shadow-lg"
+                className="px-5 py-2.5 rounded-xl bg-[#023e8a] hover:bg-blue-500 text-white text-xs font-bold flex items-center gap-2 shadow-lg"
               >
                 <span>Open Pixieset Collection</span>
                 <ExternalLink className="w-3.5 h-3.5" />

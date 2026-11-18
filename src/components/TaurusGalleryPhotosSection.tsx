@@ -34,12 +34,12 @@ export const TaurusGalleryPhotosSection: React.FC<TaurusGalleryPhotosSectionProp
   return (
     <section
       id={compact ? undefined : 'photo-gallery'}
-      className={`py-16 border-b border-slate-200/80 ${compact ? 'bg-white' : 'bg-slate-50'}`}
+      className={`py-16 border-b border-slate-200/80 ${compact ? 'bg-white' : 'bg-[#f2fbff]'}`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5 mb-8">
           <div className="max-w-2xl">
-            <span className="text-xs font-bold text-blue-700 tracking-wider uppercase">
+            <span className="text-xs font-bold text-[#0077b6] tracking-wider uppercase">
               Photos by Taurus Arts
             </span>
             <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mt-2 tracking-tight">
@@ -54,7 +54,7 @@ export const TaurusGalleryPhotosSection: React.FC<TaurusGalleryPhotosSectionProp
           {compact ? (
             <a
               href="/about#photo-gallery"
-              className="inline-flex items-center gap-2 text-sm font-bold text-blue-700 hover:text-blue-800"
+              className="inline-flex items-center gap-2 text-sm font-bold text-[#0077b6] hover:text-[#0077b6]"
             >
               Explore the photo gallery <ExternalLink className="w-4 h-4" />
             </a>
@@ -63,7 +63,7 @@ export const TaurusGalleryPhotosSection: React.FC<TaurusGalleryPhotosSectionProp
               href={COMPANY_INFO.pixiesetGalleryUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-bold text-blue-700 hover:text-blue-800"
+              className="inline-flex items-center gap-2 text-sm font-bold text-[#0077b6] hover:text-[#0077b6]"
             >
               Open full Taurus Arts gallery <ExternalLink className="w-4 h-4" />
             </a>
@@ -80,8 +80,8 @@ export const TaurusGalleryPhotosSection: React.FC<TaurusGalleryPhotosSectionProp
                 aria-pressed={activeCategory === category}
                 className={`px-4 py-2 rounded-full text-xs font-bold transition-colors ${
                   activeCategory === category
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-white text-slate-600 border border-slate-200 hover:border-blue-300 hover:text-blue-700'
+                    ? 'bg-[#023e8a] text-white'
+                    : 'bg-white text-slate-600 border border-slate-200 hover:border-blue-300 hover:text-[#0077b6]'
                 }`}
               >
                 {category === 'All' ? 'All Photos' : category}
@@ -107,7 +107,7 @@ export const TaurusGalleryPhotosSection: React.FC<TaurusGalleryPhotosSectionProp
                 decoding="async"
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-950/75 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#022b61]/75 via-transparent to-transparent" />
               <div className="absolute inset-x-0 bottom-0 p-3 sm:p-4 flex items-end justify-between gap-2">
                 <div>
                   {!compact && (

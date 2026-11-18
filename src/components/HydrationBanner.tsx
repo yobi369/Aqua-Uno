@@ -28,7 +28,7 @@ export const HydrationBanner: React.FC<HydrationBannerProps> = ({ onAddRecommend
   };
 
   return (
-    <section id="calculator" className="py-16 bg-gradient-to-r from-blue-900 via-blue-800 to-slate-900 text-white relative overflow-hidden">
+    <section id="calculator" className="py-16 bg-gradient-to-r from-[#023e8a] via-[#0077b6] to-[#023e8a] text-white relative overflow-hidden">
       {/* Background ripples */}
       <div className="absolute top-0 right-0 -mt-10 -mr-10 w-96 h-96 bg-white/5 rounded-full blur-2xl pointer-events-none" />
       <div className="absolute bottom-0 left-0 -mb-10 -ml-10 w-80 h-80 bg-sky-400/10 rounded-full blur-2xl pointer-events-none" />

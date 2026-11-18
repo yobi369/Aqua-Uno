@@ -16,7 +16,18 @@ export const Footer: React.FC = () => {
               Aqua Uno is manufactured and bottled at source under strict cleanroom hygiene standards by <strong className="text-slate-300">{COMPANY_INFO.parentCompany}</strong>. Delivering pure natural mountain spring hydration across Kenya.
             </p>
 
+            <div className="pt-1 flex flex-wrap items-center gap-3 text-sky-300 text-xs font-semibold">
+              <span className="flex items-center gap-1.5">
+                <ShieldCheck className="w-4 h-4 text-sky-300" /> KEBS Certified
+              </span>
+              <span>·</span>
+              <span className="flex items-center gap-1.5">
+                <Droplet className="w-4 h-4 text-sky-300" /> Natural pH 7.09
+              </span>
+              <span>·</span>
+              <span>100% BPA-Free</span>
             </div>
+          </div>
 
           {/* Quick Links */}
           <div className="space-y-3">
@@ -122,7 +133,9 @@ export const Footer: React.FC = () => {
           <div className="flex items-center gap-4 text-[11px]">
             <span>Fast & Reliable Delivery</span>
             <span>·</span>
-            <span className="font-script text-sm text-sky-400 font-bold">Trust in Every Drop</span>
+            <span className="font-script text-sm text-sky-300 font-bold">Trust in Every Drop</span>
+            <span>·</span>
+            <span>KEBS Certified</span>
           </div>
         </div>
       </div>

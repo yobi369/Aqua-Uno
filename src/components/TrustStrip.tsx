@@ -7,7 +7,7 @@ export const TrustStrip: React.FC = () => {
       icon: Droplet,
       title: '100% Pure Spring Water',
       description: 'Drawn directly from subterranean aquifers in protected highland reserves with natural mineral balance.',
-      accent: 'text-blue-600 bg-blue-50 border-blue-200',
+      accent: 'text-[#0077b6] bg-blue-50 border-blue-200',
     },
     {
       icon: ShieldCheck,
@@ -25,7 +25,7 @@ export const TrustStrip: React.FC = () => {
       icon: HeartHandshake,
       title: 'Customer Focused',
       description: 'Simple refill exchanges, flexible corporate plans, and instant WhatsApp dispatch support.',
-      accent: 'text-blue-700 bg-blue-50 border-blue-200',
+      accent: 'text-[#0077b6] bg-blue-50 border-blue-200',
     },
   ];
 
@@ -38,7 +38,7 @@ export const TrustStrip: React.FC = () => {
             return (
               <div
                 key={index}
-                className="flex items-start gap-4 p-4 rounded-xl border border-slate-200/70 hover:border-blue-400 hover:shadow-xs transition-all bg-slate-50/50"
+                className="flex items-start gap-4 p-4 rounded-xl border border-slate-200/70 hover:border-blue-400 hover:shadow-xs transition-all bg-[#f2fbff]/50"
               >
                 <div className={`p-3 rounded-lg border shrink-0 ${pillar.accent}`}>
                   <Icon className="w-5 h-5" />

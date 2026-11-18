@@ -140,13 +140,13 @@ export const CartDrawerAndOrderModal: React.FC<CartDrawerAndOrderModalProps> = (
   };
 
   return (
-    <div className="fixed inset-0 z-50 overflow-hidden bg-slate-900/60 backdrop-blur-xs flex justify-end">
+    <div className="fixed inset-0 z-50 overflow-hidden bg-[#023e8a]/60 backdrop-blur-xs flex justify-end">
       <div className="w-full max-w-xl bg-white h-full shadow-2xl flex flex-col overflow-hidden animate-slideLeft">
         
         {/* Header */}
-        <div className="p-4 sm:p-5 border-b border-slate-200 flex items-center justify-between bg-slate-50">
+        <div className="p-4 sm:p-5 border-b border-slate-200 flex items-center justify-between bg-[#f2fbff]">
           <div className="flex items-center gap-2">
-            <div className="p-2 bg-blue-600 text-white rounded-lg">
+            <div className="p-2 bg-[#023e8a] text-white rounded-lg">
               <ShoppingBag className="w-5 h-5" />
             </div>
             <div>
@@ -170,16 +170,16 @@ export const CartDrawerAndOrderModal: React.FC<CartDrawerAndOrderModalProps> = (
           {isSubmittedOnline ? (
             /* Order Success State */
             <div className="py-12 text-center space-y-4">
-              <div className="w-16 h-16 bg-blue-100 text-blue-700 rounded-full flex items-center justify-center mx-auto">
+              <div className="w-16 h-16 bg-blue-100 text-[#0077b6] rounded-full flex items-center justify-center mx-auto">
                 <CheckCircle className="w-10 h-10" />
               </div>
               <h3 className="text-2xl font-bold text-slate-900">Order Received!</h3>
               <p className="text-xs sm:text-sm text-slate-600 max-w-md mx-auto">
                 Thank you, <span className="font-bold text-slate-900">{formData.fullName}</span>! Your order reference is{' '}
-                <span className="font-mono font-bold text-blue-700">{orderRef}</span>. Our dispatch team has been notified.
+                <span className="font-mono font-bold text-[#0077b6]">{orderRef}</span>. Our dispatch team has been notified.
               </p>
 
-              <div className="bg-slate-50 border border-slate-200 rounded-xl p-4 text-xs text-left max-w-sm mx-auto space-y-2">
+              <div className="bg-[#f2fbff] border border-slate-200 rounded-xl p-4 text-xs text-left max-w-sm mx-auto space-y-2">
                 <div className="flex justify-between">
                   <span className="text-slate-500">Delivery Address:</span>
                   <span className="font-semibold text-slate-800">{formData.address}</span>
@@ -190,21 +190,21 @@ export const CartDrawerAndOrderModal: React.FC<CartDrawerAndOrderModalProps> = (
                 </div>
                 <div className="flex justify-between">
                   <span className="text-slate-500">Total Payable on Delivery:</span>
-                  <span className="font-bold text-blue-700">{COMPANY_INFO.currency} {grandTotal.toLocaleString()}</span>
+                  <span className="font-bold text-[#0077b6]">{COMPANY_INFO.currency} {grandTotal.toLocaleString()}</span>
                 </div>
               </div>
 
               <div className="pt-4 flex flex-col gap-2 max-w-xs mx-auto">
                 <button
                   onClick={handleWhatsAppCheckout}
-                  className="w-full py-2.5 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg text-xs font-bold flex items-center justify-center gap-2"
+                  className="w-full py-2.5 px-4 bg-[#023e8a] hover:bg-[#0077b6] text-white rounded-lg text-xs font-bold flex items-center justify-center gap-2"
                 >
                   <MessageCircle className="w-4 h-4" />
                   <span>Send Confirmation via WhatsApp</span>
                 </button>
                 <button
                   onClick={handleReset}
-                  className="w-full py-2 px-4 border border-slate-200 text-slate-700 hover:bg-slate-50 rounded-lg text-xs font-semibold"
+                  className="w-full py-2 px-4 border border-slate-200 text-slate-700 hover:bg-[#f2fbff] rounded-lg text-xs font-semibold"
                 >
                   Close & Done
                 </button>
@@ -222,7 +222,7 @@ export const CartDrawerAndOrderModal: React.FC<CartDrawerAndOrderModalProps> = (
               </p>
               <button
                 onClick={onClose}
-                className="mt-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700"
+                className="mt-2 px-4 py-2 bg-[#023e8a] text-white rounded-lg text-xs font-bold hover:bg-[#0077b6]"
               >
                 Browse Products
               </button>
@@ -251,13 +251,13 @@ export const CartDrawerAndOrderModal: React.FC<CartDrawerAndOrderModalProps> = (
                             {item.product.name}
                           </h4>
                           <p className="text-[11px] text-slate-500">{item.product.size}</p>
-                          <p className="text-xs font-bold text-blue-800 mt-0.5">
+                          <p className="text-xs font-bold text-[#0077b6] mt-0.5">
                             {COMPANY_INFO.currency} {item.product.price.toLocaleString()} each
                           </p>
                         </div>
 
                         {/* Quantity Controls */}
-                        <div className="flex items-center border border-slate-200 rounded-md overflow-hidden bg-slate-50 shrink-0">
+                        <div className="flex items-center border border-slate-200 rounded-md overflow-hidden bg-[#f2fbff] shrink-0">
                           <button
                             onClick={() => onUpdateQuantity(item.product.id, item.quantity - 1)}
                             className="p-1 hover:bg-slate-200 text-slate-600"
@@ -300,10 +300,10 @@ export const CartDrawerAndOrderModal: React.FC<CartDrawerAndOrderModalProps> = (
                         onChange={(e) => setHasEmptyBottles(e.target.checked)}
                         className="sr-only peer"
                       />
-                      <div className="w-9 h-5 bg-slate-300 peer-focus:outline-hidden rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-blue-600"></div>
+                      <div className="w-9 h-5 bg-slate-300 peer-focus:outline-hidden rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-slate-300 after:border after:rounded-full after:h-4 after:w-4 after:transition-all peer-checked:bg-[#023e8a]"></div>
                     </label>
                   </div>
-                  <p className="text-[11px] text-blue-800 leading-tight">
+                  <p className="text-[11px] text-[#0077b6] leading-tight">
                     {hasEmptyBottles
                       ? '✓ Yes, I will exchange empty 18.9L bottles upon delivery (Refill price: KSh 250).'
                       : '✗ No empty bottle to swap. A refundable bottle deposit of KSh 600 per bottle will be added.'}
@@ -422,8 +422,8 @@ export const CartDrawerAndOrderModal: React.FC<CartDrawerAndOrderModalProps> = (
                         onClick={() => setFormData((prev) => ({ ...prev, frequency: f.id as any }))}
                         className={`py-1.5 px-2 rounded-md font-semibold text-center border transition-all ${
                           formData.frequency === f.id
-                            ? 'bg-blue-50 border-blue-500 text-blue-800'
-                            : 'border-slate-200 text-slate-600 hover:bg-slate-50'
+                            ? 'bg-blue-50 border-blue-500 text-[#0077b6]'
+                            : 'border-slate-200 text-slate-600 hover:bg-[#f2fbff]'
                         }`}
                       >
                         {f.label}
@@ -452,7 +452,7 @@ export const CartDrawerAndOrderModal: React.FC<CartDrawerAndOrderModalProps> = (
 
         {/* Footer / Summary & Actions (if cart has items and not yet submitted) */}
         {!isSubmittedOnline && cartItems.length > 0 && (
-          <div className="p-4 sm:p-5 border-t border-slate-200 bg-slate-50 space-y-3">
+          <div className="p-4 sm:p-5 border-t border-slate-200 bg-[#f2fbff] space-y-3">
             <div className="space-y-1.5 text-xs">
               <div className="flex justify-between text-slate-600">
                 <span>Subtotal</span>
@@ -462,13 +462,13 @@ export const CartDrawerAndOrderModal: React.FC<CartDrawerAndOrderModalProps> = (
               </div>
               <div className="flex justify-between text-slate-600">
                 <span>Delivery Fee</span>
-                <span className="font-semibold text-blue-700">
+                <span className="font-semibold text-[#0077b6]">
                   {deliveryFee === 0 ? 'FREE' : `${COMPANY_INFO.currency} ${deliveryFee}`}
                 </span>
               </div>
               <div className="flex justify-between text-sm font-bold text-slate-900 pt-1 border-t border-slate-200">
                 <span>Total Amount</span>
-                <span className="font-mono text-blue-800 text-base">
+                <span className="font-mono text-[#0077b6] text-base">
                   {COMPANY_INFO.currency} {grandTotal.toLocaleString()}
                 </span>
               </div>
@@ -479,7 +479,7 @@ export const CartDrawerAndOrderModal: React.FC<CartDrawerAndOrderModalProps> = (
               <button
                 type="button"
                 onClick={handleWhatsAppCheckout}
-                className="py-3 px-4 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-xs transition-colors"
+                className="py-3 px-4 bg-[#023e8a] hover:bg-[#0077b6] active:bg-blue-800 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 shadow-xs transition-colors"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Order via WhatsApp</span>
@@ -488,7 +488,7 @@ export const CartDrawerAndOrderModal: React.FC<CartDrawerAndOrderModalProps> = (
               <button
                 type="button"
                 onClick={handleOnlineSubmit}
-                className="py-3 px-4 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 transition-colors"
+                className="py-3 px-4 bg-[#023e8a] hover:bg-[#0a4f9e] text-white font-bold text-xs rounded-xl flex items-center justify-center gap-2 transition-colors"
               >
                 <Truck className="w-4 h-4" />
                 <span>Place Order Online</span>

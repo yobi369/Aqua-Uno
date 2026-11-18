@@ -42,7 +42,7 @@ export const WhyChooseUsSection: React.FC = () => {
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto mb-12">
-          <span className="text-xs font-bold text-blue-700 tracking-wider uppercase bg-blue-50 px-3 py-1 rounded-md border border-blue-200">
+          <span className="text-xs font-bold text-[#0077b6] tracking-wider uppercase bg-blue-50 px-3 py-1 rounded-md border border-blue-200">
             Our Quality Guarantee
           </span>
           <h2 className="text-3xl sm:text-4xl font-black text-slate-900 mt-3 tracking-tight">
@@ -60,10 +60,10 @@ export const WhyChooseUsSection: React.FC = () => {
             return (
               <div
                 key={idx}
-                className="p-6 rounded-2xl border border-slate-200/90 hover:border-blue-400 bg-slate-50/50 hover:bg-white hover:shadow-md transition-all group"
+                className="p-6 rounded-2xl border border-slate-200/90 hover:border-blue-400 bg-[#f2fbff]/50 hover:bg-white hover:shadow-md transition-all group"
               >
-                <div className="w-12 h-12 rounded-xl bg-blue-100 text-blue-800 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
-                  <Icon className="w-6 h-6 text-blue-700" />
+                <div className="w-12 h-12 rounded-xl bg-blue-100 text-[#0077b6] flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+                  <Icon className="w-6 h-6 text-[#0077b6]" />
                 </div>
                 <h3 className="text-base font-bold text-slate-900 mb-2">
                   {adv.title}
@@ -91,7 +91,7 @@ export const WhyChooseUsSection: React.FC = () => {
             {TESTIMONIALS.map((t) => (
               <div
                 key={t.id}
-                className="p-6 rounded-2xl bg-slate-50 border border-slate-200 flex flex-col justify-between"
+                className="p-6 rounded-2xl bg-[#f2fbff] border border-slate-200 flex flex-col justify-between"
               >
                 <div>
                   {/* 5 star rating */}
@@ -106,7 +106,7 @@ export const WhyChooseUsSection: React.FC = () => {
                 </div>
 
                 <div className="mt-5 pt-4 border-t border-slate-200/70 flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0">
+                  <div className="w-9 h-9 rounded-full bg-[#023e8a] text-white font-bold text-xs flex items-center justify-center shrink-0">
                     {t.author.charAt(0)}
                   </div>
                   <div>

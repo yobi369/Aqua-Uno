@@ -27,12 +27,12 @@ export const AquaUnoSourceSection: React.FC = () => {
   ];
 
   return (
-    <section id="source" className="py-16 bg-slate-50 border-b border-slate-200/80">
+    <section id="source" className="py-16 bg-[#f2fbff] border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Heading */}
         <div className="text-center max-w-3xl mx-auto mb-12">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-blue-100/70 text-blue-800 text-xs font-bold uppercase tracking-wider mb-2">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-md bg-blue-100/70 text-[#0077b6] text-xs font-bold uppercase tracking-wider mb-2">
             <Mountain className="w-3.5 h-3.5" />
             <span>Highland Aquifer Origin</span>
           </div>
@@ -52,7 +52,7 @@ export const AquaUnoSourceSection: React.FC = () => {
             <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-xs">
               
               {/* Natural River & Mountain Source Visual */}
-              <div className="relative w-full h-48 sm:h-56 bg-slate-900 overflow-hidden">
+              <div className="relative w-full h-48 sm:h-56 bg-[#023e8a] overflow-hidden">
                 <img
                   src={FACILITY_IMAGES.plantAerial}
                   alt="Aqua Uno Highland Spring Source & Ephron Industries Estate"
@@ -61,7 +61,7 @@ export const AquaUnoSourceSection: React.FC = () => {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent flex items-end p-4 sm:p-5">
                   <div className="text-white">
-                    <span className="text-[11px] font-bold uppercase tracking-wider text-sky-400 bg-slate-950/80 px-2.5 py-0.5 rounded-md border border-sky-500/30">
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-sky-400 bg-[#022b61]/80 px-2.5 py-0.5 rounded-md border border-sky-500/30">
                       Highland Aquifers & Modern Bottling
                     </span>
                     <h4 className="text-base sm:text-lg font-bold text-white mt-1">
@@ -73,14 +73,14 @@ export const AquaUnoSourceSection: React.FC = () => {
 
               <div className="p-6 sm:p-8">
                 <h3 className="text-xl font-bold text-slate-900 mb-6 flex items-center gap-2">
-                  <Droplet className="w-5 h-5 text-blue-600" />
+                  <Droplet className="w-5 h-5 text-[#0077b6]" />
                   <span>The 4-Stage Natural Spring Journey</span>
                 </h3>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                 {steps.map((item, idx) => (
                   <div key={idx} className="relative pl-4 border-l-2 border-blue-500/40">
-                    <span className="text-xs font-mono font-bold text-blue-700 bg-blue-50 px-2 py-0.5 rounded">
+                    <span className="text-xs font-mono font-bold text-[#0077b6] bg-blue-50 px-2 py-0.5 rounded">
                       Step {item.step}
                     </span>
                     <h4 className="text-sm font-bold text-slate-900 mt-2">
@@ -96,7 +96,7 @@ export const AquaUnoSourceSection: React.FC = () => {
               {/* Quality Guarantee Callout */}
               <div className="mt-8 pt-6 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-blue-50/70 p-4 rounded-xl border border-blue-100">
                 <div className="flex items-center gap-3">
-                  <div className="p-2.5 bg-blue-600 text-white rounded-xl">
+                  <div className="p-2.5 bg-[#023e8a] text-white rounded-xl">
                     <Award className="w-5 h-5" />
                   </div>
                   <div>
@@ -104,8 +104,8 @@ export const AquaUnoSourceSection: React.FC = () => {
                     <p className="text-[11px] text-slate-600">Bottled by Ephron Industries Limited meeting national drinking standards</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-1.5 text-xs font-bold text-blue-800">
-                  <CheckCircle className="w-4 h-4 text-blue-600" />
+                <div className="flex items-center gap-1.5 text-xs font-bold text-[#0077b6]">
+                  <CheckCircle className="w-4 h-4 text-[#0077b6]" />
                   <span>100% Tested Daily</span>
                 </div>
               </div>
@@ -121,7 +121,7 @@ export const AquaUnoSourceSection: React.FC = () => {
                   <h3 className="text-lg font-bold text-slate-900">Mineral & Chemical Analysis</h3>
                   <p className="text-xs text-slate-500">Laboratory profile • concentrations in mg/L</p>
                 </div>
-                <span className="px-2.5 py-1 text-[11px] font-bold text-blue-800 bg-blue-50 border border-blue-200 rounded-md">
+                <span className="px-2.5 py-1 text-[11px] font-bold text-[#0077b6] bg-blue-50 border border-blue-200 rounded-md">
                   pH 7.09
                 </span>
               </div>
@@ -133,7 +133,7 @@ export const AquaUnoSourceSection: React.FC = () => {
                     <div>
                       <span className="font-semibold text-slate-800 block">{spec.name}</span>
                     </div>
-                    <span className="font-mono font-bold text-slate-900 shrink-0 text-right bg-slate-50 px-2 py-1 rounded border border-slate-100">
+                    <span className="font-mono font-bold text-slate-900 shrink-0 text-right bg-[#f2fbff] px-2 py-1 rounded border border-slate-100">
                       {spec.amount}
                     </span>
                   </div>

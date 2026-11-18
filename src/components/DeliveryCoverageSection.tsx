@@ -17,7 +17,7 @@ export const DeliveryCoverageSection: React.FC = () => {
   };
 
   return (
-    <section id="delivery" className="py-16 bg-slate-50 border-b border-slate-200/80">
+    <section id="delivery" className="py-16 bg-[#f2fbff] border-b border-slate-200/80">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
@@ -56,7 +56,7 @@ export const DeliveryCoverageSection: React.FC = () => {
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="flex items-start gap-3">
-                    <div className="p-2.5 rounded-xl bg-blue-50 text-blue-700 shrink-0">
+                    <div className="p-2.5 rounded-xl bg-blue-50 text-[#0077b6] shrink-0">
                       <MapPin className="w-5 h-5" />
                     </div>
                     <div>
@@ -74,14 +74,14 @@ export const DeliveryCoverageSection: React.FC = () => {
                   <div>
                     <span className="text-slate-500 block">Lead Time:</span>
                     <span className="font-bold text-slate-800 flex items-center gap-1 mt-0.5">
-                      <Clock className="w-3.5 h-3.5 text-blue-600" />
+                      <Clock className="w-3.5 h-3.5 text-[#0077b6]" />
                       {zone.leadTime}
                     </span>
                   </div>
                   <div>
                     <span className="text-slate-500 block">Free Delivery Policy:</span>
-                    <span className="font-bold text-blue-700 flex items-center gap-1 mt-0.5">
-                      <CheckCircle className="w-3.5 h-3.5 text-blue-600" />
+                    <span className="font-bold text-[#0077b6] flex items-center gap-1 mt-0.5">
+                      <CheckCircle className="w-3.5 h-3.5 text-[#0077b6]" />
                       {zone.minOrderFree}
                     </span>
                   </div>
@@ -94,7 +94,7 @@ export const DeliveryCoverageSection: React.FC = () => {
               <p className="text-xs text-slate-500 mt-1">We often accommodate custom routes! Message us on WhatsApp to verify your exact pin location.</p>
               <button
                 onClick={handleCorporateInquiry}
-                className="mt-3 inline-flex items-center gap-2 px-4 py-2 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700"
+                className="mt-3 inline-flex items-center gap-2 px-4 py-2 bg-[#023e8a] text-white rounded-lg text-xs font-bold hover:bg-[#0077b6]"
               >
                 <MessageCircle className="w-4 h-4" />
                 <span>Check Location via WhatsApp</span>
@@ -104,7 +104,7 @@ export const DeliveryCoverageSection: React.FC = () => {
         </div>
 
         {/* Corporate & Event Banner */}
-        <div className="mt-10 bg-gradient-to-r from-slate-900 via-blue-950 to-slate-900 rounded-3xl p-6 sm:p-8 text-white flex flex-col md:flex-row items-center justify-between gap-6 border border-blue-500/30 shadow-xl">
+        <div className="mt-10 bg-gradient-to-r from-[#023e8a] via-[#022b61] to-[#023e8a] rounded-3xl p-6 sm:p-8 text-white flex flex-col md:flex-row items-center justify-between gap-6 border border-blue-500/30 shadow-xl">
           <div className="space-y-2 text-center md:text-left">
             <span className="text-xs font-bold uppercase tracking-wider text-sky-400">
               Corporate & Institution Accounts • Ephron Industries
@@ -119,7 +119,7 @@ export const DeliveryCoverageSection: React.FC = () => {
 
           <button
             onClick={handleCorporateInquiry}
-            className="shrink-0 px-6 py-3.5 bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center gap-2"
+            className="shrink-0 px-6 py-3.5 bg-[#023e8a] hover:bg-blue-500 text-white font-bold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center gap-2"
           >
             <MessageCircle className="w-4 h-4" />
             <span>Request Corporate Quote</span>
