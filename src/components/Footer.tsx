@@ -5,7 +5,7 @@ import { Phone, Mail, MapPin, Droplet, ShieldCheck, Camera, ExternalLink, Globe 
 
 export const Footer: React.FC = () => {
   return (
-    <footer className="bg-slate-950 text-slate-400 text-xs border-t border-slate-800">
+    <footer className="bg-[#022b61] text-sky-100/70 text-xs">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8">
           
@@ -16,43 +16,29 @@ export const Footer: React.FC = () => {
               Aqua Uno is manufactured and bottled at source under strict cleanroom hygiene standards by <strong className="text-slate-300">{COMPANY_INFO.parentCompany}</strong>. Delivering pure natural mountain spring hydration across Kenya.
             </p>
 
-            <div className="pt-1 flex flex-wrap items-center gap-3 text-sky-400 text-xs font-semibold">
-              <span className="flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-blue-400" /> KEBS Certified
-              </span>
-              <span>·</span>
-              <span className="flex items-center gap-1.5">
-                <Droplet className="w-4 h-4 text-sky-400" /> Natural pH 7.09
-              </span>
-              <span>·</span>
-              <span>100% BPA-Free</span>
             </div>
-          </div>
 
           {/* Quick Links */}
           <div className="space-y-3">
             <h4 className="text-white font-bold text-sm tracking-tight">Our Products</h4>
             <ul className="space-y-2">
               <li>
-                <a href="/products#products" className="hover:text-sky-400 transition-colors">18.9L Refill Bottle</a>
+                <a href="/products#products" className="hover:text-sky-300 transition-colors">18.9L Returnable Bottle</a>
               </li>
               <li>
-                <a href="/products#products" className="hover:text-sky-400 transition-colors">10L Family Container</a>
+                <a href="/products#products" className="hover:text-sky-300 transition-colors">18.9L One-Way Bottle</a>
               </li>
               <li>
-                <a href="/products#products" className="hover:text-sky-400 transition-colors">5L Family Container</a>
+                <a href="/products#products" className="hover:text-sky-300 transition-colors">10L Family Container</a>
               </li>
               <li>
-                <a href="/products#products" className="hover:text-sky-400 transition-colors">1.5L Hydration Pack (12-Pack)</a>
+                <a href="/products#products" className="hover:text-sky-300 transition-colors">5L Family Bottle</a>
               </li>
               <li>
-                <a href="/products#products" className="hover:text-sky-400 transition-colors">1 Litre Bottle (12-Pack)</a>
+                <a href="/products#products" className="hover:text-sky-300 transition-colors">1 Litre Pack (12)</a>
               </li>
               <li>
-                <a href="/products#products" className="hover:text-sky-400 transition-colors">500ml Pack of 24</a>
-              </li>
-              <li>
-                <a href="/products#products" className="hover:text-sky-400 transition-colors">Rechargeable Auto Pump</a>
+                <a href="/products#products" className="hover:text-sky-300 transition-colors">500ml Case (24)</a>
               </li>
             </ul>
           </div>
@@ -131,14 +117,12 @@ export const Footer: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="mt-12 pt-6 border-t border-slate-800/80 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500">
+        <div className="mt-12 pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500">
           <p>© {new Date().getFullYear()} {COMPANY_INFO.name} • {COMPANY_INFO.parentCompany}. All rights reserved.</p>
           <div className="flex items-center gap-4 text-[11px]">
             <span>Fast & Reliable Delivery</span>
             <span>·</span>
             <span className="font-script text-sm text-sky-400 font-bold">Trust in Every Drop</span>
-            <span>·</span>
-            <span>KEBS Certified</span>
           </div>
         </div>
       </div>

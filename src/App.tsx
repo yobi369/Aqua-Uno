@@ -28,14 +28,7 @@ export default function App() {
     const path = window.location.pathname;
     return ['/', '/products', '/about', '/delivery', '/contact'].includes(path) ? path : '/';
   });
-  const [cartItems, setCartItems] = useState<CartItem[]>([
-    // Pre-populate with 1x 20L bottle so the cart has an intuitive starting item
-    {
-      product: PRODUCTS[0],
-      quantity: 2,
-      isRefill: true,
-    },
-  ]);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
   const cartTotalItems = cartItems.reduce((acc, item) => acc + item.quantity, 0);
@@ -119,14 +112,14 @@ export default function App() {
     <div className="min-h-screen flex flex-col bg-white text-slate-800" onClick={handleInternalNavigation}>
       
       {/* Top Banner Notice */}
-      <aside aria-label="Special Offers" className="bg-blue-950 text-white text-[11px] sm:text-xs py-2 px-4 text-center font-medium border-b border-blue-900 flex items-center justify-center gap-2">
-        <span className="flex items-center gap-1.5 font-semibold text-sky-300">
+      <aside aria-label="Special Offers" className="bg-gradient-to-r from-[#023e8a] via-[#0077b6] to-[#00b4d8] text-white text-[11px] sm:text-xs py-2 px-4 text-center font-medium flex items-center justify-center gap-2">
+        <span className="flex items-center gap-1.5 font-semibold text-white">
           <Truck className="w-3.5 h-3.5" /> FREE DELIVERY:
         </span>
         <span>Order 2 or more 18.9L bottles today for same-day free delivery in Nairobi & Central Region!</span>
         <button
           onClick={handleFloatingWhatsApp}
-          className="hidden sm:inline-flex items-center gap-1 text-sky-300 hover:text-white underline font-semibold ml-1"
+          className="hidden sm:inline-flex items-center gap-1 text-white hover:text-sky-100 underline font-semibold ml-1"
         >
           Order on WhatsApp <ChevronRight className="w-3 h-3" />
         </button>
@@ -194,7 +187,7 @@ export default function App() {
         {cartTotalItems > 0 && (
           <button
             onClick={() => setIsCartOpen(true)}
-            className="flex items-center gap-2.5 bg-slate-900 text-white px-4 py-2.5 rounded-full shadow-xl hover:bg-slate-800 transition-all border border-slate-700 text-xs font-bold"
+            className="flex items-center gap-2.5 bg-[#023e8a] text-white px-4 py-2.5 rounded-full shadow-xl hover:bg-[#0077b6] transition-all text-xs font-bold"
             title="View Order"
           >
             <ShoppingBag className="w-4 h-4 text-sky-400" />

@@ -2,6 +2,17 @@ import React, { useState } from 'react';
 import { Product } from '../types';
 import { PRODUCTS, COMPANY_INFO } from '../data/waterData';
 import { Plus, Minus, ShoppingBag, MessageCircle, Check } from 'lucide-react';
+import { cutouts } from './Hero';
+import './home.css';
+
+const CUTOUT: Record<string, keyof typeof cutouts> = {
+  'prod-20l': 'refill',
+  'prod-18l-disposable': 'oneway',
+  'prod-10l': 'l10',
+  'prod-5l': 'l5',
+  'prod-1l-pack': 'pack1l',
+  'prod-500ml-pack': 'pack500',
+};
 
 const NUMERALS: Record<string, string> = {
   'prod-20l': '18.9',
@@ -63,122 +74,65 @@ export const ProductsSection: React.FC<ProductsSectionProps> = ({ onAddToCart })
   };
 
   return (
-    <section id="products" className="bg-lux-bg py-20 font-sans-lux font-light text-slate-100">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        
-        {/* Section Header */}
-        <div className="mx-auto mb-12 max-w-2xl text-center">
-          <p className="text-xs uppercase tracking-[0.38em] text-lux-gold">The Collection</p>
-          <h2 className="mt-4 font-serif-lux text-4xl font-medium leading-tight text-balance sm:text-6xl">
-            Six ways to take Aqua Uno home
-          </h2>
-          <p className="mt-5 text-lux-mute">
-            Every bottle is filled and sealed at our plant in Yatta. Choose the size that fits the occasion.
-          </p>
-
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
-            {categories.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setActiveCategory(cat.id)}
-                className={`border px-4 py-2 text-[11px] font-medium uppercase tracking-[0.18em] transition-colors ${
-                  activeCategory === cat.id
-                    ? 'border-lux-gold bg-lux-gold text-lux-bg'
-                    : 'border-lux-gold/30 text-lux-mute hover:border-lux-gold hover:text-lux-gold'
-                }`}
-              >
-                {cat.label}
-              </button>
-            ))}
+    <div className="aq-home">
+      <section id="products" className="pg">
+        <div className="wrap">
+          <div className="head">
+            <p className="eyebrow">The collection</p>
+            <h2>Six ways to take Aqua Uno home</h2>
+            <p>Every bottle is filled and sealed at our plant in Yatta. Choose the size that fits the occasion.</p>
+            <div className="cats">
+              {categories.map((cat) => (
+                <button key={cat.id} type="button" onClick={() => setActiveCategory(cat.id)} className={activeCategory === cat.id ? 'on' : ''}>
+                  {cat.label}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
 
-        {/* Editorial product rows */}
-        <div className="divide-y divide-lux-gold/15">
-          {filteredProducts.map((product, index) => {
-            const currentQty = quantities[product.id] || 1;
-            const isAdded = addedNotice === product.id;
-            const numeral = NUMERALS[product.id] ?? product.size.split(' ')[0];
-            const reversed = index % 2 === 1;
-
-            return (
-              <article
-                key={product.id}
-                className="grid items-center gap-8 py-16 text-center md:grid-cols-2 md:gap-16 md:text-left"
-              >
-                <div className={`relative mx-auto w-full max-w-[420px] ${reversed ? 'md:order-2' : ''}`}>
-                  <span
-                    aria-hidden="true"
-                    className="lux-numeral pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-[52%] whitespace-nowrap font-serif-lux text-[10rem] font-semibold leading-none tracking-tighter sm:text-[15rem]"
-                  >
-                    {numeral}
-                  </span>
-                  <div className="lux-arch relative z-10 mx-auto aspect-[3/4] w-[78%] bg-lux-bg2">
-                    <img
-                      src={product.image}
-                      alt={product.name}
-                      loading="lazy"
-                      className="h-full w-full object-cover contrast-105 saturate-105"
-                    />
+          <div className="plist">
+            {filteredProducts.map((product, index) => {
+              const currentQty = quantities[product.id] || 1;
+              const isAdded = addedNotice === product.id;
+              const numeral = NUMERALS[product.id] ?? product.size.split(' ')[0];
+              const cut = CUTOUT[product.id];
+              return (
+                <article key={product.id} className={`prow${index % 2 === 1 ? ' rev' : ''}`}>
+                  <div className="pimg">
+                    <span className="pnum" aria-hidden="true">{numeral}</span>
+                    <img src={cut ? cutouts[cut] : product.image} alt={product.name} loading="lazy" />
+                    <div className="floor" />
                   </div>
-                </div>
-
-                <div className="mx-auto max-w-md md:mx-0">
-                  {product.tag && (
-                    <p className="text-xs uppercase tracking-[0.34em] text-lux-gold">{product.tag}</p>
-                  )}
-                  <h3 className="mt-3 font-serif-lux text-4xl font-medium leading-[1.08] sm:text-5xl">{product.name}</h3>
-                  <p className="mt-5 leading-relaxed text-slate-300">{product.description}</p>
-                  <p className="mt-6 border-t border-lux-gold/25 pt-5 text-xs uppercase tracking-[0.22em] text-lux-mute">
-                    {product.bestFor}
-                  </p>
-
-                  <div className="mt-7 flex flex-wrap items-center justify-center gap-5 md:justify-start">
-                    <span className="font-serif-lux text-4xl text-white">
-                      {COMPANY_INFO.currency} {product.price.toLocaleString()}
-                    </span>
-                    <div className="flex items-center border border-lux-gold/30">
-                      <button
-                        onClick={() => handleQuantityChange(product.id, -1)}
-                        className="p-2 text-lux-gold hover:bg-white/10"
-                        aria-label="Decrease quantity"
-                      >
-                        <Minus className="h-3.5 w-3.5" />
+                  <div className="pinfo">
+                    {product.tag && <span className="chip">{product.tag}</span>}
+                    <h3>{product.name}</h3>
+                    <p className="pdesc">{product.description}</p>
+                    <p className="pbest">{product.bestFor}</p>
+                    <div className="pbuy">
+                      <span className="pprice">{COMPANY_INFO.currency} {product.price.toLocaleString()}</span>
+                      <div className="qty">
+                        <button type="button" onClick={() => handleQuantityChange(product.id, -1)} aria-label="Decrease quantity"><Minus className="h-3.5 w-3.5" /></button>
+                        <span>{currentQty}</span>
+                        <button type="button" onClick={() => handleQuantityChange(product.id, 1)} aria-label="Increase quantity"><Plus className="h-3.5 w-3.5" /></button>
+                      </div>
+                    </div>
+                    <div className="cta">
+                      <button type="button" className="btn fill" onClick={() => handleAdd(product)}>
+                        {isAdded ? <Check className="h-4 w-4" /> : <ShoppingBag className="h-4 w-4" />}
+                        {isAdded ? 'Added' : 'Add to order'}
                       </button>
-                      <span className="w-8 text-center text-xs font-medium">{currentQty}</span>
-                      <button
-                        onClick={() => handleQuantityChange(product.id, 1)}
-                        className="p-2 text-lux-gold hover:bg-white/10"
-                        aria-label="Increase quantity"
-                      >
-                        <Plus className="h-3.5 w-3.5" />
+                      <button type="button" className="btn" onClick={() => handleInstantWhatsApp(product)} title="Order this product directly on WhatsApp">
+                        <MessageCircle className="h-4 w-4" />
+                        Order on WhatsApp
                       </button>
                     </div>
                   </div>
-
-                  <div className="mt-6 flex flex-col justify-center gap-3 sm:flex-row md:justify-start">
-                    <button
-                      onClick={() => handleAdd(product)}
-                      className="inline-flex items-center justify-center gap-2 border border-lux-gold bg-lux-gold px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-lux-bg transition-colors hover:bg-[#efe4c8]"
-                    >
-                      {isAdded ? <Check className="h-3.5 w-3.5" /> : <ShoppingBag className="h-3.5 w-3.5" />}
-                      {isAdded ? 'Added' : 'Add to order'}
-                    </button>
-                    <button
-                      onClick={() => handleInstantWhatsApp(product)}
-                      className="inline-flex items-center justify-center gap-2 border border-lux-gold/50 px-6 py-3 text-xs font-medium uppercase tracking-[0.18em] text-lux-gold transition-colors hover:border-lux-gold hover:bg-white/10"
-                      title="Order this product directly on WhatsApp"
-                    >
-                      <MessageCircle className="h-3.5 w-3.5" />
-                      WhatsApp
-                    </button>
-                  </div>
-                </div>
-              </article>
-            );
-          })}
+                </article>
+              );
+            })}
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
+    </div>
   );
 };
