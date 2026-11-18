@@ -1,15 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { COMPANY_INFO } from '../data/waterData';
+import { COMPANY_INFO, PRODUCTS } from '../data/waterData';
 import './home.css';
-import imgRange from '../assets/slides/range.jpg';
-import imgRefill from '../assets/slides/refill.jpg';
-import imgOneWay from '../assets/slides/oneway.jpg';
-import img10L from '../assets/slides/l10.jpg';
-import img5L from '../assets/slides/l5.jpg';
-import img5LPack from '../assets/slides/l5pack.jpg';
-import img1LPack from '../assets/slides/pack1l.jpg';
-import img500Pack from '../assets/slides/pack500.jpg';
-import img500ml from '../assets/slides/ml500.jpg';
+import cutRefill from '../assets/cutouts/refill.webp';
+import cutOneWay from '../assets/cutouts/oneway.webp';
+import cut10L from '../assets/cutouts/l10.webp';
+import cut5L from '../assets/cutouts/l5.webp';
+import cutPack1L from '../assets/cutouts/pack1l.webp';
+import cutPack500 from '../assets/cutouts/pack500.webp';
+import cut500ml from '../assets/cutouts/ml500.webp';
 
 interface HeroProps {
   onOrderNowClick: () => void;
@@ -17,38 +15,60 @@ interface HeroProps {
 
 const SLIDE_INTERVAL_MS = 3000;
 
-export const heroSlides = [
-  { key: 'range', src: imgRange, tag: 'The Range', size: '5 – 18.9 L', title: 'Every size, one source', text: 'From the 500 ml bottle to the 18.9 litre dispenser, all filled and sealed at our plant in Yatta.' },
-  { key: 'refill', src: imgRefill, tag: 'Returnable', size: '18.9 L', title: 'The returnable bottle', text: 'Heavy-duty polycarbonate for homes, offices, schools and clinics. Fits every standard dispenser.' },
-  { key: 'oneway', src: imgOneWay, tag: 'One-Way', size: '18.9 L', title: 'The one-way bottle', text: 'The same generous volume with no deposit and no return. Made for events and sites.' },
-  { key: 'l10', src: img10L, tag: 'Family', size: '10 L', title: 'The 10 litre container', text: 'Compact enough for the kitchen counter, with a sealed, branded cap.' },
-  { key: 'l5', src: img5L, tag: 'Everyday', size: '5 L', title: 'The 5 litre bottle', text: 'A carry handle for the dining table, the kitchen and the road.' },
-  { key: 'l5pack', src: img5LPack, tag: 'Multipack', size: '5 L × 2', title: 'The 5 litre twin pack', text: 'Two 5 litre bottles shrink-wrapped together for bigger households.' },
-  { key: 'pack1l', src: img1LPack, tag: 'Active', size: '1 L × 12', title: 'The 1 litre pack', text: 'Twelve bottles for the gym bag, the field trip and the desk.' },
-  { key: 'pack500', src: img500Pack, tag: 'Events', size: '500 ml × 24', title: 'The 500 ml case', text: 'Twenty-four compact bottles for boardrooms, weddings and conferences.' },
-  { key: 'ml500', src: img500ml, tag: 'Grab & go', size: '500 ml', title: 'The 500 ml bottle', text: 'The one you carry. Premium purified water in a bottle that fits any bag.' },
+export const cutouts = {
+  refill: cutRefill,
+  oneway: cutOneWay,
+  l10: cut10L,
+  l5: cut5L,
+  pack1l: cutPack1L,
+  pack500: cutPack500,
+  ml500: cut500ml,
+};
+
+interface Slide {
+  key: keyof typeof cutouts;
+  productId?: string;
+  tag: string;
+  num: string;
+  unit: string;
+  title: string;
+  text: string;
+  bg: string;
+}
+
+export const heroSlides: Slide[] = [
+  { key: 'refill', productId: 'prod-20l', tag: 'Returnable', num: '18.9', unit: 'L', title: 'The Returnable Bottle', text: 'Heavy-duty and refillable. Made for homes, offices, schools and clinics.', bg: 'linear-gradient(135deg,#b9efff 0%,#e9fbff 55%,#ffffff 100%)' },
+  { key: 'oneway', productId: 'prod-18l-disposable', tag: 'One-Way', num: '18.9', unit: 'L', title: 'The One-Way Bottle', text: 'Same big volume, no deposit and no return. Perfect for events and sites.', bg: 'linear-gradient(135deg,#c9e4ff 0%,#eaf4ff 60%,#fff 100%)' },
+  { key: 'l10', productId: 'prod-10l', tag: 'Family', num: '10', unit: 'L', title: 'The 10 Litre Container', text: 'Compact enough for the kitchen counter. Sealed with a branded cap.', bg: 'linear-gradient(135deg,#bff3e8 0%,#e8fbf7 60%,#fff 100%)' },
+  { key: 'l5', productId: 'prod-5l', tag: 'Everyday', num: '5', unit: 'L', title: 'The 5 Litre Bottle', text: 'A carry handle for the table, the kitchen and the road.', bg: 'linear-gradient(135deg,#d3ecff 0%,#f0f8ff 60%,#fff 100%)' },
+  { key: 'pack1l', productId: 'prod-1l-pack', tag: 'Active', num: '12×1', unit: 'L', title: 'The 1 Litre Pack', text: 'Twelve bottles for the gym bag, the field trip and the desk.', bg: 'linear-gradient(135deg,#aeeaff 0%,#e6faff 60%,#fff 100%)' },
+  { key: 'pack500', productId: 'prod-500ml-pack', tag: 'Events', num: '24×500', unit: 'ml', title: 'The 500 ml Case', text: 'Twenty-four compact bottles for boardrooms, weddings and conferences.', bg: 'linear-gradient(135deg,#b7d4ff 0%,#e6efff 60%,#fff 100%)' },
+  { key: 'ml500', tag: 'Grab & Go', num: '500', unit: 'ml', title: 'The 500 ml Bottle', text: 'The one you carry. Pure, light and always cold enough.', bg: 'linear-gradient(135deg,#c7f0ff 0%,#eefaff 60%,#fff 100%)' },
 ];
 
-export const Hero: React.FC<HeroProps> = () => {
+const BUBBLES = Array.from({ length: 16 }, (_, i) => {
+  const sizes = [10, 14, 18, 26, 34];
+  const size = sizes[(i * 7) % sizes.length];
+  return { left: (i * 37) % 95 + 2, size, dur: 9 + ((i * 5) % 10), delay: -((i * 3) % 16) };
+});
+
+const WAVE = 'M0 60 C 180 10 360 110 540 60 S 900 10 1080 60 S 1260 100 1440 60 V120 H0Z';
+
+export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
 
+  const next = useCallback(() => setActive((i) => (i + 1) % heroSlides.length), []);
+
   useEffect(() => {
     if (paused) return;
-    const id = window.setInterval(() => {
-      setActive((current) => (current + 1) % heroSlides.length);
-    }, SLIDE_INTERVAL_MS);
+    const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) return;
+    const id = window.setInterval(next, SLIDE_INTERVAL_MS);
     return () => window.clearInterval(id);
-  }, [paused, active]);
+  }, [paused, next, active]);
 
-  const scrollToRange = useCallback(() => {
-    document.getElementById('range')?.scrollIntoView({ behavior: 'smooth' });
-  }, []);
-
-  const handleWhatsApp = useCallback(() => {
-    const text = encodeURIComponent('Hi Aqua Uno! I saw your website and would like to order premium purified water.');
-    window.open(`https://wa.me/${COMPANY_INFO.whatsappNumber}?text=${text}`, '_blank');
-  }, []);
+  const scrollToRange = () => document.getElementById('range')?.scrollIntoView({ behavior: 'smooth' });
 
   return (
     <div className="aq-home">
@@ -61,48 +81,69 @@ export const Hero: React.FC<HeroProps> = () => {
         onFocus={() => setPaused(true)}
         onBlur={() => setPaused(false)}
       >
-        {heroSlides.map((slide, index) => (
-          <div
-            key={slide.key}
-            className={`slide${index === active ? ' on' : ''}`}
-            aria-hidden={index !== active}
-          >
-            <div className="blur" style={{ backgroundImage: `url(${slide.src})` }} />
-            <div className="shade" />
-            <div className="wrap sc">
-              <div className="txt">
-                <p className="eyebrow">{slide.tag}</p>
-                <div className="size">{slide.size}</div>
-                <h1>{slide.title}</h1>
-                <p className="sub">{slide.text}</p>
-                <div className="cta">
-                  <button type="button" className="btn fill" onClick={scrollToRange}>See every size</button>
-                  <button type="button" className="btn" onClick={handleWhatsApp}>Order on WhatsApp</button>
-                </div>
+        {heroSlides.map((slide, i) => {
+          const product = PRODUCTS.find((p) => p.id === slide.productId);
+          const price = product ? `${COMPANY_INFO.currency} ${product.price.toLocaleString()}` : 'Ask for price';
+          return (
+            <div
+              key={slide.key}
+              className={`slide${i === active ? ' on' : ''}`}
+              style={{ background: slide.bg }}
+              aria-hidden={i !== active}
+            >
+              <div className="bubbles" aria-hidden="true">
+                {BUBBLES.map((b, n) => (
+                  <i key={n} style={{ left: `${b.left}%`, width: b.size, height: b.size, animationDuration: `${b.dur}s`, animationDelay: `${b.delay}s` }} />
+                ))}
               </div>
-              <div className="frame">
-                <div className="arch">
-                  <img src={slide.src} alt={slide.title} fetchPriority={index === 0 ? 'high' : 'auto'} />
+              <div className="bignum" aria-hidden="true">
+                {slide.num}
+                <small>{slide.unit}</small>
+              </div>
+              <div className="wrap sc">
+                <div className="txt">
+                  <span className="chip">{slide.tag}</span>
+                  <h1>{slide.title}</h1>
+                  <p className="sub">{slide.text}</p>
+                  <div className="price">{price}</div>
+                  <div className="cta">
+                    <button type="button" className="btn fill" onClick={onOrderNowClick} tabIndex={i === active ? 0 : -1}>Order now</button>
+                    <button type="button" className="btn" onClick={scrollToRange} tabIndex={i === active ? 0 : -1}>See all sizes</button>
+                  </div>
+                </div>
+                <div className="stage">
+                  <div className="glow" />
+                  <img className={`prod p-${slide.key}`} src={cutouts[slide.key]} alt={slide.title} />
+                  <div className="floor" />
                 </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
+
+        <div className="waves" aria-hidden="true">
+          <svg className="wv w1" viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <path d={WAVE} />
+            <path d={WAVE} transform="translate(1440 0)" />
+          </svg>
+          <svg className="wv" viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <path d={WAVE} />
+            <path d={WAVE} transform="translate(1440 0)" />
+          </svg>
+        </div>
 
         <div className="rail">
           <div className="wrap">
-            {heroSlides.map((slide, index) => (
+            {heroSlides.map((slide, i) => (
               <button
                 key={slide.key}
                 type="button"
-                className={`dot${index === active ? ' on' : index < active ? ' done' : ''}`}
-                aria-label={`Show ${slide.title}`}
-                aria-current={index === active ? 'true' : undefined}
-                onClick={() => setActive(index)}
+                className={`dot${i === active ? ' on' : ''}${i < active ? ' done' : ''}`}
+                aria-label={slide.title}
+                onClick={() => setActive(i)}
               >
-                <span>{String(index + 1).padStart(2, '0')}</span>
-                <em>{slide.tag}</em>
                 <i />
+                <span>{slide.tag}</span>
               </button>
             ))}
           </div>

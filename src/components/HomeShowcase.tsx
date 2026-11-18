@@ -1,26 +1,26 @@
 import React, { useEffect, useRef } from 'react';
 import { COMPANY_INFO, PRODUCTS } from '../data/waterData';
 import './home.css';
-import facade from '../assets/images/aqua_uno_factory_facade.jpg';
+import { cutouts } from './Hero';
 import aerial from '../assets/images/ephrone_plant_aerial.jpg';
 import pallets from '../assets/images/aqua_uno_warehouse_pallets.jpg';
 import gate from '../assets/images/ephrone_gate_entrance.jpg';
-import imgRefill from '../assets/slides/refill.jpg';
-import imgOneWay from '../assets/slides/oneway.jpg';
-import img10L from '../assets/slides/l10.jpg';
-import img5L from '../assets/slides/l5.jpg';
-import img1LPack from '../assets/slides/pack1l.jpg';
-import img500Pack from '../assets/slides/pack500.jpg';
 
-const TICKER = ['500 ML', '1 L', '5 L', '10 L', '18.9 L', 'RETURNABLE', 'ONE-WAY', 'DELIVERED'];
+const TILES: { id: string; key: keyof typeof cutouts; badge: string }[] = [
+  { id: 'prod-20l', key: 'refill', badge: '18.9 L' },
+  { id: 'prod-18l-disposable', key: 'oneway', badge: '18.9 L' },
+  { id: 'prod-10l', key: 'l10', badge: '10 L' },
+  { id: 'prod-5l', key: 'l5', badge: '5 L' },
+  { id: 'prod-1l-pack', key: 'pack1l', badge: '12 × 1 L' },
+  { id: 'prod-500ml-pack', key: 'pack500', badge: '24 × 500 ml' },
+];
 
-const TILES = [
-  { id: 'prod-20l', src: imgRefill, badge: '18.9 L' },
-  { id: 'prod-18l-disposable', src: imgOneWay, badge: '18.9 L' },
-  { id: 'prod-10l', src: img10L, badge: '10 L' },
-  { id: 'prod-5l', src: img5L, badge: '5 L' },
-  { id: 'prod-1l-pack', src: img1LPack, badge: '12 × 1 L' },
-  { id: 'prod-500ml-pack', src: img500Pack, badge: '24 × 500 ml' },
+const LINEUP: { key: keyof typeof cutouts; label: string; h: number }[] = [
+  { key: 'ml500', label: '500 ml', h: 0.4 },
+  { key: 'l5', label: '5 L', h: 0.58 },
+  { key: 'l10', label: '10 L', h: 0.78 },
+  { key: 'oneway', label: '18.9 L one-way', h: 1 },
+  { key: 'refill', label: '18.9 L refill', h: 1 },
 ];
 
 const STORY_PHOTOS = [
@@ -29,11 +29,12 @@ const STORY_PHOTOS = [
   { src: gate, label: 'The gate', alt: 'The Aqua Uno entrance gate' },
 ];
 
+const WAVE = 'M0 60 C 180 10 360 110 540 60 S 900 10 1080 60 S 1260 100 1440 60 V120 H0Z';
+
 export const HomeShowcase: React.FC = () => {
   const rootRef = useRef<HTMLDivElement>(null);
   const galleryRef = useRef<HTMLDivElement>(null);
 
-  // Reveal on scroll
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
@@ -53,7 +54,6 @@ export const HomeShowcase: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Gentle parallax on the story photos
   useEffect(() => {
     const root = rootRef.current;
     if (!root) return;
@@ -76,7 +76,6 @@ export const HomeShowcase: React.FC = () => {
     };
   }, []);
 
-  // Drag to scroll the gallery
   useEffect(() => {
     const gallery = galleryRef.current;
     if (!gallery) return;
@@ -110,7 +109,7 @@ export const HomeShowcase: React.FC = () => {
   }, []);
 
   const scrollGallery = (direction: 1 | -1) => {
-    galleryRef.current?.scrollBy({ left: direction * 330, behavior: 'smooth' });
+    galleryRef.current?.scrollBy({ left: direction * 320, behavior: 'smooth' });
   };
 
   const handleWhatsApp = () => {
@@ -120,66 +119,68 @@ export const HomeShowcase: React.FC = () => {
 
   return (
     <div className="aq-home" ref={rootRef}>
-      <div className="ticker" aria-hidden="true">
-        <div>
-          {[0, 1, 2, 3].map((n) => (
-            <React.Fragment key={n}>
-              {TICKER.map((word) => (
-                <React.Fragment key={word}>
-                  <span>{word}</span>
-                  <em>◆</em>
-                </React.Fragment>
-              ))}
-            </React.Fragment>
-          ))}
-        </div>
-      </div>
-
       <section className="sec" id="range">
         <div className="head reveal">
           <p className="eyebrow">What we sell</p>
-          <h2>One source. Six sizes.</h2>
-          <p>Premium purified drinking water in every size your day needs. Swipe or use the arrows.</p>
+          <h2>Pure water in every size</h2>
+          <p>From a pocket-sized 500&nbsp;ml to the 18.9&nbsp;litre dispenser bottle. Swipe or use the arrows.</p>
         </div>
         <div className="gal" ref={galleryRef}>
           {TILES.map((tile) => {
             const product = PRODUCTS.find((p) => p.id === tile.id);
             if (!product) return null;
             return (
-              <article key={tile.id} className="tile reveal">
-                <div className="arch">
-                  <span className="badge">{tile.badge}</span>
-                  <img src={tile.src} alt={product.name} loading="lazy" draggable={false} />
+              <article key={tile.id} className="card reveal">
+                <div className="cimg">
+                  <span className="cb">{tile.badge}</span>
+                  <img src={cutouts[tile.key]} alt={product.name} loading="lazy" draggable={false} />
                 </div>
                 <h3>{product.name}</h3>
                 <div className="row">
                   <b>
                     {COMPANY_INFO.currency} {product.price.toLocaleString()}
                   </b>
-                  <a href="/products">Order →</a>
+                  <a href="/products">Order &rarr;</a>
                 </div>
               </article>
             );
           })}
         </div>
         <div className="arrows">
-          <button type="button" aria-label="Previous sizes" onClick={() => scrollGallery(-1)}>←</button>
-          <button type="button" aria-label="Next sizes" onClick={() => scrollGallery(1)}>→</button>
+          <button type="button" aria-label="Previous sizes" onClick={() => scrollGallery(-1)}>&larr;</button>
+          <button type="button" aria-label="Next sizes" onClick={() => scrollGallery(1)}>&rarr;</button>
         </div>
       </section>
 
-      <div className="wrap reveal">
-        <div className="facts">
+      <section className="scale" id="scale">
+        <div className="wrap">
+          <div className="head reveal">
+            <p className="eyebrow">The range, to scale</p>
+            <h2>Find the size that fits your day</h2>
+          </div>
+          <div className="lineup reveal">
+            {LINEUP.map((item) => (
+              <a key={item.label} className="lu" href="/products" style={{ '--h': item.h } as React.CSSProperties}>
+                <img src={cutouts[item.key]} alt={item.label} draggable={false} />
+                <span>{item.label}</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <div className="wrap">
+        <div className="facts reveal">
           <div>
             <h3>Bottled at source</h3>
             <p>Filled and sealed at our own plant in Yatta, Machakos.</p>
           </div>
           <div>
-            <h3>Sealed and tamper-evident</h3>
-            <p>Every bottle carries a branded safety seal.</p>
+            <h3>Sealed for safety</h3>
+            <p>Every bottle carries a branded tamper-evident seal.</p>
           </div>
           <div>
-            <h3>Delivered to your door</h3>
+            <h3>Delivered to you</h3>
             <p>Homes, offices, schools and events. Order on WhatsApp.</p>
           </div>
         </div>
@@ -191,9 +192,9 @@ export const HomeShowcase: React.FC = () => {
             <p className="eyebrow">From source to door</p>
             <h2>Made here. Delivered to you.</h2>
             <ul>
-              <li><b>I</b><span>Sourced and purified at Ephron Industries, Yatta.</span></li>
-              <li><b>II</b><span>Filled by contactless machines and sealed.</span></li>
-              <li><b>III</b><span>Stored on pallets, then delivered to your door.</span></li>
+              <li><b>1</b><span>Sourced and purified at Ephron Industries, Yatta.</span></li>
+              <li><b>2</b><span>Filled by contactless machines and sealed.</span></li>
+              <li><b>3</b><span>Stored on pallets, then delivered to your door.</span></li>
             </ul>
             <div className="zones">
               <i>Nairobi</i>
@@ -213,9 +214,15 @@ export const HomeShowcase: React.FC = () => {
         </div>
       </section>
 
-      <section className="order" id="order" style={{ ['--order-bg' as string]: `url(${facade})` }}>
+      <section className="order" id="order">
+        <div className="waves" aria-hidden="true">
+          <svg className="wv" viewBox="0 0 1440 120" preserveAspectRatio="none">
+            <path d={WAVE} />
+            <path d={WAVE} transform="translate(1440 0)" />
+          </svg>
+        </div>
         <div className="wrap reveal">
-          <p className="eyebrow">Order now</p>
+          <p className="eyebrow" style={{ color: '#bff0ff' }}>Order now</p>
           <h2>Fresh water at your door</h2>
           <p>Message us on WhatsApp with your size and location. Free delivery on 2 or more 18.9&nbsp;L bottles.</p>
           <div className="cta">
