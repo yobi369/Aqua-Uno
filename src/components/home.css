@@ -33,6 +33,7 @@
 .aq-home .p-refill,.aq-home .p-oneway{height:min(66vh,540px)}
 .aq-home .p-l10{height:min(60vh,500px)}
 .aq-home .p-l5{height:min(56vh,470px)}
+.aq-home .p-l5pack{height:min(52vh,430px)}
 .aq-home .p-ml500{height:min(58vh,480px)}
 .aq-home .p-pack1l{width:min(100%,560px)}
 .aq-home .p-pack500{width:min(100%,600px)}
@@ -105,7 +106,7 @@
 @media(max-width:860px){.aq-home .sc{grid-template-columns:1fr;grid-template-rows:auto 1fr;gap:6px;padding-top:80px;padding-bottom:128px;text-align:center}
 .aq-home .stage{order:-1;height:100%;min-height:0}
 .aq-home .prod{max-height:100%}
-.aq-home .p-refill,.aq-home .p-oneway,.aq-home .p-l10,.aq-home .p-l5,.aq-home .p-ml500{height:min(30vh,250px)}
+.aq-home .p-refill,.aq-home .p-oneway,.aq-home .p-l10,.aq-home .p-l5,.aq-home .p-l5pack,.aq-home .p-ml500{height:min(30vh,250px)}
 .aq-home .p-pack1l,.aq-home .p-pack500{width:min(80%,320px)}
 .aq-home .sub{margin-inline:auto;font-size:15px}
 .aq-home .cta{justify-content:center}

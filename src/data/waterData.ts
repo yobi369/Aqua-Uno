@@ -118,7 +118,7 @@ export const PRODUCTS: Product[] = [
     name: 'One-Way 18.9 Litre Bottle',
     size: '18.9 Litres',
     category: 'dispenser',
-    price: 1300,
+    price: 400,
     description: 'The Aqua Uno 18.9L one-way PET bottle in a swirl-ribbed design. No deposit and no returns, ideal for events, sites and occasional dispenser use.',
     bestFor: 'Events, Sites, Occasional Dispenser Use',
     features: [
@@ -135,7 +135,7 @@ export const PRODUCTS: Product[] = [
     name: '10 Litre Family Container',
     size: '10 Litres',
     category: 'dispenser',
-    price: 400,
+    price: 220,
     description: 'The versatile Aqua Uno 10-Litre bottle with an ergonomic heavy-duty carry handle. Compact enough for kitchen countertops and pantry storage while providing ample hydration.',
     bestFor: 'Apartments, Small Families, Dining Rooms & Travel',
     features: [
@@ -150,11 +150,11 @@ export const PRODUCTS: Product[] = [
   },
   {
     id: 'prod-5l',
-    name: '5 Litre Family Bottle',
-    size: '5 Litres',
+    name: '5 Litre Pack (2 Bottles)',
+    size: '2 × 5 Litres',
     category: 'bottles',
     price: 440,
-    description: 'Convenient 5-litre Aqua Uno container with sturdy blue carry handle. Perfect for family kitchens, dining tables, camping trips, and boiling crystal-clear tea and coffee.',
+    description: 'Two 5-litre Aqua Uno bottles, shrink-wrapped together with sturdy blue carry handles. Perfect for family kitchens, dining tables, camping trips, and boiling crystal-clear tea and coffee.',
     bestFor: 'Family Kitchens, Camping, Cottages & Cooking',
     features: [
       'Heavy-duty molded carry handle',

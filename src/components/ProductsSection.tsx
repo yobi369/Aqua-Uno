@@ -9,7 +9,7 @@ const CUTOUT: Record<string, keyof typeof cutouts> = {
   'prod-20l': 'refill',
   'prod-18l-disposable': 'oneway',
   'prod-10l': 'l10',
-  'prod-5l': 'l5',
+  'prod-5l': 'l5pack',
   'prod-1l-pack': 'pack1l',
   'prod-500ml-pack': 'pack500',
 };
@@ -18,7 +18,7 @@ const NUMERALS: Record<string, string> = {
   'prod-20l': '18.9',
   'prod-18l-disposable': '18.9',
   'prod-10l': '10',
-  'prod-5l': '5',
+  'prod-5l': '2×5',
   'prod-1l-pack': '1',
   'prod-500ml-pack': '500',
 };
