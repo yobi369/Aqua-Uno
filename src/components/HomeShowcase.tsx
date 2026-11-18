@@ -16,7 +16,7 @@ const TILES: { id: string; key: keyof typeof cutouts; badge: string }[] = [
 ];
 
 const LINEUP: { key: keyof typeof cutouts; label: string; h: number }[] = [
-  { key: 'ml500', label: '500 ml', h: 0.4 },
+  { key: 'pack500', label: '500 ml case (24)', h: 0.34 },
   { key: 'l5', label: '5 L', h: 0.58 },
   { key: 'l10', label: '10 L', h: 0.78 },
   { key: 'oneway', label: '18.9 L one-way', h: 1 },
@@ -123,7 +123,7 @@ export const HomeShowcase: React.FC = () => {
         <div className="head reveal">
           <p className="eyebrow">What we sell</p>
           <h2>Pure water in every size</h2>
-          <p>From a pocket-sized 500&nbsp;ml to the 18.9&nbsp;litre dispenser bottle. Swipe or use the arrows.</p>
+          <p>From 500&nbsp;ml packs to the 18.9&nbsp;litre dispenser bottle. Swipe or use the arrows.</p>
         </div>
         <div className="gal" ref={galleryRef}>
           {TILES.map((tile) => {

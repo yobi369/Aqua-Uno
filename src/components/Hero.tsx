@@ -7,7 +7,6 @@ import cut10L from '../assets/cutouts/l10.webp';
 import cut5L from '../assets/cutouts/l5.webp';
 import cutPack1L from '../assets/cutouts/pack1l.webp';
 import cutPack500 from '../assets/cutouts/pack500.webp';
-import cut500ml from '../assets/cutouts/ml500.webp';
 
 interface HeroProps {
   onOrderNowClick: () => void;
@@ -22,7 +21,6 @@ export const cutouts = {
   l5: cut5L,
   pack1l: cutPack1L,
   pack500: cutPack500,
-  ml500: cut500ml,
 };
 
 interface Slide {
@@ -43,7 +41,6 @@ export const heroSlides: Slide[] = [
   { key: 'l5', productId: 'prod-5l', tag: 'Everyday', num: '5', unit: 'L', title: 'The 5 Litre Bottle', text: 'A carry handle for the table, the kitchen and the road.', bg: 'linear-gradient(135deg,#d3ecff 0%,#f0f8ff 60%,#fff 100%)' },
   { key: 'pack1l', productId: 'prod-1l-pack', tag: 'Active', num: '12×1', unit: 'L', title: 'The 1 Litre Pack', text: 'Twelve bottles for the gym bag, the field trip and the desk.', bg: 'linear-gradient(135deg,#aeeaff 0%,#e6faff 60%,#fff 100%)' },
   { key: 'pack500', productId: 'prod-500ml-pack', tag: 'Events', num: '24×500', unit: 'ml', title: 'The 500 ml Case', text: 'Twenty-four compact bottles for boardrooms, weddings and conferences.', bg: 'linear-gradient(135deg,#b7d4ff 0%,#e6efff 60%,#fff 100%)' },
-  { key: 'ml500', tag: 'Grab & Go', num: '500', unit: 'ml', title: 'The 500 ml Bottle', text: 'The one you carry. Pure, light and always cold enough.', bg: 'linear-gradient(135deg,#c7f0ff 0%,#eefaff 60%,#fff 100%)' },
 ];
 
 const BUBBLES = Array.from({ length: 16 }, (_, i) => {
@@ -83,7 +80,7 @@ export const Hero: React.FC<HeroProps> = ({ onOrderNowClick }) => {
       >
         {heroSlides.map((slide, i) => {
           const product = PRODUCTS.find((p) => p.id === slide.productId);
-          const price = product ? `${COMPANY_INFO.currency} ${product.price.toLocaleString()}` : 'Ask for price';
+          const price = product ? `${COMPANY_INFO.currency} ${product.price.toLocaleString()}` : '';
           return (
             <div
               key={slide.key}
