@@ -87,6 +87,7 @@ export const EphroneMediaGallerySection: React.FC = () => {
               src={COMPANY_INFO.videoUrl}
               poster={FACILITY_IMAGES.factoryFacade}
               loop
+              preload="none"
               playsInline
               muted={isMuted}
               onPlay={() => setIsPlaying(true)}
