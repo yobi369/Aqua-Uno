@@ -4,6 +4,7 @@ import imgDisposable from '../assets/gallery/disposable.jpg';
 import img10L from '../assets/gallery/l10.jpg';
 import img5L from '../assets/gallery/l5.jpg';
 import img1LPack from '../assets/gallery/pack-1l.jpg';
+import img15LPack from '../assets/cutouts/l15.webp';
 import img500Pack from '../assets/gallery/pack-500ml.jpg';
 import aquaUnoFactoryFacade from '../assets/images/aqua_uno_factory_facade.jpg';
 import aquaUnoSignGardens from '../assets/images/aqua_uno_sign_gardens.jpg';
@@ -181,6 +182,23 @@ export const PRODUCTS: Product[] = [
     ],
     image: img1LPack,
     tag: 'Active Hydration',
+  },
+  {
+    id: 'prod-1-5l-pack',
+    name: '1.5 Litre Bottle (Pack of 12)',
+    size: '12 × 1.5 Litres',
+    category: 'packs',
+    price: 400,
+    description: 'High-capacity 1.5 litre Aqua Uno bottles for maximum daily hydration. Recommended for athletes, long road trips and all-day workstations.',
+    bestFor: 'Athletes, Fitness, Long Drives & Dining',
+    features: [
+      '1.5L generous volume per bottle',
+      'Ergonomic contour grip',
+      'Convenient 12-bottle pack',
+      'Fresh spring water'
+    ],
+    image: img15LPack,
+    tag: 'Maximum Hydration',
   },
   {
     id: 'prod-500ml-pack',

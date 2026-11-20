@@ -7,6 +7,7 @@ import cut10L from '../assets/cutouts/l10.webp';
 import cut5L from '../assets/cutouts/l5.webp';
 import cut5LPack from '../assets/cutouts/l5pack.webp';
 import cutPack1L from '../assets/cutouts/pack1l.webp';
+import cut15L from '../assets/cutouts/l15.webp';
 import cutPack500 from '../assets/cutouts/pack500.webp';
 
 interface HeroProps {
@@ -22,6 +23,7 @@ export const cutouts = {
   l5: cut5L,
   l5pack: cut5LPack,
   pack1l: cutPack1L,
+  l15: cut15L,
   pack500: cutPack500,
 };
 
@@ -42,6 +44,7 @@ export const heroSlides: Slide[] = [
   { key: 'l10', productId: 'prod-10l', tag: 'Family', num: '10', unit: 'L', title: 'The 10 Litre Container', text: 'Compact enough for the kitchen counter. Sealed with a branded cap.', bg: 'linear-gradient(135deg,#bff3e8 0%,#e8fbf7 60%,#fff 100%)' },
   { key: 'l5pack', productId: 'prod-5l', tag: 'Everyday', num: '2×5', unit: 'L', title: 'The 5 Litre Pack', text: 'Two 5 litre bottles wrapped together, with carry handles for the table, the kitchen and the road.', bg: 'linear-gradient(135deg,#d3ecff 0%,#f0f8ff 60%,#fff 100%)' },
   { key: 'pack1l', productId: 'prod-1l-pack', tag: 'Active', num: '12×1', unit: 'L', title: 'The 1 Litre Pack', text: 'Twelve bottles for the gym bag, the field trip and the desk.', bg: 'linear-gradient(135deg,#aeeaff 0%,#e6faff 60%,#fff 100%)' },
+  { key: 'l15', productId: 'prod-1-5l-pack', tag: 'Hydration', num: '12×1.5', unit: 'L', title: 'The 1.5 Litre Pack', text: 'Twelve big bottles for athletes, long drives and all-day workstations.', bg: 'linear-gradient(135deg,#bff3e8 0%,#e8fbf7 60%,#fff 100%)' },
   { key: 'pack500', productId: 'prod-500ml-pack', tag: 'Events', num: '24×500', unit: 'ml', title: 'The 500 ml Case', text: 'Twenty-four compact bottles for boardrooms, weddings and conferences.', bg: 'linear-gradient(135deg,#b7d4ff 0%,#e6efff 60%,#fff 100%)' },
 ];
 

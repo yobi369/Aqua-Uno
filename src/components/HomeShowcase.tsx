@@ -12,11 +12,13 @@ const TILES: { id: string; key: keyof typeof cutouts; badge: string }[] = [
   { id: 'prod-10l', key: 'l10', badge: '10 L' },
   { id: 'prod-5l', key: 'l5pack', badge: '2 × 5 L' },
   { id: 'prod-1l-pack', key: 'pack1l', badge: '12 × 1 L' },
+  { id: 'prod-1-5l-pack', key: 'l15', badge: '12 × 1.5 L' },
   { id: 'prod-500ml-pack', key: 'pack500', badge: '24 × 500 ml' },
 ];
 
 const LINEUP: { key: keyof typeof cutouts; label: string; h: number }[] = [
   { key: 'pack500', label: '500 ml case (24)', h: 0.34 },
+  { key: 'l15', label: '1.5 L pack (12)', h: 0.42 },
   { key: 'l5', label: '5 L bottle', h: 0.58 },
   { key: 'l10', label: '10 L', h: 0.78 },
   { key: 'oneway', label: '18.9 L one-way', h: 1 },

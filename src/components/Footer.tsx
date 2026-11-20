@@ -49,6 +49,9 @@ export const Footer: React.FC = () => {
                 <a href="/products#products" className="hover:text-sky-300 transition-colors">1 Litre Pack (12)</a>
               </li>
               <li>
+                <a href="/products#products" className="hover:text-sky-300 transition-colors">1.5 Litre Pack (12)</a>
+              </li>
+              <li>
                 <a href="/products#products" className="hover:text-sky-300 transition-colors">500ml Case (24)</a>
               </li>
             </ul>

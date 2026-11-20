@@ -37,6 +37,7 @@
 .aq-home .p-ml500{height:min(58vh,480px)}
 .aq-home .p-pack1l{height:min(46vh,400px);width:auto}
 .aq-home .p-pack500{height:min(36vh,310px);width:auto}
+.aq-home .p-l15{height:min(46vh,400px);width:auto}
 .aq-home .floor{position:absolute;z-index:1;left:50%;bottom:-6px;width:70%;height:30px;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(2,62,138,.38),rgba(2,62,138,0) 70%);filter:blur(4px)}
 .aq-home .waves{position:absolute;left:0;right:0;bottom:-1px;height:120px;overflow:hidden;pointer-events:none;z-index:5}
 .aq-home .wv{position:absolute;left:0;bottom:0;width:200%;height:100%;animation:aq-flow 14s linear infinite}
@@ -109,6 +110,7 @@
 .aq-home .p-refill,.aq-home .p-oneway,.aq-home .p-l10,.aq-home .p-l5,.aq-home .p-l5pack,.aq-home .p-ml500{height:min(30vh,250px)}
 .aq-home .p-pack1l{height:min(27vh,220px);width:auto}
 .aq-home .p-pack500{height:min(22vh,170px);width:auto}
+.aq-home .p-l15{height:min(27vh,220px);width:auto}
 .aq-home .sub{margin-inline:auto;font-size:15px}
 .aq-home .cta{justify-content:center}
 .aq-home h1{font-size:38px}
