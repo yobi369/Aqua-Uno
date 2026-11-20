@@ -19,7 +19,7 @@ const NUMERALS: Record<string, string> = {
   'prod-20l': '18.9',
   'prod-18l-disposable': '18.9',
   'prod-10l': '10',
-  'prod-5l': '2×5',
+  'prod-5l': '4×5',
   'prod-1l-pack': '1',
   'prod-1-5l-pack': '1.5',
   'prod-500ml-pack': '500',

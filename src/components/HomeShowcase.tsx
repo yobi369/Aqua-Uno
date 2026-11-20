@@ -10,7 +10,7 @@ const TILES: { id: string; key: keyof typeof cutouts; badge: string }[] = [
   { id: 'prod-20l', key: 'refill', badge: '18.9 L' },
   { id: 'prod-18l-disposable', key: 'oneway', badge: '18.9 L' },
   { id: 'prod-10l', key: 'l10', badge: '10 L' },
-  { id: 'prod-5l', key: 'l5pack', badge: '2 × 5 L' },
+  { id: 'prod-5l', key: 'l5pack', badge: '4 × 5 L' },
   { id: 'prod-1l-pack', key: 'pack1l', badge: '12 × 1 L' },
   { id: 'prod-1-5l-pack', key: 'l15', badge: '12 × 1.5 L' },
   { id: 'prod-500ml-pack', key: 'pack500', badge: '24 × 500 ml' },
